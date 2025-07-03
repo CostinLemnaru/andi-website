@@ -561,7 +561,7 @@ export default function ComingSoon() {
 
       // Create URL with data as backup
       const encodedData = encodeURIComponent(JSON.stringify(reportData))
-      const reportUrl = `/roi-report?data=${encodedData}`
+      const reportUrl = `/roi-report.html?data=${encodedData}`
 
       // Open report in new tab
       window.open(reportUrl, "_blank")

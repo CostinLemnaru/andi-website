@@ -63,7 +63,7 @@ const SageRoiCalculator = () => {
 
     // Open report in new window with data in URL as backup
     const encodedData = encodeURIComponent(JSON.stringify(reportData))
-    const reportUrl = `/roi-report?data=${encodedData}`
+    const reportUrl = `/roi-report.html?data=${encodedData}`
     window.open(reportUrl, "_blank")
 
     setShowForm(false)
