@@ -5,6 +5,7 @@ This is a Next.js + Tailwind CSS project.
 ## How to run locally
 
 1. **Install dependencies**
+
    - With pnpm (recommended):
      ```bash
      pnpm install
@@ -13,30 +14,41 @@ This is a Next.js + Tailwind CSS project.
      ```bash
      npm install --legacy-peer-deps
      ```
-
 2. **Start the development server**
+
    ```bash
    pnpm run dev
    # or
    npm run dev
    ```
+
    Then open http://localhost:3000 in your browser.
 
 ## Useful scripts
+
 - `dev` – start the development server
 - `build` – create a production build
 - `start` – run the production build
 - `lint` – run the linter
 
+## How to deploy
+
+- Run the following script and it will build and push the code to the `production`
+  branch that will be automatically deployed to https://andi.zamora.ai
+  ```bash
+  ./deploy.sh
+  ```
+
 ## Tech stack
+
 - [Next.js](https://nextjs.org/)
 - [React](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## Project structure
+
 - `app/` – pages and routes
 - `components/` – custom UI components
 - `public/` – static assets and images
 - `styles/` – global CSS files
-
