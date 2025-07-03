@@ -1,0 +1,156 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+
+const actions = [
+  "observes",
+  "analyzes",
+  "watches",
+  "analyzes",
+  "understands",
+  "responds",
+  "scans",
+  "processes",
+  "executes",
+  "interprets",
+  "detects",
+  "delivers",
+  "initiates",
+  "drives",
+  "observes",
+  "analyzes",
+  "watches",
+  "analyzes",
+  "understands",
+  "responds",
+  "scans",
+  "processes",
+  "executes",
+  "interprets",
+  "detects",
+  "delivers",
+  "initiates",
+  "drives",
+  "observes",
+  "analyzes",
+  "watches",
+  "analyzes",
+  "understands",
+  "responds",
+  "scans",
+  "processes",
+  "executes",
+  "interprets",
+  "detects",
+  "delivers",
+  "initiates",
+  "drives",
+  "observes",
+  "analyzes",
+  "watches",
+  "analyzes",
+  "understands",
+  "responds",
+  "scans",
+  "processes",
+  "executes",
+  "interprets",
+  "detects",
+  "delivers",
+  "initiates",
+  "drives",
+]
+
+export default function ActionWords({ className = "mx-1" }: { className?: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % actions.length)
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // Calculate position based on the duplicated list
+      // Reset to the top of the duplicated list when reaching the end
+      const totalItems = actions.length * 2
+      const newIndex = currentIndex % totalItems
+      const newPosition = -newIndex * 1.2
+
+      // If we've reached the end of the original list, reset to the beginning of the duplicate
+      if (newIndex === actions.length) {
+        containerRef.current.style.transition = "none"
+        containerRef.current.style.transform = `translateY(0em)`
+
+        // Force a reflow to make the transition removal take effect
+        containerRef.current.offsetHeight
+
+        // Re-enable transition and start from the beginning
+        setTimeout(() => {
+          if (containerRef.current) {
+            containerRef.current.style.transition = "transform 0.5s ease"
+            setCurrentIndex(0)
+          }
+        }, 10)
+
+        return
+      }
+
+      containerRef.current.style.transition = "transform 0.5s ease"
+      containerRef.current.style.transform = `translateY(${newPosition}em)`
+    }
+  }, [currentIndex, actions.length])
+
+  return (
+    <span
+      className={`word-carousel ${className}`}
+      style={{
+        position: "relative",
+        top: "-0.10em",
+        minWidth: "130px",
+        maxWidth: "none",
+        width: "auto",
+        marginLeft: "0.0em",
+        marginRight: "0.1em",
+      }}
+    >
+      <div ref={containerRef} className="word-carousel-items">
+        {actions.map((action, index) => (
+          <div key={`original-${index}`} className="word-carousel-item" style={{ justifyContent: "flex-start" }}>
+            <span
+              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+              style={{
+                animation: "gradient 8s linear infinite",
+                backgroundSize: "300% 100%",
+                backgroundPosition: "left",
+                animationDelay: `-${index * 0.8}s`, // Offset animation based on word index
+              }}
+            >
+              {action}
+            </span>
+          </div>
+        ))}
+        {/* Duplicate the list for endless loop effect */}
+        {actions.map((action, index) => (
+          <div key={`duplicate-${index}`} className="word-carousel-item" style={{ justifyContent: "flex-start" }}>
+            <span
+              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+              style={{
+                animation: "gradient 8s linear infinite",
+                backgroundSize: "300% 100%",
+                backgroundPosition: "left",
+                animationDelay: `-${index * 0.8}s`, // Offset animation based on word index
+              }}
+            >
+              {action}
+            </span>
+          </div>
+        ))}
+      </div>
+    </span>
+  )
+}
