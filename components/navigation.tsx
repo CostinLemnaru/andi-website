@@ -321,7 +321,7 @@ export default function Navigation() {
           <div className="flex items-center absolute left-0">
             <Link href="/" className="flex items-center">
               <span className="text-2xl font-medium">
-                <GradientText>andi</GradientText>
+                <GradientText>ANDI</GradientText>
               </span>
               <span className="text-gray-400 text-xl mx-2">by</span>
               <img src="/zamora-logo.png" alt="Zamora" className="h-8 w-auto ml-2" />

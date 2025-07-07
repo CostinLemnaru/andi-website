@@ -65,11 +65,19 @@ export default function ComingSoon({ data }: Props) {
   const [selectedVersion, setSelectedVersion] = useState("mvp")
 
   const [employees, setEmployees] = useState(100)
-  const [decisionMakers, setDecisionMakers] = useState(20)
+  const [decisionMakers, setDecisionMakers] = useState(1)
   const [avgSalary, setAvgSalary] = useState(100000)
-  const [currentToolCost, setCurrentToolCost] = useState(200000)
-  const [decisionTime, setDecisionTime] = useState(5)
-  const [decisionsPerWeek, setDecisionsPerWeek] = useState(10)
+  const [currentToolCost, setCurrentToolCost] = useState(30000)
+  const [decisionTime, setDecisionTime] = useState(1)
+  const [decisionsPerWeek, setDecisionsPerWeek] = useState(1)
+
+  // Temporary input values for display while typing
+  const [employeesInput, setEmployeesInput] = useState("100")
+  const [decisionMakersInput, setDecisionMakersInput] = useState("1")
+  const [avgSalaryInput, setAvgSalaryInput] = useState("100,000")
+  const [currentToolCostInput, setCurrentToolCostInput] = useState("30,000")
+  const [decisionTimeInput, setDecisionTimeInput] = useState("1")
+  const [decisionsPerWeekInput, setDecisionsPerWeekInput] = useState("1")
 
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false)
   const [reportForm, setReportForm] = useState({
@@ -100,7 +108,7 @@ export default function ComingSoon({ data }: Props) {
   const consolidationSavingsRate = Math.min(0.6, 0.3 + toolsConsolidated * 0.02) // 30-60% savings based on tool count
   const toolConsolidationSavings = currentToolCost * consolidationSavingsRate
 
-  const suggestedPlan = usageComplexityScore <= 0.4 ? "Launch" : usageComplexityScore <= 0.8 ? "Growth" : "Enterprise"
+  const suggestedPlan = usageComplexityScore <= 0.4 ? "Launch" : usageComplexityScore <= 0.8 ? "Scale" : "Enterprise"
 
   // Opportunity cost savings (faster decisions = faster time to market/action)
   const annualCostSaved = decisionsPerWeek * decisionTime * decisionMakers * 50 * hourlyRate * 0.7 // 70% reduction
@@ -124,7 +132,7 @@ export default function ComingSoon({ data }: Props) {
       "3 Standard Integrations",
       "Community & Email Support",
     ],
-    Growth: [
+    Scale: [
       "50K Generated Insights/Month",
       "15,000 Total NLP Queries/Month",
       "10 Standard Integrations + Plugin Support",
@@ -346,6 +354,16 @@ export default function ComingSoon({ data }: Props) {
       default:
         return mvpFeatures
     }
+  }
+
+  // Helper function to format numbers with commas
+  const formatNumber = (num: number) => {
+    return num.toLocaleString()
+  }
+
+  // Helper function to parse number from formatted string
+  const parseFormattedNumber = (str: string) => {
+    return Number.parseInt(str.replace(/[^0-9]/g, "")) || 0
   }
 
   // Setup scroll-based animations
@@ -574,7 +592,7 @@ export default function ComingSoon({ data }: Props) {
 
       // Create URL with data as backup
       const encodedData = encodeURIComponent(JSON.stringify(reportData))
-      const reportUrl = `/roi-report.html?data=${encodedData}`
+      const reportUrl = `/roi-report?data=${encodedData}`
 
       // Open report in new tab
       window.open(reportUrl, "_blank")
@@ -606,7 +624,7 @@ export default function ComingSoon({ data }: Props) {
             <div className="mb-8 flex flex-col items-center md:items-start">
               <div className="mb-1 text-4xl sm:text-5xl md:text-6xl">
                 <span className="text-gray-400">Meet </span>
-                <GradientText>andi</GradientText>
+                <GradientText>ANDI</GradientText>
               </div>
               <div className="mb-6 text-xl sm:text-2xl md:text-3xl font-light text-gray-400">by Zamora</div>
             </div>
@@ -689,11 +707,11 @@ export default function ComingSoon({ data }: Props) {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="scroll-fade text-3xl sm:text-4xl font-light mb-6 text-gray-400">
-                We bring <GradientText>andi</GradientText> to your data, <br />
+                We bring <GradientText>ANDI</GradientText> to your data, <br />
                 not your data to us.
               </h2>
               <p className="scroll-fade text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-                andi learns, reasons, and acts securely where your data lives. Simple. Safe. Effortless.
+                ANDI learns, reasons, and acts securely where your data lives. Simple. Safe. Effortless.
               </p>
             </div>
 
@@ -721,7 +739,7 @@ export default function ComingSoon({ data }: Props) {
         </section>
 
         {/* Roadmap Section */}
-        <section className="relative z-10 py-24 px-4 sm:px-6">
+        <section className="relative z-10 py-24 px-4 sm:px-6 mb-12 md:mb-0">
           <div className="max-w-5xl mx-auto">
             <div className="scroll-fade fade-from-top transition-all duration-700 ease-in-out">
               <h2 className="text-3xl sm:text-4xl font-light mb-16 text-center">
@@ -849,7 +867,7 @@ export default function ComingSoon({ data }: Props) {
         </section>
 
         {/* ROI Calculator Section */}
-        <section className="relative z-10 py-24 px-4 sm:px-6">
+        <section className="relative z-10 py-24 md:py-48 px-4 sm:px-6 mt-24 md:mt-0">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="scroll-fade text-3xl sm:text-4xl font-light mb-6">
@@ -862,354 +880,494 @@ export default function ComingSoon({ data }: Props) {
             </div>
 
             <div className="scroll-fade fade-early bg-gray-900/40 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Input Controls */}
-                <div className="space-y-8">
-                  <h3 className="text-2xl font-light text-gray-300 mb-6">Tell us about your business</h3>
+              <div className="space-y-12">
+                <div className="space-y-12">
+                  {" "}
+                  {/* This div wraps both the input controls and results */}
+                  {/* Input Controls */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 gap-y-6 md:gap-y-8">
+                    {/* Column 1 */}
+                    <div className="space-y-8">
+                      <h3 className="text-2xl font-light text-gray-300 mb-6 col-span-full">
+                        Tell us about your business
+                      </h3>
 
-                  <div className="space-y-8">
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">Total Employees</label>
-                        <span className="text-purple-400 font-bold">{employees.toLocaleString()} people</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="10"
-                        max="5000"
-                        step="10"
-                        value={employees}
-                        onChange={(e) => setEmployees(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((employees - 10) / (5000 - 10)) * 100}%, #374151 ${((employees - 10) / (5000 - 10)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>10</span>
-                        <span>5,000+</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-2">
-                        Your company size helps us estimate platform costs and scaling benefits
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">Decision Makers & Analysts</label>
-                        <span className="text-purple-400 font-bold">{decisionMakers} people</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max={Math.min(employees, 200)}
-                        step="1"
-                        value={decisionMakers}
-                        onChange={(e) => setDecisionMakers(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionMakers - 1) / (Math.min(employees, 200) - 1)) * 100}%, #374151 ${((decisionMakers - 1) / (Math.min(employees, 200) - 1)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <p className="text-sm text-gray-400 mt-2">
-                        People who regularly analyze data, create reports, or make data-driven decisions
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">Average Decision Maker Salary</label>
-                        <span className="text-purple-400 font-bold">${avgSalary.toLocaleString()}/year</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="50000"
-                        max="250000"
-                        step="5000"
-                        value={avgSalary}
-                        onChange={(e) => setAvgSalary(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((avgSalary - 50000) / (250000 - 50000)) * 100}%, #374151 ${((avgSalary - 50000) / (250000 - 50000)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>$50K</span>
-                        <span>$250K+</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-2">
-                        <strong>Hourly rate: ${Math.round(hourlyRate)}</strong> (based on 2,080 working hours/year)
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">Hours Spent Per Strategic Decision</label>
-                        <span className="text-purple-400 font-bold">{decisionTime} hours</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max="40"
-                        step="1"
-                        value={decisionTime}
-                        onChange={(e) => setDecisionTime(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionTime - 1) / (40 - 1)) * 100}%, #374151 ${((decisionTime - 1) / (40 - 1)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>1 hour</span>
-                        <span>40+ hours</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-2">
-                        Time to gather data, analyze, create reports, and make decisions.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">Average decisions made per week</label>
-                        <span className="text-purple-400 font-bold">{decisionsPerWeek}</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max="50"
-                        step="1"
-                        value={decisionsPerWeek}
-                        onChange={(e) => setDecisionsPerWeek(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionsPerWeek - 1) / (50 - 1)) * 100}%, #374151 ${((decisionsPerWeek - 1) / (50 - 1)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>1</span>
-                        <span>50</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-2">
-                        The frequency of data-driven decisions across your team.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between items-center mb-3">
-                        <label className="text-gray-300 font-medium">
-                          Current Annual Data & Process Automation Spend
-                        </label>
-                        <span className="text-purple-400 font-bold">${currentToolCost.toLocaleString()}</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="10000"
-                        max="1000000"
-                        step="10000"
-                        value={currentToolCost}
-                        onChange={(e) => setCurrentToolCost(Number.parseInt(e.target.value))}
-                        className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
-                        style={{
-                          background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((currentToolCost - 10000) / (1000000 - 10000)) * 100}%, #374151 ${((currentToolCost - 10000) / (1000000 - 10000)) * 100}%, #374151 100%)`,
-                        }}
-                      />
-                      <div className="flex justify-between text-xs text-gray-500 mt-1">
-                        <span>$10K</span>
-                        <span>$1M+</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-2">
-                        Include BI tools, process automation platforms, data connectors, workflow tools, reporting
-                        software, and integration costs
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Results Display */}
-                <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-xl p-8 border border-purple-500/30">
-                  <h3 className="text-2xl font-light text-gray-300 mb-8 text-center">Your Potential Annual Savings</h3>
-
-                  <div className="space-y-6">
-                    {/* Calculation Breakdown */}
-                    <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700/50">
-                      <h4 className="text-lg font-semibold text-gray-300 mb-4">How We Calculate Your Savings</h4>
-                      <div className="space-y-3 text-sm text-gray-400">
-                        <div className="flex justify-between">
-                          <span>Decision makers:</span>
-                          <span className="text-purple-400">{decisionMakers} people</span>
+                      <div>
+                        <p className="text-sm text-gray-400 mb-2">
+                          Your company size helps us estimate platform costs and scaling benefits
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
+                          <label className="text-gray-300 font-medium">Total Employees</label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400 text-sm">people</span>
+                            <input
+                              type="text"
+                              value={employeesInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setEmployeesInput(value)
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const clampedValue = Math.max(10, Math.min(5000, value || 10))
+                                setEmployees(clampedValue)
+                                setEmployeesInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Decisions per week:</span>
-                          <span className="text-purple-400">{decisionsPerWeek} decisions</span>
+                        <input
+                          type="range"
+                          min="10"
+                          max="5000"
+                          step="10"
+                          value={employees}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setEmployees(value)
+                            setEmployeesInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((employees - 10) / (5000 - 10)) * 100}%, #374151 ${((employees - 10) / (5000 - 10)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>10</span>
+                          <span>5,000+</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Hours per decision:</span>
-                          <span className="text-purple-400">{decisionTime} hours</span>
+                      </div>
+
+                      <div>
+                        <p className="text-sm text-gray-400 mb-2">
+                          People who regularly analyze data, create reports, or make data-driven decisions
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
+                          <label className="text-gray-300 font-medium">Decision Makers & Analysts</label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400 text-sm">people</span>
+                            <input
+                              type="text"
+                              value={decisionMakersInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setDecisionMakersInput(value)
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const maxValue = Math.min(employees, 200)
+                                const clampedValue = Math.max(1, Math.min(maxValue, value || 1))
+                                setDecisionMakers(clampedValue)
+                                setDecisionMakersInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Weekly time spent:</span>
-                          <span className="text-purple-400">
-                            {(decisionsPerWeek * decisionTime * decisionMakers).toLocaleString()} hours
-                          </span>
+                        <input
+                          type="range"
+                          min="1"
+                          max={Math.min(employees, 200)}
+                          step="1"
+                          value={decisionMakers}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setDecisionMakers(value)
+                            setDecisionMakersInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionMakers - 1) / (Math.min(employees, 200) - 1)) * 100}%, #374151 ${((decisionMakers - 1) / (Math.min(employees, 200) - 1)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <p className="text-sm text-gray-400 mb-2 pt-[22px]">
+                          <strong>Hourly rate: ${Math.round(hourlyRate)}</strong> (based on 2,080 working hours/year)
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0 pt-[18px]">
+                          <label className="text-gray-300 font-medium">Average Decision Maker Salary</label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400 text-sm">$</span>
+                            <input
+                              type="text"
+                              value={avgSalaryInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setAvgSalaryInput(value ? formatNumber(Number.parseInt(value)) : "")
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const clampedValue = Math.max(50000, Math.min(250000, value || 50000))
+                                setAvgSalary(clampedValue)
+                                setAvgSalaryInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Annual time spent:</span>
-                          <span className="text-purple-400">
-                            {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50) / 1000)}K hours
-                          </span>
-                        </div>
-                        <div className="flex justify-between border-t border-gray-600 pt-2">
-                          <span>Current annual cost:</span>
-                          <span className="text-red-400">
-                            {(() => {
-                              const annualCost = Math.round(
-                                (decisionsPerWeek * decisionTime * decisionMakers * 50 * hourlyRate) / 1000,
-                              )
-                              return annualCost > 999 ? `$${(annualCost / 1000).toFixed(1)}M` : `$${annualCost}K`
-                            })()}
-                          </span>
+                        <input
+                          type="range"
+                          min="50000"
+                          max="250000"
+                          step="5000"
+                          value={avgSalary}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setAvgSalary(value)
+                            setAvgSalaryInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((avgSalary - 50000) / (250000 - 50000)) * 100}%, #374151 ${((avgSalary - 50000) / (250000 - 50000)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>$50K</span>
+                          <span>$250K+</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Time Efficiency Savings */}
-                    <div className="bg-gray-800/50 rounded-lg p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                          <span className="text-gray-300">Time Efficiency Savings</span>
+                    {/* Column 2 */}
+                    <div className="space-y-8">
+                      <div className="pt-16 pb-0">
+                        <p className="text-sm text-gray-400 mb-2">
+                          Time to gather data, analyze, create reports, and make decisions.
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
+                          <label className="text-gray-300 font-medium">Hours Spent Per Strategic Decision</label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400 text-sm">hours</span>
+                            <input
+                              type="text"
+                              value={decisionTimeInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setDecisionTimeInput(value)
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const clampedValue = Math.max(1, Math.min(40, value || 1))
+                                setDecisionTime(clampedValue)
+                                setDecisionTimeInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
                         </div>
-                        <span className="text-2xl font-bold text-blue-400">
-                          ${Math.round(annualCostSaved).toLocaleString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-400 mb-2">
-                        ANDI reduces decision time by 70% through instant insights and automated analysis
-                      </p>
-                      <div className="text-xs text-gray-500">
-                        <div>• Save {Math.round(annualTimeSaved).toLocaleString()} hours annually</div>
-                        <div>
-                          • From {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50) / 1000)}K hours to{" "}
-                          {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50 * 0.3) / 1000)}K hours
+                        <input
+                          type="range"
+                          min="1"
+                          max="40"
+                          step="1"
+                          value={decisionTime}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setDecisionTime(value)
+                            setDecisionTimeInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionTime - 1) / (40 - 1)) * 100}%, #374151 ${((decisionTime - 1) / (40 - 1)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>1 hour</span>
+                          <span>40+ hours</span>
                         </div>
-                        <div>• Cost per hour: ${Math.round(hourlyRate)}</div>
-                      </div>
-                    </div>
-
-                    {/* Tool Consolidation */}
-                    <div className="bg-gray-800/50 rounded-lg p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                          <span className="text-gray-300">Tool Consolidation Savings</span>
-                        </div>
-                        <span className="text-2xl font-bold text-purple-400">
-                          ${Math.round(toolConsolidationSavings).toLocaleString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-400 mb-2">
-                        ANDI replaces multiple disconnected tools with a unified intelligent platform
-                      </p>
-                      <div className="text-xs text-gray-500">
-                        <div>• Estimated tools consolidated: {toolsConsolidated}</div>
-                        <div>• Current tool sprawl cost: ${currentToolCost.toLocaleString()}/year</div>
-                        <div>• Consolidation savings rate: {Math.round(consolidationSavingsRate * 100)}%</div>
-                        <div>• Eliminates: Licensing overlap, integration costs, training overhead</div>
-                      </div>
-                    </div>
-
-                    {/* Opportunity Cost */}
-                    <div className="bg-gray-800/50 rounded-lg p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
-                          <span className="text-gray-300">Faster Decision Value</span>
-                        </div>
-                        <span className="text-2xl font-bold text-pink-400">
-                          ${Math.round(opportunityCostSavings).toLocaleString()}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-400 mb-2">Revenue impact from making better decisions faster</p>
-                      <div className="text-xs text-gray-500">
-                        <div>• Faster time-to-market for initiatives</div>
-                        <div>• Quicker response to market changes</div>
-                        <div>• Conservative 1.5x multiplier on time savings</div>
-                      </div>
-                    </div>
-
-                    {/* Total Savings */}
-                    <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 rounded-lg p-6 border border-emerald-500/30">
-                      <div className="text-center mb-6">
-                        <span className="text-xl font-semibold text-gray-200">Total Annual Value Potential</span>
-                        <div className="text-4xl font-bold text-emerald-400 mt-2">
-                          ${Math.round(totalAnnualSavings).toLocaleString()}
-                        </div>
-                        <p className="text-sm text-gray-400 mt-2">in measurable business savings</p>
                       </div>
 
-                      <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700/50">
-                        <div className="text-center mb-4">
-                          <div className="text-lg font-semibold text-purple-400 mb-2">Recommended Plan</div>
-                          <div className="text-2xl font-bold text-white">{suggestedPlan}</div>
-                          <p className="text-sm text-gray-400 mt-1">{planDescription}</p>
+                      <div>
+                        <p className="text-sm text-gray-400 mb-2">
+                          The frequency of data-driven decisions across your team.
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
+                          <label className="text-gray-300 font-medium pt-[23px] pb-[3px]">
+                            Average decisions made per week
+                          </label>
+                          <div className="flex items-center gap-2 pt-5 pb-0">
+                            <span className="text-gray-400 text-sm">decisions</span>
+                            <input
+                              type="text"
+                              value={decisionsPerWeekInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setDecisionsPerWeekInput(value)
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const clampedValue = Math.max(1, Math.min(50, value || 1))
+                                setDecisionsPerWeek(clampedValue)
+                                setDecisionsPerWeekInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
                         </div>
-                        <div className="space-y-2">
-                          <h5 className="text-sm font-semibold text-gray-300">Key Features:</h5>
-                          <ul className="space-y-1">
-                            {planFeatures[suggestedPlan as keyof typeof planFeatures].map((feature, index) => (
-                              <li key={index} className="flex items-center gap-2 text-xs text-gray-400">
-                                <CheckCircle className="h-3 w-3 text-purple-400 flex-shrink-0" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
+                        <input
+                          type="range"
+                          min="1"
+                          max="50"
+                          step="1"
+                          value={decisionsPerWeek}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setDecisionsPerWeek(value)
+                            setDecisionsPerWeekInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((decisionsPerWeek - 1) / (50 - 1)) * 100}%, #374151 ${((decisionsPerWeek - 1) / (50 - 1)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>1</span>
+                          <span>50</span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-sm text-gray-400 pt-[-10px] mb-2">
+                          Include BI tools, process automation platforms, data connectors, workflow tools, reporting
+                          software, and integration costs
+                        </p>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2 sm:gap-0">
+                          <label className="text-gray-300 font-medium">
+                            Yearly Data &amp; Process Automation Spend
+                          </label>
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-400 text-sm">$</span>
+                            <input
+                              type="text"
+                              value={currentToolCostInput}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/[^0-9]/g, "")
+                                setCurrentToolCostInput(value ? formatNumber(Number.parseInt(value)) : "")
+                              }}
+                              onBlur={(e) => {
+                                const value = parseFormattedNumber(e.target.value)
+                                const clampedValue = Math.max(10000, Math.min(1000000, value || 10000))
+                                setCurrentToolCost(clampedValue)
+                                setCurrentToolCostInput(formatNumber(clampedValue))
+                              }}
+                              className="w-full sm:w-24 px-2 py-1 text-sm bg-gray-800 border border-gray-600 rounded text-purple-400 font-bold text-center sm:text-right focus:ring-1 focus:ring-purple-500 focus:border-purple-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                          </div>
+                        </div>
+                        <input
+                          type="range"
+                          min="10000"
+                          max="1000000"
+                          step="10000"
+                          value={currentToolCost}
+                          onChange={(e) => {
+                            const value = Number.parseInt(e.target.value)
+                            setCurrentToolCost(value)
+                            setCurrentToolCostInput(formatNumber(value))
+                          }}
+                          className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer slider"
+                          style={{
+                            background: `linear-gradient(to right, #8b5cf6 0%, #8b5cf6 ${((currentToolCost - 10000) / (1000000 - 10000)) * 100}%, #374151 ${((currentToolCost - 10000) / (1000000 - 10000)) * 100}%, #374151 100%)`,
+                          }}
+                        />
+                        <div className="flex justify-between text-xs text-gray-500 mt-1">
+                          <span>$10K</span>
+                          <span>$1M+</span>
                         </div>
                       </div>
                     </div>
                   </div>
+                  {/* Results Display */}
+                  <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 rounded-xl p-8 border border-purple-500/30">
+                    <h3 className="text-2xl font-light text-gray-300 mb-8 text-center">
+                      Your Potential Annual Savings
+                    </h3>
 
-                  {/* CTA Button */}
-                  <button
-                    onClick={() => setIsDialogOpen(true)}
-                    className="w-full py-4 mt-8 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-                    style={{
-                      animation: "gradient 8s linear infinite",
-                      backgroundSize: "300% 100%",
-                      backgroundPosition: "left",
-                    }}
-                  >
-                    Contact Sales
-                  </button>
-                  {/* Generate Report Button */}
-                  <button
-                    onClick={() => setIsReportDialogOpen(true)}
-                    className="w-full py-4 mt-4 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 hover:opacity-90 text-white rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-                    style={{
-                      animation: "gradient 8s linear infinite",
-                      backgroundSize: "300% 100%",
-                      backgroundPosition: "left",
-                    }}
-                  >
-                    Generate Detailed Report
-                  </button>
+                    <div className="space-y-6">
+                      {/* Calculation Breakdown */}
+                      <div className="bg-gray-800/30 rounded-lg p-6 border border-gray-700/50">
+                        <h4 className="text-lg font-semibold text-gray-300 mb-4">How We Calculate Your Savings</h4>
+                        <div className="space-y-3 text-sm text-gray-400">
+                          <div className="flex justify-between">
+                            <span>Decision makers:</span>
+                            <span className="text-purple-400">{decisionMakers} people</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Decisions per week:</span>
+                            <span className="text-purple-400">{decisionsPerWeek} decisions</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Hours per decision:</span>
+                            <span className="text-purple-400">{decisionTime} hours</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Weekly time spent:</span>
+                            <span className="text-purple-400">
+                              {(decisionsPerWeek * decisionTime * decisionMakers).toLocaleString()} hours
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Annual time spent:</span>
+                            <span className="text-purple-400">
+                              {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50) / 1000)}K hours
+                            </span>
+                          </div>
+                          <div className="flex justify-between border-t border-gray-600 pt-2">
+                            <span>Current annual cost:</span>
+                            <span className="text-red-400">
+                              {(() => {
+                                const annualCost = Math.round(
+                                  (decisionsPerWeek * decisionTime * decisionMakers * 50 * hourlyRate) / 1000,
+                                )
+                                return annualCost > 999 ? `$${(annualCost / 1000).toFixed(1)}M` : `$${annualCost}K`
+                              })()}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Time Efficiency Savings */}
+                      <div className="bg-gray-800/50 rounded-lg p-6">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-3">
+                            <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                            <span className="text-gray-300">Time Efficiency Savings</span>
+                          </div>
+                          <span className="text-2xl font-bold text-blue-400">
+                            ${Math.round(annualCostSaved).toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-400 mb-2">
+                          ANDI reduces decision time by 70% through instant insights and automated analysis
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Save {Math.round(annualTimeSaved).toLocaleString()} hours annually</div>
+                          <div>
+                            • From {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50) / 1000)}K hours
+                            to {Math.round((decisionsPerWeek * decisionTime * decisionMakers * 50 * 0.3) / 1000)}K hours
+                          </div>
+                          <div>• Cost per hour: ${Math.round(hourlyRate)}</div>
+                        </div>
+                      </div>
+
+                      {/* Tool Consolidation */}
+                      <div className="bg-gray-800/50 rounded-lg p-6">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-3">
+                            <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
+                            <span className="text-gray-300">Tool Consolidation Savings</span>
+                          </div>
+                          <span className="text-2xl font-bold text-purple-400">
+                            ${Math.round(toolConsolidationSavings).toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-400 mb-2">
+                          ANDI replaces multiple disconnected tools with a unified intelligent platform
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Estimated tools consolidated: {toolsConsolidated}</div>
+                          <div>• Current tool sprawl cost: ${currentToolCost.toLocaleString()}/year</div>
+                          <div>• Consolidation savings rate: {Math.round(consolidationSavingsRate * 100)}%</div>
+                          <div>• Eliminates: Licensing overlap, integration costs, training overhead</div>
+                        </div>
+                      </div>
+
+                      {/* Opportunity Cost */}
+                      <div className="bg-gray-800/50 rounded-lg p-6">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-3">
+                            <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+                            <span className="text-gray-300">Faster Decision Value</span>
+                          </div>
+                          <span className="text-2xl font-bold text-pink-400">
+                            ${Math.round(opportunityCostSavings).toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-400 mb-2">Revenue impact from making better decisions faster</p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Faster time-to-market for initiatives</div>
+                          <div>• Quicker response to market changes</div>
+                          <div>• Conservative 1.5x multiplier on time savings</div>
+                        </div>
+                      </div>
+
+                      {/* Total Savings */}
+                      <div className="bg-gradient-to-r from-emerald-900/50 to-green-900/50 rounded-lg p-6 border border-emerald-500/30">
+                        <div className="text-center mb-6">
+                          <span className="text-xl font-semibold text-gray-200">Total Annual Value Potential</span>
+                          <div className="text-4xl font-bold text-emerald-400 mt-2">
+                            ${Math.round(totalAnnualSavings).toLocaleString()}
+                          </div>
+                          <p className="text-sm text-gray-400 mt-2">in measurable business savings</p>
+                        </div>
+
+                        <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700/50">
+                          <div className="text-center mb-4">
+                            <div className="text-lg font-semibold text-purple-400 mb-2">Recommended Plan</div>
+                            <div className="text-2xl font-bold text-white">{suggestedPlan}</div>
+                            <p className="text-sm text-gray-400 mt-1">{planDescription}</p>
+                          </div>
+                          <div className="space-y-2 ml-0 mr-0 text-center">
+                            <h5 className="text-sm font-semibold text-gray-300">Key Features:</h5>
+                            <ul className="space-y-1 text-center mx-auto max-w-xs">
+                              {planFeatures[suggestedPlan as keyof typeof planFeatures].map((feature, index) => (
+                                <li key={index} className="flex items-center gap-2 text-xs text-gray-400 text-left">
+                                  <CheckCircle className="h-3 w-3 text-purple-400 flex-shrink-0" />
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                      onClick={() => setIsDialogOpen(true)}
+                      className="w-full py-3 md:py-4 mt-6 md:mt-8 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white rounded-lg font-semibold text-base md:text-lg transition-all duration-300 transform hover:scale-105"
+                      style={{
+                        animation: "gradient 8s linear infinite",
+                        backgroundSize: "300% 100%",
+                        backgroundPosition: "left",
+                      }}
+                    >
+                      Contact Sales
+                    </button>
+                    {/* Generate Report Button */}
+                    <button
+                      onClick={() => setIsReportDialogOpen(true)}
+                      className="w-full py-3 md:py-4 mt-6 md:mt-8 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 hover:opacity-90 text-white rounded-lg font-semibold text-base md:text-lg transition-all duration-300 transform hover:scale-105"
+                      style={{
+                        animation: "gradient 8s linear infinite",
+                        backgroundSize: "300% 100%",
+                        backgroundPosition: "left",
+                      }}
+                    >
+                      Generate Detailed Report
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              {/* Bottom Insights - REMOVED as they are now detailed in the main calculator */}
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0"></div>
+                {/* Bottom Insights - REMOVED as they are now detailed in the main calculator */}
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0"></div>
 
-              {/* Disclaimer */}
-              <div className="mt-8 text-center text-xs text-gray-500 border-t border-gray-800 pt-4 flex flex-col items-center">
-                <div className="flex items-center font-semibold mb-2">
-                  <Info className="w-4 h-4 mr-2 text-gray-400" />
-                  <p>Disclaimer</p>
+                {/* Disclaimer */}
+                <div className="mt-8 text-center text-xs text-gray-500 border-t border-gray-800 pt-4 flex flex-col items-center">
+                  <div className="flex items-center font-semibold mb-2">
+                    <Info className="w-4 h-4 mr-2 text-gray-400" />
+                    <p>Disclaimer</p>
+                  </div>
+                  <p className="max-w-3xl">
+                    This calculator provides an estimate of potential savings and is intended for illustrative purposes
+                    only. It is not meant to replace human analysts but to empower them by automating routine tasks. The
+                    hours saved can be reassigned to higher-value activities such as strategic analysis, innovation, and
+                    complex problem-solving, driving further business growth.
+                  </p>
                 </div>
-                <p className="max-w-3xl">
-                  This calculator provides an estimate of potential savings and is intended for illustrative purposes
-                  only. It is not meant to replace human analysts but to empower them by automating routine tasks. The
-                  hours saved can be reassigned to higher-value activities such as strategic analysis, innovation, and
-                  complex problem-solving, driving further business growth.
-                </p>
               </div>
             </div>
           </div>

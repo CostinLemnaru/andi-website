@@ -10,17 +10,17 @@ const SageRoiCalculator = () => {
   const [email, setEmail] = useState("")
   const [company, setCompany] = useState("")
   const [employees, setEmployees] = useState(100)
-  const [decisionMakers, setDecisionMakers] = useState(5)
+  const [decisionMakers, setDecisionMakers] = useState(1)
   const [avgSalary, setAvgSalary] = useState(100000)
-  const [currentToolCost, setCurrentToolCost] = useState(5000)
-  const [decisionTime, setDecisionTime] = useState(2)
-  const [decisionsPerWeek, setDecisionsPerWeek] = useState(5)
+  const [currentToolCost, setCurrentToolCost] = useState(30000)
+  const [decisionTime, setDecisionTime] = useState(1)
+  const [decisionsPerWeek, setDecisionsPerWeek] = useState(1)
   const [hourlyRate, setHourlyRate] = useState(50)
-  const [annualCostSaved, setAnnualCostSaved] = useState(10000)
-  const [annualTimeSaved, setAnnualTimeSaved] = useState(50)
-  const [toolConsolidationSavings, setToolConsolidationSavings] = useState(2000)
-  const [opportunityCostSavings, setOpportunityCostSavings] = useState(3000)
-  const [totalAnnualSavings, setTotalAnnualSavings] = useState(15000)
+  const [annualCostSaved, setAnnualCostSaved] = useState(25000)
+  const [annualTimeSaved, setAnnualTimeSaved] = useState(20)
+  const [toolConsolidationSavings, setToolConsolidationSavings] = useState(5000)
+  const [opportunityCostSavings, setOpportunityCostSavings] = useState(8000)
+  const [totalAnnualSavings, setTotalAnnualSavings] = useState(38000)
   const [suggestedPlan, setSuggestedPlan] = useState("Basic")
   const [toolsConsolidated, setToolsConsolidated] = useState(2)
   const [consolidationSavingsRate, setConsolidationSavingsRate] = useState(0.1)
@@ -63,7 +63,7 @@ const SageRoiCalculator = () => {
 
     // Open report in new window with data in URL as backup
     const encodedData = encodeURIComponent(JSON.stringify(reportData))
-    const reportUrl = `/roi-report.html?data=${encodedData}`
+    const reportUrl = `/roi-report?data=${encodedData}`
     window.open(reportUrl, "_blank")
 
     setShowForm(false)
@@ -73,22 +73,7 @@ const SageRoiCalculator = () => {
   return (
     <div>
       {showForm && (
-        <form>
-          <label>
-            First Name:
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Last Name:
-            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          </label>
-          <br />
-          {/* Add other input fields here */}
-          <button type="button" onClick={generateReport}>
-            Generate Report
-          </button>
-        </form>
+        
       )}
 
       {showThankYou && (

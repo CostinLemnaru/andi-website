@@ -9,7 +9,6 @@ import EvolutionTimeline from "@/components/evolution-timeline"
 import CapabilityMatrix from "@/components/capability-matrix"
 import DecisionFlow from "@/components/decision-flow"
 import SageReadinessQuiz from "@/components/sage-readiness-quiz"
-import SageRoiCalculator from "@/components/sage-roi-calculator"
 import { ArrowRight, Download, Share2, Printer, BookOpen } from "lucide-react"
 import Link from "next/link"
 
@@ -364,18 +363,6 @@ export default function SageWhitepaperPage() {
               </div>
             </div>
 
-            <p className="text-gray-300 mb-6">
-              Companies deploying ANDI have already seen improvements in decision velocity, reduced time-to-resolution,
-              and significant cost savings through automation.
-            </p>
-
-            <SageRoiCalculator />
-          </div>
-        </ScrollReveal>
-
-        {/* Section 9: SAGE Movement */}
-        <ScrollReveal>
-          <div className="mb-16">
             <h2 className="text-2xl font-bold mb-6 text-white">SAGE Is Not a Feature, It's a Movement</h2>
 
             <p className="text-gray-300 mb-4">Every software era has its defining category:</p>
