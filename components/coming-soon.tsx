@@ -37,7 +37,20 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function ComingSoon() {
+type Props = {
+  data?: {
+    title?: string
+    comingSoon?: {
+      heroSection?: {
+        title?: string
+      }
+    }
+  }
+}
+
+export default function ComingSoon({ data }: Props) {
+  const heroTitle = data?.comingSoon?.heroSection?.title ?? "Default title"
+
   const [email, setEmail] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false)

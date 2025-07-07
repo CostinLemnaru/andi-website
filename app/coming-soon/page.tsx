@@ -1,12 +1,5 @@
 import ComingSoon from "@/components/coming-soon"
 
-// export default function Home() {
-//   return <ComingSoon />
-// }
-
-
-// import ComingSoon from "@/components/coming-soon"
-
 export const dynamic = "force-static" // dacă vrei doar static fără ISR
 
 export default async function ComingSoonPage() {
