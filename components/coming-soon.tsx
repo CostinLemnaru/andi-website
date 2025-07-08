@@ -38,18 +38,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
 
 type Props = {
-  data?: {
-    title?: string
-    comingSoon?: {
-      heroSection?: {
-        title?: string
-      }
-    }
-  }
+  data?: []
 }
 
 export default function ComingSoon({ data }: Props) {
-  const heroTitle = data?.comingSoon?.heroSection?.title ?? "Default title"
+  console.log(data)
 
   const [email, setEmail] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
