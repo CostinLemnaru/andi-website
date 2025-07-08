@@ -2,75 +2,13 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const words = [
-  "partner",
-  "consultant",
-  "advisor",
-  "strategist",
-  "analyst",
-  "partner",
-  "expert",
-  "guide",
-  "specialist",
-  "mentor",
-  "counselor",
-  "architect",
-  "thinker",
-  "innovator",
-  "catalyst",
-  "navigator",
-  "pathfinder",
-  "consultant",
-  "advisor",
-  "strategist",
-  "analyst",
-  "partner",
-  "expert",
-  "guide",
-  "specialist",
-  "mentor",
-  "counselor",
-  "architect",
-  "thinker",
-  "innovator",
-  "catalyst",
-  "navigator",
-  "pathfinder",
-  "consultant",
-  "advisor",
-  "strategist",
-  "analyst",
-  "partner",
-  "expert",
-  "guide",
-  "specialist",
-  "mentor",
-  "counselor",
-  "architect",
-  "thinker",
-  "innovator",
-  "catalyst",
-  "navigator",
-  "pathfinder",
-  "consultant",
-  "advisor",
-  "strategist",
-  "analyst",
-  "partner",
-  "expert",
-  "guide",
-  "specialist",
-  "mentor",
-  "counselor",
-  "architect",
-  "thinker",
-  "innovator",
-  "catalyst",
-  "navigator",
-  "pathfinder",
-]
-
-export default function RotatingWords({ className = "mx-3" }: { className?: string }) {
+export default function RotatingWords({ 
+    words = [],
+    className = "mx-3" 
+  }: { 
+    words?: string[]
+    className?: string 
+  }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 

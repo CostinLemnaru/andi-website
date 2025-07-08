@@ -2,72 +2,19 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const actions = [
-  "observes",
-  "analyzes",
-  "watches",
-  "analyzes",
-  "understands",
-  "responds",
-  "scans",
-  "processes",
-  "executes",
-  "interprets",
-  "detects",
-  "delivers",
-  "initiates",
-  "drives",
-  "observes",
-  "analyzes",
-  "watches",
-  "analyzes",
-  "understands",
-  "responds",
-  "scans",
-  "processes",
-  "executes",
-  "interprets",
-  "detects",
-  "delivers",
-  "initiates",
-  "drives",
-  "observes",
-  "analyzes",
-  "watches",
-  "analyzes",
-  "understands",
-  "responds",
-  "scans",
-  "processes",
-  "executes",
-  "interprets",
-  "detects",
-  "delivers",
-  "initiates",
-  "drives",
-  "observes",
-  "analyzes",
-  "watches",
-  "analyzes",
-  "understands",
-  "responds",
-  "scans",
-  "processes",
-  "executes",
-  "interprets",
-  "detects",
-  "delivers",
-  "initiates",
-  "drives",
-]
-
-export default function ActionWords({ className = "mx-1" }: { className?: string }) {
+export default function ActionWords({ 
+    words = [],
+    className = "mx-1" 
+  }: { 
+    words?: string[]
+    className?: string 
+  }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % actions.length)
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length)
     }, 2000)
 
     return () => clearInterval(interval)
@@ -77,12 +24,12 @@ export default function ActionWords({ className = "mx-1" }: { className?: string
     if (containerRef.current) {
       // Calculate position based on the duplicated list
       // Reset to the top of the duplicated list when reaching the end
-      const totalItems = actions.length * 2
+      const totalItems = words.length * 2
       const newIndex = currentIndex % totalItems
       const newPosition = -newIndex * 1.2
 
       // If we've reached the end of the original list, reset to the beginning of the duplicate
-      if (newIndex === actions.length) {
+      if (newIndex === words.length) {
         containerRef.current.style.transition = "none"
         containerRef.current.style.transform = `translateY(0em)`
 
@@ -103,7 +50,7 @@ export default function ActionWords({ className = "mx-1" }: { className?: string
       containerRef.current.style.transition = "transform 0.5s ease"
       containerRef.current.style.transform = `translateY(${newPosition}em)`
     }
-  }, [currentIndex, actions.length])
+  }, [currentIndex, words.length])
 
   return (
     <span
@@ -119,7 +66,7 @@ export default function ActionWords({ className = "mx-1" }: { className?: string
       }}
     >
       <div ref={containerRef} className="word-carousel-items">
-        {actions.map((action, index) => (
+        {words.map((action, index) => (
           <div key={`original-${index}`} className="word-carousel-item" style={{ justifyContent: "flex-start" }}>
             <span
               className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
@@ -135,7 +82,7 @@ export default function ActionWords({ className = "mx-1" }: { className?: string
           </div>
         ))}
         {/* Duplicate the list for endless loop effect */}
-        {actions.map((action, index) => (
+        {words.map((action, index) => (
           <div key={`duplicate-${index}`} className="word-carousel-item" style={{ justifyContent: "flex-start" }}>
             <span
               className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"

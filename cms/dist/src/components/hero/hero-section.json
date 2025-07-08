@@ -1,0 +1,29 @@
+{
+    "collectionName": "components_hero_hero_sections",
+    "info": {
+        "displayName": "Hero section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "json"
+        },
+        "Description": {
+            "type": "json"
+        },
+        "Image": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "CtaText": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

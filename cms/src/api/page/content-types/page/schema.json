@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "Seo": {
+      "type": "component",
+      "component": "page.seo",
+      "repeatable": false
+    },
+    "Components": {
+      "type": "dynamiczone",
+      "components": [
+        "hero.hero-section"
+      ]
+    }
+  }
+}
