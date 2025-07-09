@@ -39,6 +39,24 @@ jobs:
           source: ".next,public,cms/build"
           target: "/var/www/andi-website"
 
+      - name: Write .env files on VPS
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          script: |
+            echo "STRAPI_API_URL=${{ secrets.STRAPI_API_URL }}" > /var/www/andi-website/.env
+
+            echo "HOST=0.0.0.0" >> /var/www/andi-website/cms/.env
+            echo "PORT=1337" >> /var/www/andi-website/cms/.env
+            echo "NODE_ENV=production" > /var/www/andi-website/cms/.env
+            echo "APP_KEYS=${{ secrets.STRAPI_APP_KEYS }}" >> /var/www/andi-website/cms/.env
+            echo "API_TOKEN_SALT=${{ secrets.STRAPI_API_TOKEN_SALT }}" >> /var/www/andi-website/cms/.env
+            echo "ADMIN_JWT_SECRET=${{ secrets.STRAPI_ADMIN_JWT_SECRET }}" >> /var/www/andi-website/cms/.env
+            echo "TRANSFER_TOKEN_SALT=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }}" >> /var/www/andi-website/cms/.env
+            echo "ENCRYPTION_KEY=${{ secrets.STRAPI_ENCRYPTION_KEY }}" >> /var/www/andi-website/cms/.env
+
       - name: Restart apps on VPS
         uses: appleboy/ssh-action@v0.1.8
         with:
