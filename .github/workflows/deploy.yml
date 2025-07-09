@@ -76,6 +76,3 @@ jobs:
 
             # Save current process list
             pm2 save
-
-            # Enable pm2 to start at boot
-            pm2 startup systemd -u $USER --hp $HOME
