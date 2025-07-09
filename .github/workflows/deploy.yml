@@ -1,0 +1,53 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install & Build Next.js
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+
+      - name: Install & Build Strapi
+        working-directory: cms
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          source: ".next,public,cms/build"
+          target: "/var/www/andi-website"
+
+      - name: Restart apps on VPS
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          script: |
+            cd /var/www/andi-website
+            pm2 restart next-app || pm2 start npm --name next-app -- run start -- -p 3000 -H 0.0.0.0
+
+            cd cms
+            pm2 restart strapi-app || pm2 start npm --name strapi-app -- run start
