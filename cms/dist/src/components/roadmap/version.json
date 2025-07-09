@@ -1,0 +1,54 @@
+{
+    "collectionName": "components_roadmap_versions",
+    "info": {
+        "displayName": "Version"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Subtitle": {
+            "type": "string"
+        },
+        "Timeline": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "Color": {
+            "type": "enumeration",
+            "enum": [
+                "red",
+                "orange",
+                "amber",
+                "yellow",
+                "lime",
+                "green",
+                "emerald",
+                "teal",
+                "cyan",
+                "sky",
+                "blue",
+                "indigo",
+                "violet",
+                "purple",
+                "fuchsia",
+                "pink",
+                "rose",
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone"
+            ]
+        },
+        "Features": {
+            "type": "component",
+            "component": "roadmap.feature",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

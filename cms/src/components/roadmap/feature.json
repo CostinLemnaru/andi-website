@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_roadmap_features",
+  "info": {
+    "displayName": "Feature"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Specs": {
+      "type": "component",
+      "component": "miscellaneous.text",
+      "repeatable": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "MessageSquare",
+        "Database",
+        "Server",
+        "Cpu",
+        "Brain",
+        "Link",
+        "Tag",
+        "Shield",
+        "Lock",
+        "Unlock",
+        "Zap",
+        "Activity",
+        "CheckCircle",
+        "XCircle",
+        "AlertTriangle",
+        "Globe",
+        "Search",
+        "BarChart2",
+        "Calendar",
+        "Layers",
+        "GitBranch",
+        "Compass",
+        "Rocket",
+        "Wand",
+        "Eye"
+      ]
+    }
+  },
+  "config": {}
+}

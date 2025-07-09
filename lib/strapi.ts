@@ -1,4 +1,3 @@
-// lib/strapi.ts
 const STRAPI_API_URL = process.env.STRAPI_API_URL
 
 export async function fetchPage(slug: string) {

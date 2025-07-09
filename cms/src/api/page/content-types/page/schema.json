@@ -25,7 +25,9 @@
     "Components": {
       "type": "dynamiczone",
       "components": [
-        "hero.hero-section"
+        "hero.hero-section",
+        "home.security-section",
+        "home.roadmap-section"
       ]
     }
   }
