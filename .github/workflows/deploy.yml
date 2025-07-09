@@ -19,6 +19,10 @@ jobs:
         with:
           node-version: 18
 
+      - name: Write Next.js env file
+        run: |
+          echo "STRAPI_API_URL=${{ secrets.STRAPI_API_URL }}" > .env.local
+
       - name: Install & Build Next.js
         run: |
           npm ci --legacy-peer-deps
