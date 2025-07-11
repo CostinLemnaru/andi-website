@@ -25,14 +25,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          source: |
-            .next
-            public
-            package.json
-            package-lock.json
-            next.config.mjs
-            cms
-            cms/.tmp/data.db
+          source: ".next,public,package.json,package-lock.json,next.config.mjs,cms,cms/.tmp/data.db"
           target: /var/www/andi-website
 
 
