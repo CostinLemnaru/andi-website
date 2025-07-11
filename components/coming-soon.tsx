@@ -1,41 +1,9 @@
 "use client"
 
 import type React from "react"
-import { Zap } from "lucide-react" // Import Zap icon
 
-import { useState, useRef, useEffect } from "react"
-import { submitToGoogleSheets } from "@/lib/google-sheets"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import RotatingWords from "./rotating-words"
-import GradientText from "./gradient-text"
-import ActionWords from "./action-words"
-import {
-  CheckCircle,
-  ChevronDown,
-  MessageSquare,
-  Link,
-  Tag,
-  Shield,
-  Database,
-  Users,
-  BarChart3,
-  Globe,
-  Brain,
-  TrendingUp,
-  Settings,
-  FileText,
-  Workflow,
-  Target,
-  Cpu,
-  Info,
-} from "lucide-react"
+import { useRef, useEffect } from "react"
 import PageLayout from "./page-layout"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { motion, AnimatePresence } from "framer-motion"
 import { componentsMap } from "@/lib/components-map"
 
 type StrapiComponent =
@@ -81,17 +49,6 @@ export default function ComingSoon({ data }: Props) {
   const heroData = components.find((comp) => comp.__component === HERO_KEY)
   const restComponents = components.filter((comp) => comp.__component !== HERO_KEY)
   const HeroComponent = componentsMap[HERO_KEY]
-
-  const [email, setEmail] = useState("")
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false)
-  const [fullName, setFullName] = useState("")
-  const [company, setCompany] = useState("")
-  const [department, setDepartment] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState("")
-  const formRef = useRef<HTMLFormElement>(null)
-  const exploreRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLDivElement>(null)
 
   // Setup scroll-based animations
@@ -204,85 +161,6 @@ export default function ComingSoon({ data }: Props) {
     }
   }, [])
 
-  // Scroll to explore section
-  const scrollToExplore = () => {
-    exploreRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  // This function only opens the dialog, it doesn't submit anything
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (email) {
-      setIsDialogOpen(true)
-    }
-  }
-
-  // This function handles the actual submission with all details
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError("")
-
-    try {
-      // Only submit to Google Sheets when the dialog form is submitted
-      await fallbackSubmit()
-
-      // Also try the server action as a backup
-      const result = await submitToGoogleSheets({
-        email,
-        fullName,
-        company,
-        department,
-      })
-
-      // Close the form dialog and show the success dialog
-      setIsDialogOpen(false)
-      setIsSuccessDialogOpen(true)
-
-      // Reset form fields
-      setEmail("")
-      setFullName("")
-      setCompany("")
-      setDepartment("")
-    } catch (err) {
-      console.error("Form submission error:", err)
-      setError("Failed to submit. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const fallbackSubmit = async () => {
-    return new Promise<void>((resolve) => {
-      try {
-        // Set all form values in the hidden form
-        const directEmailInput = document.getElementById("direct-email") as HTMLInputElement
-        const directNameInput = document.getElementById("direct-fullName") as HTMLInputElement
-        const directCompanyInput = document.getElementById("direct-company") as HTMLInputElement
-        const directDepartmentInput = document.getElementById("direct-department") as HTMLInputElement
-
-        if (directEmailInput) directEmailInput.value = email
-        if (directNameInput) directNameInput.value = fullName
-        if (directCompanyInput) directCompanyInput.value = company
-        if (directDepartmentInput) directDepartmentInput.value = department
-
-        // Submit the form
-        if (formRef.current) {
-          formRef.current.submit()
-        }
-
-        // Consider this successful regardless of actual result
-        // since we can't track the result of a no-cors form submission
-        setTimeout(resolve, 500)
-      } catch (err) {
-        console.error("Fallback error:", err)
-        // Resolve anyway to prevent blocking the UI
-        resolve()
-      }
-    })
-  }
-
-
   return (
     <PageLayout className="pt-0">
       {/* Hero Section - Full Height */}
@@ -299,126 +177,7 @@ export default function ComingSoon({ data }: Props) {
           }
           return <Component key={component.id} data={component} />
         })}
-
-        {/* Final CTA Section */}
-        <section className="relative z-10 py-24 px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="scroll-fade fade-at-bottom text-3xl sm:text-4xl font-light mb-6 text-gray-400">
-              Ready to transform your business with <GradientText>andi</GradientText>?
-            </h2>
-            <p className="scroll-fade fade-at-bottom text-lg text-gray-400 mb-8">
-              Join our early access program and be among the first to experience the future of business intelligence.
-            </p>
-
-            <form onSubmit={handleEmailSubmit} className="scroll-fade fade-at-bottom mx-auto w-full max-w-md px-4">
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="h-12 flex-1 bg-gray-900/50 border border-gray-800 text-white placeholder:text-gray-400 backdrop-blur-sm focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-                />
-                <Button
-                  type="submit"
-                  className="h-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6"
-                  style={{
-                    animation: "gradient 8s linear infinite",
-                    backgroundSize: "300% 100%",
-                    backgroundPosition: "left",
-                  }}
-                >
-                  Get Early Access
-                </Button>
-              </div>
-            </form>
-          </div>
-        </section>
       </div>
-
-      {/* Hidden form for direct submission fallback - only used when dialog form is submitted */}
-      <form
-        id="directSubmitForm"
-        ref={formRef}
-        method="POST"
-        action="https://script.google.com/macros/s/AKfycbyUZ6-YLtr13J4Gqmp5JoqmUssQifIIGZrb9jdeVUgm_Ujk4hKATmKpvQ_07O3AyWST/exec"
-        target="hidden-iframe"
-        style={{ display: "none" }}
-      >
-        <input type="email" name="email" id="direct-email" />
-        <input type="text" name="fullName" id="direct-fullName" />
-        <input type="text" name="company" id="direct-company" />
-        <input type="text" name="department" id="direct-department" />
-        <input type="submit" value="Submit" />
-      </form>
-      <iframe name="hidden-iframe" style={{ display: "none" }}></iframe>
-
-      {/* Dialog with additional details form */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-          <DialogHeader>
-            <DialogTitle>Complete your registration</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Please provide additional information to get free POCs at launch.
-            </DialogDescription>
-          </DialogHeader>
-          {/* This form submits to Google Sheets when submitted */}
-          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="space-y-1">
-              <Label htmlFor="fullName" className="text-gray-400">
-                Full Name
-              </Label>
-              <Input
-                id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="company" className="text-gray-400">
-                Company
-              </Label>
-              <Input
-                id="company"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                required
-                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="department" className="text-gray-400">
-                Department
-              </Label>
-              <Input
-                id="department"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
-                required
-                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-              />
-            </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
-            <div className="flex justify-end">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white"
-                style={{
-                  animation: "gradient 8s linear infinite",
-                  backgroundSize: "300% 100%",
-                  backgroundPosition: "left",
-                }}
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
     </PageLayout>
   )
 }

@@ -390,6 +390,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'home.security-section',
         'home.roadmap-section',
         'home.roi-calculator-section',
+        'home.cta-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

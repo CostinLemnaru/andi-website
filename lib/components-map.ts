@@ -1,3 +1,4 @@
+import CtaSection from "@/components/CtaSection"
 import HeroSection from "@/components/HeroSection"
 import RoadmapSection from "@/components/RoadmapSection"
 import RoiCalculatorSection from "@/components/RoiCalculatorSection"
@@ -8,4 +9,5 @@ export const componentsMap: Record<string, React.FC<any>> = {
   "home.security-section": SecuritySection,
   "home.roadmap-section": RoadmapSection,
   "home.roi-calculator-section": RoiCalculatorSection,
+  "home.cta-section": CtaSection,
 }

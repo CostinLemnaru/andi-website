@@ -13,6 +13,18 @@ export interface HeroHeroSection extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeCtaSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_cta_sections';
+  info: {
+    displayName: 'Cta Section';
+  };
+  attributes: {
+    CtaButton: Schema.Attribute.String;
+    Description: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface HomeRoadmapSection extends Struct.ComponentSchema {
   collectionName: 'components_home_roadmap_sections';
   info: {
@@ -155,6 +167,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'hero.hero-section': HeroHeroSection;
+      'home.cta-section': HomeCtaSection;
       'home.roadmap-section': HomeRoadmapSection;
       'home.roi-calculator-section': HomeRoiCalculatorSection;
       'home.security-section': HomeSecuritySection;

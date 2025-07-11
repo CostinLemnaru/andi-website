@@ -28,7 +28,8 @@
         "hero.hero-section",
         "home.security-section",
         "home.roadmap-section",
-        "home.roi-calculator-section"
+        "home.roi-calculator-section",
+        "home.cta-section"
       ]
     }
   }
