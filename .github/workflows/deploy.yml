@@ -60,6 +60,10 @@ jobs:
             echo "ADMIN_JWT_SECRET=${{ secrets.STRAPI_ADMIN_JWT_SECRET }}" >> /var/www/andi-website/cms/.env
             echo "TRANSFER_TOKEN_SALT=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }}" >> /var/www/andi-website/cms/.env
             echo "ENCRYPTION_KEY=${{ secrets.STRAPI_ENCRYPTION_KEY }}" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_CLIENT=sqlite" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_SSL=false" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_FILENAME=.tmp/data.db" >> /var/www/andi-website/cms/.env
+            echo "JWT_SECRET=rLBfGErF6kb0iiYycCHuTg==" >> /var/www/andi-website/cms/.env
 
       - name: Restart apps on VPS
         uses: appleboy/ssh-action@v0.1.8
