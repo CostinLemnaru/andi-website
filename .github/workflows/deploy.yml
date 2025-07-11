@@ -19,15 +19,23 @@ jobs:
         with:
           node-version: 18
 
+      - name: Cleanup old files on VPS
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
+          script: |
+            rm -rf /var/www/andi-website/*
+
       - name: Upload files to VPS (Next.js + Strapi + DB)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          source: "app,components,lib,public,package.json,package-lock.json,next.config.mjs,cms,cms/.tmp/data.db"
+          source: "."
           target: /var/www/andi-website
-
 
       - name: Write .env files on VPS
         uses: appleboy/ssh-action@v0.1.8
