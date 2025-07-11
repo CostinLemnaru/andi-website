@@ -385,7 +385,12 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Components: Schema.Attribute.DynamicZone<
-      ['hero.hero-section', 'home.security-section', 'home.roadmap-section']
+      [
+        'hero.hero-section',
+        'home.security-section',
+        'home.roadmap-section',
+        'home.roi-calculator-section',
+      ]
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

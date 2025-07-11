@@ -23,6 +23,19 @@ export interface HomeRoadmapSection extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeRoiCalculatorSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_roi_calculator_sections';
+  info: {
+    displayName: 'Roi Calculator Section';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+    Description: Schema.Attribute.String;
+    Disclaimer: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface HomeSecuritySection extends Struct.ComponentSchema {
   collectionName: 'components_home_security_sections';
   info: {
@@ -143,6 +156,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'hero.hero-section': HeroHeroSection;
       'home.roadmap-section': HomeRoadmapSection;
+      'home.roi-calculator-section': HomeRoiCalculatorSection;
       'home.security-section': HomeSecuritySection;
       'miscellaneous.text': MiscellaneousText;
       'page.seo': PageSeo;

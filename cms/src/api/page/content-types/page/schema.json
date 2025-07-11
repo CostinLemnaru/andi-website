@@ -27,7 +27,8 @@
       "components": [
         "hero.hero-section",
         "home.security-section",
-        "home.roadmap-section"
+        "home.roadmap-section",
+        "home.roi-calculator-section"
       ]
     }
   }
