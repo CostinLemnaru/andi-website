@@ -61,6 +61,11 @@ jobs:
             echo "TRANSFER_TOKEN_SALT=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }}" >> /var/www/andi-website/cms/.env
             echo "ENCRYPTION_KEY=${{ secrets.STRAPI_ENCRYPTION_KEY }}" >> /var/www/andi-website/cms/.env
             echo "DATABASE_CLIENT=sqlite" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_HOST=" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_PORT=" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_NAME=" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_USERNAME=" >> /var/www/andi-website/cms/.env
+            echo "DATABASE_PASSWORD=" >> /var/www/andi-website/cms/.env
             echo "DATABASE_SSL=false" >> /var/www/andi-website/cms/.env
             echo "DATABASE_FILENAME=.tmp/data.db" >> /var/www/andi-website/cms/.env
             echo "JWT_SECRET=rLBfGErF6kb0iiYycCHuTg==" >> /var/www/andi-website/cms/.env
