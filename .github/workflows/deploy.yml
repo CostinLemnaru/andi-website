@@ -40,7 +40,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
-          source: ".next,public,cms/build"
+          source: "."
           target: "/var/www/andi-website"
 
       - name: Write .env files on VPS
