@@ -52,7 +52,7 @@ jobs:
           script: |
             echo "STRAPI_API_URL=${{ secrets.STRAPI_API_URL }}" > /var/www/andi-website/.env
 
-            echo "HOST=0.0.0.0" >> /var/www/andi-website/cms/.env
+            echo "HOST=0.0.0.0" > /var/www/andi-website/cms/.env
             echo "PORT=1337" >> /var/www/andi-website/cms/.env
             echo "NODE_ENV=production" >> /var/www/andi-website/cms/.env
             echo "APP_KEYS=${{ secrets.STRAPI_APP_KEYS }}" >> /var/www/andi-website/cms/.env
