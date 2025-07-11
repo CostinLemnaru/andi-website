@@ -17,6 +17,12 @@
         "slug": {
             "type": "uid"
         },
+        "page_category": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::page-category.page-category",
+            "mappedBy": "page"
+        },
         "Seo": {
             "type": "component",
             "component": "page.seo",
