@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_business_pulse_sections",
+  "info": {
+    "displayName": "Business Pulse Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Config": {
+      "type": "component",
+      "component": "miscellaneous.business-pulse",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

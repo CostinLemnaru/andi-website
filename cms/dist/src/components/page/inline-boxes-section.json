@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_page_inline_boxes_sections",
+    "info": {
+        "displayName": "Inline Boxes Section"
+    },
+    "options": {},
+    "attributes": {
+        "Items": {
+            "type": "component",
+            "component": "miscellaneous.list-item",
+            "repeatable": true
+        },
+        "whiteTheme": {
+            "type": "boolean"
+        }
+    },
+    "config": {}
+}

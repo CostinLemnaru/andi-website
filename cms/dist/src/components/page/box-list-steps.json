@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_page_box_list_steps",
+    "info": {
+        "displayName": "Box List Steps"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "OnePerPage": {
+            "type": "boolean"
+        },
+        "Boxes": {
+            "type": "component",
+            "component": "miscellaneous.box-icon-color",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

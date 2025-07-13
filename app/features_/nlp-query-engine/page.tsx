@@ -6,10 +6,10 @@ import ScrollReveal from "@/components/scroll-reveal"
 export default function NLPQueryEnginePage() {
   return (
     <PageLayout>
-      <PageHeader title="NLP Query Engine" subtitle="Ask questions in plain language and receive structured insights" />
+      {/* <PageHeader title="NLP Query Engine" subtitle="Ask questions in plain language and receive structured insights" /> */}
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 gap-12">
+      {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+        <div className="grid grid-cols-1 gap-12"> */}
           <ScrollReveal>
             <div className="bg-gray-900/40 backdrop-blur-sm border border-gray-800/50 rounded-lg p-8">
               <div className="flex items-center mb-6">
@@ -112,8 +112,8 @@ export default function NLPQueryEnginePage() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </PageLayout>
   )
 }

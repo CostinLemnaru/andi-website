@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_page_box_icon_list_sections",
+    "info": {
+        "displayName": "Box Icon List Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Items": {
+            "type": "component",
+            "component": "miscellaneous.box-icon-color",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

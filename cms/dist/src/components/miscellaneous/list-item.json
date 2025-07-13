@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_miscellaneous_list_items",
+    "info": {
+        "displayName": "List Item"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

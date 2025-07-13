@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_box_simples",
+  "info": {
+    "displayName": "Box Simple"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

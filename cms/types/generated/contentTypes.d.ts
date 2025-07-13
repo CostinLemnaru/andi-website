@@ -395,7 +395,7 @@ export interface ApiPageCategoryPageCategory
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
-    page: Schema.Attribute.Relation<'oneToOne', 'api::page.page'>;
+    pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -421,6 +421,26 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'home.roadmap-section',
         'home.roi-calculator-section',
         'home.cta-section',
+        'page.tabs-section',
+        'page.tabs-components-section',
+        'page.tabs-box-section',
+        'page.table-section',
+        'page.section-icon-boxes',
+        'page.pricing-section',
+        'page.metrics-section',
+        'page.marketing-performance-dashboard',
+        'page.inline-boxes-section',
+        'page.header',
+        'page.business-pulse-section',
+        'page.boxes-columns',
+        'page.box-simple',
+        'page.box-q-and-a',
+        'page.box-nested-section',
+        'page.box-list-steps',
+        'page.box-items',
+        'page.box-list-items',
+        'page.box-icon',
+        'page.box-icon-list-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -430,13 +450,39 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
     page_category: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'api::page-category.page-category'
     >;
     publishedAt: Schema.Attribute.DateTime;
     Seo: Schema.Attribute.Component<'page.seo', false>;
     slug: Schema.Attribute.UID;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Struct.CollectionTypeSchema {
+  collectionName: 'posts';
+  info: {
+    displayName: 'Post';
+    pluralName: 'posts';
+    singularName: 'post';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Content: Schema.Attribute.DynamicZone<['posts.content']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -954,6 +1000,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::page-category.page-category': ApiPageCategoryPageCategory;
       'api::page.page': ApiPagePage;
+      'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

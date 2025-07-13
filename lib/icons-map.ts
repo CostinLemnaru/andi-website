@@ -1,5 +1,9 @@
 import {
+  Bot,
+  User,
+  Check,
   MessageSquare,
+  ArrowRight,
   Database,
   Server,
   Cpu,
@@ -27,7 +31,11 @@ import {
 } from "lucide-react"
 
 export const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  Bot,
+  User,
+  Check,
   MessageSquare,
+  ArrowRight,
   Database,
   Server,
   Cpu,

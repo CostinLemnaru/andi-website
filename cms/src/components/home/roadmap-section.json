@@ -9,6 +9,9 @@
       "type": "component",
       "component": "roadmap.version",
       "repeatable": true
+    },
+    "whiteTheme": {
+      "type": "boolean"
     }
   },
   "config": {}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_section_icon_boxes",
+  "info": {
+    "displayName": "Section Icon Boxes"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "SectionIconBoxes": {
+      "type": "component",
+      "component": "miscellaneous.icon-box",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

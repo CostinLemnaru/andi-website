@@ -19,9 +19,9 @@
         },
         "page_category": {
             "type": "relation",
-            "relation": "oneToOne",
+            "relation": "manyToOne",
             "target": "api::page-category.page-category",
-            "mappedBy": "page"
+            "inversedBy": "pages"
         },
         "Seo": {
             "type": "component",
@@ -35,7 +35,27 @@
                 "home.security-section",
                 "home.roadmap-section",
                 "home.roi-calculator-section",
-                "home.cta-section"
+                "home.cta-section",
+                "page.tabs-section",
+                "page.tabs-components-section",
+                "page.tabs-box-section",
+                "page.table-section",
+                "page.section-icon-boxes",
+                "page.pricing-section",
+                "page.metrics-section",
+                "page.marketing-performance-dashboard",
+                "page.inline-boxes-section",
+                "page.header",
+                "page.business-pulse-section",
+                "page.boxes-columns",
+                "page.box-simple",
+                "page.box-q-and-a",
+                "page.box-nested-section",
+                "page.box-list-steps",
+                "page.box-items",
+                "page.box-list-items",
+                "page.box-icon",
+                "page.box-icon-list-section"
             ]
         }
     }

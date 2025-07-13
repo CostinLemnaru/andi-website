@@ -5,7 +5,12 @@ interface PageHeaderProps {
   subtitle?: string
 }
 
-export default function PageHeader({ title, subtitle }: PageHeaderProps) {
+type Props = {
+  data: PageHeaderProps
+}
+
+export default function PageHeader({ data }: Props) {
+  const {title, subtitle} = data
   return (
     <div className="py-16 md:py-24 px-4 sm:px-6 text-center">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-light mb-6">

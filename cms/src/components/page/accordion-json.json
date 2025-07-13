@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_page_accordion_jsons",
+  "info": {
+    "displayName": "Accordion Json"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Accordion": {
+      "type": "component",
+      "component": "miscellaneous.accordion-item-json",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

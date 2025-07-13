@@ -1,0 +1,24 @@
+{
+    "collectionName": "components_page_box_items",
+    "info": {
+        "displayName": "Box Items"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ShowInColumns": {
+            "type": "boolean"
+        },
+        "Items": {
+            "type": "component",
+            "component": "miscellaneous.list-item",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

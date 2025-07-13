@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_page_section_box_features_footers",
+  "info": {
+    "displayName": "Section Box Features Footer"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Boxes": {
+      "type": "component",
+      "component": "miscellaneous.box-features-footer",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

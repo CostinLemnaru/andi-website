@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_tabs_box_sections",
+  "info": {
+    "displayName": "Tabs Box Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Tabs": {
+      "type": "component",
+      "component": "miscellaneous.tab-category-box",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
