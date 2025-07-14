@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_posts_titles",
+    "info": {
+        "displayName": "Title"
+    },
+    "options": {},
+    "attributes": {
+        "Text": {
+            "type": "text"
+        },
+        "centered": {
+            "type": "boolean"
+        }
+    },
+    "config": {}
+}

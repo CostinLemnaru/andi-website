@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_posts_list_numbers",
+  "info": {
+    "displayName": "List Numbers"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Items": {
+      "type": "component",
+      "component": "miscellaneous.item-list-numbers",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

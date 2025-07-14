@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_page_columns_list_sections",
+    "info": {
+        "displayName": "Columns List Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "highlightWords": {
+            "type": "string"
+        },
+        "Items": {
+            "type": "component",
+            "component": "page.box-icon",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

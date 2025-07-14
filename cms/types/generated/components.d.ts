@@ -395,6 +395,44 @@ export interface MiscellaneousButton extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousColoredBox extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_colored_boxes';
+  info: {
+    displayName: 'ColoredBox';
+  };
+  attributes: {
+    bigTitle: Schema.Attribute.Boolean;
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Content: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousIconBox extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_icon_boxes';
   info: {
@@ -483,6 +521,17 @@ export interface MiscellaneousIconText extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousItemListNumbers extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_item_list_numbers';
+  info: {
+    displayName: 'Item List Numbers';
+  };
+  attributes: {
+    Description: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousListItem extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_list_items';
   info: {
@@ -526,6 +575,33 @@ export interface MiscellaneousTabCategoryBox extends Struct.ComponentSchema {
   attributes: {
     Description: Schema.Attribute.Text;
     Items: Schema.Attribute.Component<'miscellaneous.tab-item-box', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousTabCategoryBoxColored
+  extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_tab_category_box_coloreds';
+  info: {
+    displayName: 'Tab Category Box Colored';
+  };
+  attributes: {
+    ColoredBoxes: Schema.Attribute.Component<
+      'miscellaneous.colored-box',
+      false
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousTabCategoryBoxIconColor
+  extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_tab_category_box_icon_colors';
+  info: {
+    displayName: 'Tab Category Box Icon Color';
+  };
+  attributes: {
+    Tabs: Schema.Attribute.Component<'miscellaneous.box-icon-color', true>;
     Title: Schema.Attribute.String;
   };
 }
@@ -804,6 +880,43 @@ export interface PageAddOnsSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBgColoredBoxed extends Struct.ComponentSchema {
+  collectionName: 'components_page_bg_colored_boxeds';
+  info: {
+    displayName: 'BgColored Boxed';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Description: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageBoxIcon extends Struct.ComponentSchema {
   collectionName: 'components_page_box_icons';
   info: {
@@ -959,7 +1072,7 @@ export interface PageBoxSimple extends Struct.ComponentSchema {
     displayName: 'Box Simple';
   };
   attributes: {
-    Description: Schema.Attribute.RichText;
+    Content: Schema.Attribute.Blocks;
     Title: Schema.Attribute.String;
   };
 }
@@ -988,6 +1101,50 @@ export interface PageBusinessPulseSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PageColumnsListSection extends Struct.ComponentSchema {
+  collectionName: 'components_page_columns_list_sections';
+  info: {
+    displayName: 'Columns List Section';
+  };
+  attributes: {
+    highlightWords: Schema.Attribute.String;
+    Items: Schema.Attribute.Component<'page.box-icon', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageColumnsTextBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_columns_text_boxes';
+  info: {
+    displayName: 'Columns  Text Box';
+  };
+  attributes: {
+    LeftColumn: Schema.Attribute.Blocks;
+    RightColumn: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageEarlyAccesButton extends Struct.ComponentSchema {
+  collectionName: 'components_page_early_acces_buttons';
+  info: {
+    displayName: 'EarlyAcces Button';
+  };
+  attributes: {
+    Tag: Schema.Attribute.Component<'page.tag-icon', false>;
+  };
+}
+
+export interface PageExpectedLaunchBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_expected_launch_boxes';
+  info: {
+    displayName: 'Expected Launch Box';
+  };
+  attributes: {
+    Description: Schema.Attribute.String;
+  };
+}
+
 export interface PageHeader extends Struct.ComponentSchema {
   collectionName: 'components_page_headers';
   info: {
@@ -995,6 +1152,66 @@ export interface PageHeader extends Struct.ComponentSchema {
   };
   attributes: {
     Subtitle: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageHeaderLeft extends Struct.ComponentSchema {
+  collectionName: 'components_page_header_lefts';
+  info: {
+    displayName: 'Header Left';
+  };
+  attributes: {
+    Subtitle: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageIconBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_icon_boxes';
+  info: {
+    displayName: 'Icon Box';
+  };
+  attributes: {
+    Description: Schema.Attribute.String;
+    highlightWords: Schema.Attribute.String;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
     Title: Schema.Attribute.String;
   };
 }
@@ -1007,6 +1224,30 @@ export interface PageInlineBoxesSection extends Struct.ComponentSchema {
   attributes: {
     Items: Schema.Attribute.Component<'miscellaneous.list-item', true>;
     whiteTheme: Schema.Attribute.Boolean;
+  };
+}
+
+export interface PageInlineIconBoxes extends Struct.ComponentSchema {
+  collectionName: 'components_page_inline_icon_boxes';
+  info: {
+    displayName: 'Inline Icon Boxes';
+  };
+  attributes: {
+    Boxes: Schema.Attribute.Component<'miscellaneous.icon-box', true>;
+  };
+}
+
+export interface PageJoinEarlyAccess extends Struct.ComponentSchema {
+  collectionName: 'components_page_join_early_accesses';
+  info: {
+    displayName: 'Join Early Access';
+  };
+  attributes: {
+    BoxSubtitle: Schema.Attribute.String;
+    BoxTitle: Schema.Attribute.String;
+    highlightWords: Schema.Attribute.String;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
   };
 }
 
@@ -1063,6 +1304,30 @@ export interface PageMetricsSection extends Struct.ComponentSchema {
       ]
     >;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface PagePostBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_post_boxes';
+  info: {
+    displayName: 'Post Box';
+  };
+  attributes: {
+    showLastPost: Schema.Attribute.Boolean;
+    slug: Schema.Attribute.String;
+  };
+}
+
+export interface PagePostsInline extends Struct.ComponentSchema {
+  collectionName: 'components_page_posts_inlines';
+  info: {
+    displayName: 'Posts Inline';
+  };
+  attributes: {
+    showLastthree: Schema.Attribute.Boolean;
+    slugOne: Schema.Attribute.String;
+    slugThree: Schema.Attribute.String;
+    slugTwo: Schema.Attribute.String;
   };
 }
 
@@ -1181,6 +1446,127 @@ export interface PageTabsVerticalSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PageTagIcon extends Struct.ComponentSchema {
+  collectionName: 'components_page_tag_icons';
+  info: {
+    displayName: 'Tag Icon';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsBoxButtons extends Struct.ComponentSchema {
+  collectionName: 'components_posts_box_buttons';
+  info: {
+    displayName: 'Box Buttons';
+  };
+  attributes: {
+    centered: Schema.Attribute.Boolean;
+    Description: Schema.Attribute.Text;
+    MainButton: Schema.Attribute.Component<'miscellaneous.button', false>;
+    SecondaryButton: Schema.Attribute.Component<'miscellaneous.button', false>;
+    Title: Schema.Attribute.String;
+    transparentBackground: Schema.Attribute.Boolean;
+  };
+}
+
+export interface PostsBusinessImpactCalculator extends Struct.ComponentSchema {
+  collectionName: 'components_posts_business_impact_calculators';
+  info: {
+    displayName: 'Business Impact Calculator';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+  };
+}
+
+export interface PostsColoredBoxesSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_colored_boxes_sections';
+  info: {
+    displayName: 'Colored Boxes Section';
+  };
+  attributes: {
+    ColoredBox: Schema.Attribute.Component<'miscellaneous.colored-box', true>;
+    Columns: Schema.Attribute.Enumeration<['one', 'two', 'three', 'four']>;
+    Subtitle: Schema.Attribute.Text;
+    Text: Schema.Attribute.String;
+  };
+}
+
+export interface PostsComparisonSlider extends Struct.ComponentSchema {
+  collectionName: 'components_posts_comparison_sliders';
+  info: {
+    displayName: 'Comparison Slider';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+  };
+}
+
 export interface PostsContent extends Struct.ComponentSchema {
   collectionName: 'components_posts_contents';
   info: {
@@ -1188,6 +1574,144 @@ export interface PostsContent extends Struct.ComponentSchema {
   };
   attributes: {
     Text: Schema.Attribute.Blocks;
+  };
+}
+
+export interface PostsDecisionFlowSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_decision_flow_sections';
+  info: {
+    displayName: 'Decision Flow Section';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsEvolutionTabs extends Struct.ComponentSchema {
+  collectionName: 'components_posts_evolution_tabs';
+  info: {
+    displayName: 'Evolution Tabs';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsList extends Struct.ComponentSchema {
+  collectionName: 'components_posts_lists';
+  info: {
+    displayName: 'List';
+  };
+  attributes: {
+    Item: Schema.Attribute.Component<'miscellaneous.icon-text', true>;
+  };
+}
+
+export interface PostsListNumbers extends Struct.ComponentSchema {
+  collectionName: 'components_posts_list_numbers';
+  info: {
+    displayName: 'List Numbers';
+  };
+  attributes: {
+    Items: Schema.Attribute.Component<'miscellaneous.item-list-numbers', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsQuote extends Struct.ComponentSchema {
+  collectionName: 'components_posts_quotes';
+  info: {
+    displayName: 'Quote';
+  };
+  attributes: {
+    FooterText: Schema.Attribute.String;
+    Text: Schema.Attribute.Text;
+  };
+}
+
+export interface PostsRelatedResources extends Struct.ComponentSchema {
+  collectionName: 'components_posts_related_resources';
+  info: {
+    displayName: 'Related Resources';
+  };
+  attributes: {
+    Resources: Schema.Attribute.Component<'page.box-simple', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsSageReadinessAssessment extends Struct.ComponentSchema {
+  collectionName: 'components_posts_sage_readiness_assessments';
+  info: {
+    displayName: 'SAGE Readiness Assessment';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsTableJson extends Struct.ComponentSchema {
+  collectionName: 'components_posts_table_jsons';
+  info: {
+    displayName: 'Table JSON';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+    FooterText: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsTabsBoxSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_tabs_box_sections';
+  info: {
+    displayName: 'Tabs Box Section';
+  };
+  attributes: {
+    Tabs: Schema.Attribute.Component<'miscellaneous.tab-category-box', false>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsTabsColoredBoxSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_tabs_colored_box_sections';
+  info: {
+    displayName: 'Tabs Colored Box Section';
+  };
+  attributes: {
+    TabsColoredBoxes: Schema.Attribute.Component<
+      'miscellaneous.tab-category-box-colored',
+      true
+    >;
+  };
+}
+
+export interface PostsTabsIcons extends Struct.ComponentSchema {
+  collectionName: 'components_posts_tabs_icons';
+  info: {
+    displayName: 'Tabs Icons';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Tabs: Schema.Attribute.Component<
+      'miscellaneous.tab-category-box-icon-color',
+      false
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PostsTitle extends Struct.ComponentSchema {
+  collectionName: 'components_posts_titles';
+  info: {
+    displayName: 'Title';
+  };
+  attributes: {
+    centered: Schema.Attribute.Boolean;
+    Text: Schema.Attribute.Text;
   };
 }
 
@@ -1375,12 +1899,16 @@ declare module '@strapi/strapi' {
       'miscellaneous.box-nested': MiscellaneousBoxNested;
       'miscellaneous.business-pulse': MiscellaneousBusinessPulse;
       'miscellaneous.button': MiscellaneousButton;
+      'miscellaneous.colored-box': MiscellaneousColoredBox;
       'miscellaneous.icon-box': MiscellaneousIconBox;
       'miscellaneous.icon-text': MiscellaneousIconText;
+      'miscellaneous.item-list-numbers': MiscellaneousItemListNumbers;
       'miscellaneous.list-item': MiscellaneousListItem;
       'miscellaneous.q-and-a': MiscellaneousQAndA;
       'miscellaneous.tab-category': MiscellaneousTabCategory;
       'miscellaneous.tab-category-box': MiscellaneousTabCategoryBox;
+      'miscellaneous.tab-category-box-colored': MiscellaneousTabCategoryBoxColored;
+      'miscellaneous.tab-category-box-icon-color': MiscellaneousTabCategoryBoxIconColor;
       'miscellaneous.tab-category-components': MiscellaneousTabCategoryComponents;
       'miscellaneous.tab-category-vertical': MiscellaneousTabCategoryVertical;
       'miscellaneous.tab-item': MiscellaneousTabItem;
@@ -1392,6 +1920,7 @@ declare module '@strapi/strapi' {
       'page.accordion': PageAccordion;
       'page.accordion-json': PageAccordionJson;
       'page.add-ons-section': PageAddOnsSection;
+      'page.bg-colored-boxed': PageBgColoredBoxed;
       'page.box-icon': PageBoxIcon;
       'page.box-icon-list-section': PageBoxIconListSection;
       'page.box-items': PageBoxItems;
@@ -1402,10 +1931,20 @@ declare module '@strapi/strapi' {
       'page.box-simple': PageBoxSimple;
       'page.boxes-columns': PageBoxesColumns;
       'page.business-pulse-section': PageBusinessPulseSection;
+      'page.columns-list-section': PageColumnsListSection;
+      'page.columns-text-box': PageColumnsTextBox;
+      'page.early-acces-button': PageEarlyAccesButton;
+      'page.expected-launch-box': PageExpectedLaunchBox;
       'page.header': PageHeader;
+      'page.header-left': PageHeaderLeft;
+      'page.icon-box': PageIconBox;
       'page.inline-boxes-section': PageInlineBoxesSection;
+      'page.inline-icon-boxes': PageInlineIconBoxes;
+      'page.join-early-access': PageJoinEarlyAccess;
       'page.marketing-performance-dashboard': PageMarketingPerformanceDashboard;
       'page.metrics-section': PageMetricsSection;
+      'page.post-box': PagePostBox;
+      'page.posts-inline': PagePostsInline;
       'page.pricing-section': PagePricingSection;
       'page.section-box-features-footer': PageSectionBoxFeaturesFooter;
       'page.section-icon-boxes': PageSectionIconBoxes;
@@ -1415,7 +1954,24 @@ declare module '@strapi/strapi' {
       'page.tabs-components-section': PageTabsComponentsSection;
       'page.tabs-section': PageTabsSection;
       'page.tabs-vertical-section': PageTabsVerticalSection;
+      'page.tag-icon': PageTagIcon;
+      'posts.box-buttons': PostsBoxButtons;
+      'posts.business-impact-calculator': PostsBusinessImpactCalculator;
+      'posts.colored-boxes-section': PostsColoredBoxesSection;
+      'posts.comparison-slider': PostsComparisonSlider;
       'posts.content': PostsContent;
+      'posts.decision-flow-section': PostsDecisionFlowSection;
+      'posts.evolution-tabs': PostsEvolutionTabs;
+      'posts.list': PostsList;
+      'posts.list-numbers': PostsListNumbers;
+      'posts.quote': PostsQuote;
+      'posts.related-resources': PostsRelatedResources;
+      'posts.sage-readiness-assessment': PostsSageReadinessAssessment;
+      'posts.table-json': PostsTableJson;
+      'posts.tabs-box-section': PostsTabsBoxSection;
+      'posts.tabs-colored-box-section': PostsTabsColoredBoxSection;
+      'posts.tabs-icons': PostsTabsIcons;
+      'posts.title': PostsTitle;
       'pricing.plan': PricingPlan;
       'pricing.pricing-plan-feature': PricingPricingPlanFeature;
       'roadmap.feature': RoadmapFeature;

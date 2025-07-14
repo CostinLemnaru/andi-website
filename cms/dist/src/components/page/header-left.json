@@ -1,15 +1,15 @@
 {
-    "collectionName": "components_page_box_simples",
+    "collectionName": "components_page_header_lefts",
     "info": {
-        "displayName": "Box Simple"
+        "displayName": "Header Left"
     },
     "options": {},
     "attributes": {
         "Title": {
             "type": "string"
         },
-        "Content": {
-            "type": "blocks"
+        "Subtitle": {
+            "type": "text"
         }
     },
     "config": {}

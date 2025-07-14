@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_miscellaneous_tab_category_box_icon_colors",
+    "info": {
+        "displayName": "Tab Category Box Icon Color"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Tabs": {
+            "type": "component",
+            "component": "miscellaneous.box-icon-color",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

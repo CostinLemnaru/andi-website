@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_page_inline_icon_boxes",
+    "info": {
+        "displayName": "Inline Icon Boxes"
+    },
+    "options": {},
+    "attributes": {
+        "Boxes": {
+            "type": "component",
+            "component": "miscellaneous.icon-box",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

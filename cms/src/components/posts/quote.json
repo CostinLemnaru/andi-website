@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_posts_quotes",
+  "info": {
+    "displayName": "Quote"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "text"
+    },
+    "FooterText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

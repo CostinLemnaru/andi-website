@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_posts_related_resources",
+    "info": {
+        "displayName": "Related Resources"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Resources": {
+            "type": "component",
+            "component": "page.box-simple",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

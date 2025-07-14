@@ -1,0 +1,13 @@
+{
+    "collectionName": "components_page_expected_launch_boxes",
+    "info": {
+        "displayName": "Expected Launch Box"
+    },
+    "options": {},
+    "attributes": {
+        "Description": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

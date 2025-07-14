@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_miscellaneous_tab_category_box_coloreds",
+    "info": {
+        "displayName": "Tab Category Box Colored"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "ColoredBoxes": {
+            "type": "component",
+            "component": "miscellaneous.colored-box",
+            "repeatable": false
+        }
+    },
+    "config": {}
+}
