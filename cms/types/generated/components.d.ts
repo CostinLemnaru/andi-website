@@ -538,8 +538,47 @@ export interface MiscellaneousListItem extends Struct.ComponentSchema {
     displayName: 'List Item';
   };
   attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
     Description: Schema.Attribute.String;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousPerson extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_people';
+  info: {
+    displayName: 'Person';
+  };
+  attributes: {
+    Description: Schema.Attribute.String;
+    Linkedin: Schema.Attribute.String;
+    Name: Schema.Attribute.String;
+    Subtitle: Schema.Attribute.String;
   };
 }
 
@@ -1324,7 +1363,7 @@ export interface PagePostsInline extends Struct.ComponentSchema {
     displayName: 'Posts Inline';
   };
   attributes: {
-    showLastthree: Schema.Attribute.Boolean;
+    showLastThree: Schema.Attribute.Boolean;
     slugOne: Schema.Attribute.String;
     slugThree: Schema.Attribute.String;
     slugTwo: Schema.Attribute.String;
@@ -1340,6 +1379,30 @@ export interface PagePricingSection extends Struct.ComponentSchema {
     Plan: Schema.Attribute.Component<'pricing.plan', true>;
     Subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageRequestDemoBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_request_demo_boxes';
+  info: {
+    displayName: 'Request demo box';
+  };
+  attributes: {
+    Description: Schema.Attribute.String;
+    FooterText: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageRoadmapBoxesSection extends Struct.ComponentSchema {
+  collectionName: 'components_page_roadmap_boxes_sections';
+  info: {
+    displayName: 'Roadmap Boxes section';
+  };
+  attributes: {
+    Items: Schema.Attribute.Component<'roadmap.feature', true>;
+    Title: Schema.Attribute.String;
+    whiteTheme: Schema.Attribute.Boolean;
   };
 }
 
@@ -1516,6 +1579,16 @@ export interface PageTagIcon extends Struct.ComponentSchema {
       ]
     >;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageTeam extends Struct.ComponentSchema {
+  collectionName: 'components_page_teams';
+  info: {
+    displayName: 'Team';
+  };
+  attributes: {
+    Members: Schema.Attribute.Component<'miscellaneous.person', true>;
   };
 }
 
@@ -1904,6 +1977,7 @@ declare module '@strapi/strapi' {
       'miscellaneous.icon-text': MiscellaneousIconText;
       'miscellaneous.item-list-numbers': MiscellaneousItemListNumbers;
       'miscellaneous.list-item': MiscellaneousListItem;
+      'miscellaneous.person': MiscellaneousPerson;
       'miscellaneous.q-and-a': MiscellaneousQAndA;
       'miscellaneous.tab-category': MiscellaneousTabCategory;
       'miscellaneous.tab-category-box': MiscellaneousTabCategoryBox;
@@ -1946,6 +2020,8 @@ declare module '@strapi/strapi' {
       'page.post-box': PagePostBox;
       'page.posts-inline': PagePostsInline;
       'page.pricing-section': PagePricingSection;
+      'page.request-demo-box': PageRequestDemoBox;
+      'page.roadmap-boxes-section': PageRoadmapBoxesSection;
       'page.section-box-features-footer': PageSectionBoxFeaturesFooter;
       'page.section-icon-boxes': PageSectionIconBoxes;
       'page.seo': PageSeo;
@@ -1955,6 +2031,7 @@ declare module '@strapi/strapi' {
       'page.tabs-section': PageTabsSection;
       'page.tabs-vertical-section': PageTabsVerticalSection;
       'page.tag-icon': PageTagIcon;
+      'page.team': PageTeam;
       'posts.box-buttons': PostsBoxButtons;
       'posts.business-impact-calculator': PostsBusinessImpactCalculator;
       'posts.colored-boxes-section': PostsColoredBoxesSection;

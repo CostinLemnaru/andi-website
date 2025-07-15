@@ -14,7 +14,7 @@
     "slugThree": {
       "type": "string"
     },
-    "showLastthree": {
+    "showLastThree": {
       "type": "boolean"
     }
   },

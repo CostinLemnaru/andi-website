@@ -1,21 +1,21 @@
 {
-    "collectionName": "components_page_posts_inlines",
+    "collectionName": "components_miscellaneous_people",
     "info": {
-        "displayName": "Posts Inline"
+        "displayName": "Person"
     },
     "options": {},
     "attributes": {
-        "slugOne": {
+        "Name": {
             "type": "string"
         },
-        "slugTwo": {
+        "Subtitle": {
             "type": "string"
         },
-        "slugThree": {
+        "Description": {
             "type": "string"
         },
-        "showLastThree": {
-            "type": "boolean"
+        "Linkedin": {
+            "type": "string"
         }
     },
     "config": {}

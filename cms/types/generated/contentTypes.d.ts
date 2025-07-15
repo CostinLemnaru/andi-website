@@ -441,6 +441,27 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.box-list-items',
         'page.box-icon',
         'page.box-icon-list-section',
+        'page.team',
+        'page.tag-icon',
+        'page.tabs-vertical-section',
+        'page.seo',
+        'page.section-box-features-footer',
+        'page.roadmap-boxes-section',
+        'page.request-demo-box',
+        'page.posts-inline',
+        'page.post-box',
+        'page.join-early-access',
+        'page.inline-icon-boxes',
+        'page.icon-box',
+        'page.header-left',
+        'page.expected-launch-box',
+        'page.early-acces-button',
+        'page.columns-text-box',
+        'page.columns-list-section',
+        'page.bg-colored-boxed',
+        'page.add-ons-section',
+        'page.accordion',
+        'page.accordion-json',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -474,7 +495,27 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Content: Schema.Attribute.DynamicZone<['posts.content']>;
+    Content: Schema.Attribute.DynamicZone<
+      [
+        'posts.content',
+        'posts.title',
+        'posts.tabs-icons',
+        'posts.tabs-colored-box-section',
+        'posts.tabs-box-section',
+        'posts.table-json',
+        'posts.sage-readiness-assessment',
+        'posts.related-resources',
+        'posts.quote',
+        'posts.list',
+        'posts.list-numbers',
+        'posts.evolution-tabs',
+        'posts.decision-flow-section',
+        'posts.comparison-slider',
+        'posts.colored-boxes-section',
+        'posts.business-impact-calculator',
+        'posts.box-buttons',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

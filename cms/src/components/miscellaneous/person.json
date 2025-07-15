@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_miscellaneous_people",
+  "info": {
+    "displayName": "Person"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Linkedin": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

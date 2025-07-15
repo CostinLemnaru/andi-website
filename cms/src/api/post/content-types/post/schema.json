@@ -20,7 +20,23 @@
     "Content": {
       "type": "dynamiczone",
       "components": [
-        "posts.content"
+        "posts.content",
+        "posts.title",
+        "posts.tabs-icons",
+        "posts.tabs-colored-box-section",
+        "posts.tabs-box-section",
+        "posts.table-json",
+        "posts.sage-readiness-assessment",
+        "posts.related-resources",
+        "posts.quote",
+        "posts.list",
+        "posts.list-numbers",
+        "posts.evolution-tabs",
+        "posts.decision-flow-section",
+        "posts.comparison-slider",
+        "posts.colored-boxes-section",
+        "posts.business-impact-calculator",
+        "posts.box-buttons"
       ]
     }
   }
