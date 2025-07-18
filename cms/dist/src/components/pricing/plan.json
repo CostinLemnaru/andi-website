@@ -48,7 +48,7 @@
         "Color": {
             "type": "enumeration",
             "enum": [
-                "ed",
+                "red",
                 "orange",
                 "amber",
                 "yellow",

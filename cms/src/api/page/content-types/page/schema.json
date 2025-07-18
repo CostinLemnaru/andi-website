@@ -76,7 +76,8 @@
         "page.bg-colored-boxed",
         "page.add-ons-section",
         "page.accordion",
-        "page.accordion-json"
+        "page.accordion-json",
+        "page.button"
       ]
     }
   }

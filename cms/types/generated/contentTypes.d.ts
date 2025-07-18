@@ -462,6 +462,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.add-ons-section',
         'page.accordion',
         'page.accordion-json',
+        'page.button',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

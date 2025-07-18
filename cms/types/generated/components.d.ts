@@ -191,6 +191,7 @@ export interface MiscellaneousBoxFeaturesFooter extends Struct.ComponentSchema {
         'stone',
       ]
     >;
+    Description: Schema.Attribute.String;
     FooterText: Schema.Attribute.Text;
     Icon: Schema.Attribute.Enumeration<
       [
@@ -1140,6 +1141,17 @@ export interface PageBusinessPulseSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PageButton extends Struct.ComponentSchema {
+  collectionName: 'components_page_buttons';
+  info: {
+    displayName: 'Button';
+  };
+  attributes: {
+    Button: Schema.Attribute.Component<'miscellaneous.button', false>;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageColumnsListSection extends Struct.ComponentSchema {
   collectionName: 'components_page_columns_list_sections';
   info: {
@@ -1503,7 +1515,7 @@ export interface PageTabsVerticalSection extends Struct.ComponentSchema {
     Subtitle: Schema.Attribute.String;
     Tabs: Schema.Attribute.Component<
       'miscellaneous.tab-category-vertical',
-      false
+      true
     >;
     Title: Schema.Attribute.String;
   };
@@ -1796,7 +1808,7 @@ export interface PricingPlan extends Struct.ComponentSchema {
   attributes: {
     Color: Schema.Attribute.Enumeration<
       [
-        'ed',
+        'red',
         'orange',
         'amber',
         'yellow',
@@ -2005,6 +2017,7 @@ declare module '@strapi/strapi' {
       'page.box-simple': PageBoxSimple;
       'page.boxes-columns': PageBoxesColumns;
       'page.business-pulse-section': PageBusinessPulseSection;
+      'page.button': PageButton;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
       'page.early-acces-button': PageEarlyAccesButton;
