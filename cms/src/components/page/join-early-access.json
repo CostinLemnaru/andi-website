@@ -19,6 +19,9 @@
     },
     "highlightWords": {
       "type": "string"
+    },
+    "FooterText": {
+      "type": "string"
     }
   },
   "config": {}

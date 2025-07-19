@@ -522,6 +522,50 @@ export interface MiscellaneousIconText extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousIconTitleSubtitle extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_icon_title_subtitles';
+  info: {
+    displayName: 'Icon Title Subtitle';
+  };
+  attributes: {
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+      ]
+    >;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousItemListNumbers extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_item_list_numbers';
   info: {
@@ -1207,6 +1251,51 @@ export interface PageHeader extends Struct.ComponentSchema {
   };
 }
 
+export interface PageHeaderIcon extends Struct.ComponentSchema {
+  collectionName: 'components_page_header_icons';
+  info: {
+    displayName: 'Header Icon';
+  };
+  attributes: {
+    highlightWords: Schema.Attribute.String;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+      ]
+    >;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageHeaderLeft extends Struct.ComponentSchema {
   collectionName: 'components_page_header_lefts';
   info: {
@@ -1288,6 +1377,20 @@ export interface PageInlineIconBoxes extends Struct.ComponentSchema {
   };
 }
 
+export interface PageInlineIconTitleSubtitleBoxes
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_inline_icon_title_subtitle_boxes';
+  info: {
+    displayName: 'Inline Icon Title Subtitle Boxes';
+  };
+  attributes: {
+    Boxes: Schema.Attribute.Component<
+      'miscellaneous.icon-title-subtitle',
+      true
+    >;
+  };
+}
+
 export interface PageJoinEarlyAccess extends Struct.ComponentSchema {
   collectionName: 'components_page_join_early_accesses';
   info: {
@@ -1296,6 +1399,7 @@ export interface PageJoinEarlyAccess extends Struct.ComponentSchema {
   attributes: {
     BoxSubtitle: Schema.Attribute.String;
     BoxTitle: Schema.Attribute.String;
+    FooterText: Schema.Attribute.String;
     highlightWords: Schema.Attribute.String;
     Subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;
@@ -1429,6 +1533,22 @@ export interface PageSectionBoxFeaturesFooter extends Struct.ComponentSchema {
       true
     >;
     Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageSectionColumnsIconTitleSubtitleBoxes
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_section_columns_icon_title_subtitle_boxes';
+  info: {
+    displayName: 'Section Columns Icon Title Subtitle Boxes';
+  };
+  attributes: {
+    Boxes: Schema.Attribute.Component<
+      'miscellaneous.icon-title-subtitle',
+      true
+    >;
+    highlightWords: Schema.Attribute.String;
     Title: Schema.Attribute.String;
   };
 }
@@ -1987,6 +2107,7 @@ declare module '@strapi/strapi' {
       'miscellaneous.colored-box': MiscellaneousColoredBox;
       'miscellaneous.icon-box': MiscellaneousIconBox;
       'miscellaneous.icon-text': MiscellaneousIconText;
+      'miscellaneous.icon-title-subtitle': MiscellaneousIconTitleSubtitle;
       'miscellaneous.item-list-numbers': MiscellaneousItemListNumbers;
       'miscellaneous.list-item': MiscellaneousListItem;
       'miscellaneous.person': MiscellaneousPerson;
@@ -2023,10 +2144,12 @@ declare module '@strapi/strapi' {
       'page.early-acces-button': PageEarlyAccesButton;
       'page.expected-launch-box': PageExpectedLaunchBox;
       'page.header': PageHeader;
+      'page.header-icon': PageHeaderIcon;
       'page.header-left': PageHeaderLeft;
       'page.icon-box': PageIconBox;
       'page.inline-boxes-section': PageInlineBoxesSection;
       'page.inline-icon-boxes': PageInlineIconBoxes;
+      'page.inline-icon-title-subtitle-boxes': PageInlineIconTitleSubtitleBoxes;
       'page.join-early-access': PageJoinEarlyAccess;
       'page.marketing-performance-dashboard': PageMarketingPerformanceDashboard;
       'page.metrics-section': PageMetricsSection;
@@ -2036,6 +2159,7 @@ declare module '@strapi/strapi' {
       'page.request-demo-box': PageRequestDemoBox;
       'page.roadmap-boxes-section': PageRoadmapBoxesSection;
       'page.section-box-features-footer': PageSectionBoxFeaturesFooter;
+      'page.section-columns-icon-title-subtitle-boxes': PageSectionColumnsIconTitleSubtitleBoxes;
       'page.section-icon-boxes': PageSectionIconBoxes;
       'page.seo': PageSeo;
       'page.table-section': PageTableSection;

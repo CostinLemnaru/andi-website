@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_page_section_columns_icon_title_subtitle_boxes",
+    "info": {
+        "displayName": "Section Columns Icon Title Subtitle Boxes"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "highlightWords": {
+            "type": "string"
+        },
+        "Boxes": {
+            "type": "component",
+            "component": "miscellaneous.icon-title-subtitle",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

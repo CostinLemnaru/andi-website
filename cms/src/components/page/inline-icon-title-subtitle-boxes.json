@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_page_inline_icon_title_subtitle_boxes",
+  "info": {
+    "displayName": "Inline Icon Title Subtitle Boxes"
+  },
+  "options": {},
+  "attributes": {
+    "Boxes": {
+      "type": "component",
+      "component": "miscellaneous.icon-title-subtitle",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

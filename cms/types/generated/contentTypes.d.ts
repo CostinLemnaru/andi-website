@@ -463,6 +463,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.accordion',
         'page.accordion-json',
         'page.button',
+        'page.inline-icon-title-subtitle-boxes',
+        'page.header-icon',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
