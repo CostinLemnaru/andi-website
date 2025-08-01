@@ -3,6 +3,7 @@
 import { componentsMap } from "@/lib/components-map"
 import PageLayout from "@/components/page-layout"
 import { useRef, useEffect } from "react"
+import dynamic from "next/dynamic"
 
 type StrapiComponent =
   | {
@@ -41,7 +42,7 @@ type Props = {
   data?: PageData
 }
 
-export default async function PageContent({ data }: Props) {
+export default function PageContent({ data }: Props) {
   const components = data?.Components ?? []
   const sectionsRef = useRef<HTMLDivElement>(null)
 

@@ -1,59 +1,65 @@
 import qs from "qs"
 
 const STRAPI_API_URL = process.env.STRAPI_API_URL
-const NESTED_COMPONENTS: Record<string, string> = {
-  "home.roadmap-section": "Versions.Features.Specs",
+
+const NESTED_COMPONENTS: Record<string, string[]> = {
+  "home.roadmap-section": ["Versions.Features.Specs"],
+  "page.box-list-items": ["ListItems"],
+  "page.box-items": ["Items"],
+  "page.section-icon-boxes": ["SectionIconBoxes"],
+  "page.tabs-section": ["Tabs.Items"],
+  "page.tabs-box-section": ["Tabs.Items.Items"],
+  "page.tabs-components-section": [
+    "Tabs.Items.IconTitleDescription",
+    "Tabs.Items.IconText.IconText"
+  ],
+  "page.pricing-section": ["Plan.Items"],
+  "page.section-box-features-footer": ["Boxes"],
+  "page.tabs-vertical-section": ["Tabs.Content.Items"]
 }
 
 export async function fetchPage(slug: string) {
   try {
-    // Fetch inițial cu populate=*
     const firstRes = await fetch(`${STRAPI_API_URL}/api/pages?filters[slug][$eq]=${slug}&populate=*`, {
-      next: { revalidate: 60 }
+      next: { revalidate: 60 },
     })
 
     if (!firstRes.ok) throw new Error("Failed to fetch page")
 
     const firstJson = await firstRes.json()
     const data = firstJson.data?.[0] ?? null
-
-    // Dacă nu sunt componente speciale, returnează direct
     const components = data?.Components ?? []
 
-    const hasNested = components.some((c: any) => NESTED_COMPONENTS[c.__component])
-    if (!hasNested) return data
+    if (!components.length) return data
 
     const populate: Record<string, any> = {
       Components: {
-        populate: "*", // <-- important!
+        populate: "*", // default shallow populate
         on: {},
       },
     }
 
     for (const comp of components) {
-      const name = comp.__component
-      const nested = NESTED_COMPONENTS[name]
+      const compName = comp.__component
+      const nestedPaths = NESTED_COMPONENTS[compName]
 
-      let level: any = (populate.Components.on[name] = { populate: {} })
+      // Include all components in `.on`, even if they don't have nested children
+      const root = (populate.Components.on[compName] ||= { populate: {} })
 
-      if (!nested) {
-        level.populate = "*"
+      if (!nestedPaths || !nestedPaths.length) {
+        root.populate = "*"
+        continue
       }
 
-      if (nested) {
-        const path = nested.split(".")
-
-        for (const field of path) {
-          level.populate[field] = { populate: {} }
+      for (const path of nestedPaths) {
+        let level = root
+        const fields = path.split(".")
+        for (const field of fields) {
+          level.populate[field] = level.populate[field] || { populate: {} }
           level = level.populate[field]
         }
         level.populate = "*"
       }
-    }
-
-
-    if (Object.keys(populate.Components.on).length > 0) {
-      populate.Components.populate = "*"
     }
 
     const query = qs.stringify({
@@ -62,7 +68,7 @@ export async function fetchPage(slug: string) {
     }, { encodeValuesOnly: true })
 
     const nestedRes = await fetch(`${STRAPI_API_URL}/api/pages?${query}`, {
-      next: { revalidate: 60 }
+      next: { revalidate: 60 },
     })
 
     if (!nestedRes.ok) throw new Error("Failed to re-fetch page with nested populate")
@@ -70,7 +76,7 @@ export async function fetchPage(slug: string) {
     const nestedJson = await nestedRes.json()
     return nestedJson.data?.[0] ?? null
   } catch (err) {
-    console.warn("fetchPage failed:", err)
+    console.warn("⚠️ fetchPage failed:", err)
     return null
   }
 }

@@ -28,6 +28,13 @@ import {
   Rocket,
   Wand,
   Eye,
+  TrendingUp,
+  BarChart3,
+  LifeBuoy,
+  Users,
+  Infinity,
+  Webhook,
+  Headphones
 } from "lucide-react"
 
 export const iconMap: Record<string, React.FC<{ className?: string }>> = {
@@ -60,6 +67,13 @@ export const iconMap: Record<string, React.FC<{ className?: string }>> = {
   Rocket,
   Wand,
   Eye,
+  TrendingUp,
+  BarChart3,
+  LifeBuoy,
+  Users,
+  Infinity,
+  Webhook,
+  Headphones
 }
 
 export function getLucideIcon(name: string): React.FC<{ className?: string }> | null {
