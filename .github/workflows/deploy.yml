@@ -27,7 +27,7 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
             pm2 delete all || true
-            sudo rm -rf /var/www/andi-website
+            rm -rf /var/www/andi-website
 
       - name: Upload files to VPS (Next.js + Strapi + DB)
         uses: appleboy/scp-action@v0.1.7
