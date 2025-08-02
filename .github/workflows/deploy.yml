@@ -62,16 +62,6 @@ jobs:
             JWT_SECRET=rLBfGErF6kb0iiYycCHuTg==
             EOF
 
-      - name: Fix permissions on VPS
-        uses: appleboy/ssh-action@v0.1.8
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_PRIVATE_KEY }}
-          script: |
-            chown -R $USER:$USER /var/www/andi-website
-            chmod -R 755 /var/www/andi-website
-
       - name: Build & Restart apps on VPS
         uses: appleboy/ssh-action@v0.1.8
         with:
