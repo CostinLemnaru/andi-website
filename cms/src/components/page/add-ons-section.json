@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_page_add_ons_sections",
+  "info": {
+    "displayName": "Add-ons Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "AddOns": {
+      "type": "component",
+      "component": "miscellaneous.add-on-box",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

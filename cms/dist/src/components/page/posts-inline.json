@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_page_posts_inlines",
+    "info": {
+        "displayName": "Posts Inline"
+    },
+    "options": {},
+    "attributes": {
+        "slugOne": {
+            "type": "string"
+        },
+        "slugTwo": {
+            "type": "string"
+        },
+        "slugThree": {
+            "type": "string"
+        },
+        "showLastThree": {
+            "type": "boolean"
+        }
+    },
+    "config": {}
+}

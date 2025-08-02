@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_page_boxes_columns",
+  "info": {
+    "displayName": "Boxes Columns"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Items": {
+      "type": "component",
+      "component": "roadmap.feature",
+      "repeatable": true
+    },
+    "whiteTheme": {
+      "type": "boolean"
+    },
+    "Columns": {
+      "type": "enumeration",
+      "enum": [
+        "two",
+        "three"
+      ]
+    }
+  },
+  "config": {}
+}

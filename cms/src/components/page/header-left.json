@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_page_header_lefts",
+  "info": {
+    "displayName": "Header Left"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

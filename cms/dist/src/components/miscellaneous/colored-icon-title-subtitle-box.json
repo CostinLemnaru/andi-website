@@ -1,0 +1,77 @@
+{
+    "collectionName": "components_miscellaneous_colored_icon_title_subtitle_boxes",
+    "info": {
+        "displayName": "Colored Icon Title Subtitle Box"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Subtitle": {
+            "type": "string"
+        },
+        "Color": {
+            "type": "enumeration",
+            "enum": [
+                "red",
+                "orange",
+                "amber",
+                "yellow",
+                "lime",
+                "green",
+                "emerald",
+                "teal",
+                "cyan",
+                "sky",
+                "blue",
+                "indigo",
+                "violet",
+                "purple",
+                "fuchsia",
+                "pink",
+                "rose",
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone"
+            ]
+        },
+        "Icon": {
+            "type": "enumeration",
+            "enum": [
+                "Bot",
+                "User",
+                "Check",
+                "MessageSquare",
+                "ArrowRight",
+                "Database",
+                "Server",
+                "Cpu",
+                "Brain",
+                "Link",
+                "Tag",
+                "Shield",
+                "Lock",
+                "Unlock",
+                "Zap",
+                "Activity",
+                "CheckCircle",
+                "XCircle",
+                "AlertTriangle",
+                "Globe",
+                "Search",
+                "BarChart2",
+                "Calendar",
+                "Layers",
+                "GitBranch",
+                "Compass",
+                "Rocket",
+                "Wand",
+                "Eye"
+            ]
+        }
+    },
+    "config": {}
+}

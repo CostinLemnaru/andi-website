@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_page_teams",
+    "info": {
+        "displayName": "Team"
+    },
+    "options": {},
+    "attributes": {
+        "Members": {
+            "type": "component",
+            "component": "miscellaneous.person",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

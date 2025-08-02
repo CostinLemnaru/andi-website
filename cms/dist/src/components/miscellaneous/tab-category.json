@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_miscellaneous_tab_categories",
+    "info": {
+        "displayName": "Tab Category"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Items": {
+            "type": "component",
+            "component": "miscellaneous.tab-item",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

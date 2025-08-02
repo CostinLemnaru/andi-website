@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_page_tabs_components_sections",
+    "info": {
+        "displayName": "Tabs Components Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Tabs": {
+            "type": "component",
+            "component": "miscellaneous.tab-category-components",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

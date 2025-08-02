@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_page_colored_icon_title_subtitle_boxes",
+    "info": {
+        "displayName": "Colored Icon Title Subtitle Boxes"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "highlightWords": {
+            "type": "string"
+        },
+        "Boxes": {
+            "type": "component",
+            "component": "miscellaneous.colored-icon-title-subtitle-box",
+            "repeatable": true,
+            "max": 4
+        }
+    },
+    "config": {}
+}

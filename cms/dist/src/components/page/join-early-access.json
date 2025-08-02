@@ -1,0 +1,28 @@
+{
+    "collectionName": "components_page_join_early_accesses",
+    "info": {
+        "displayName": "Join Early Access"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Subtitle": {
+            "type": "string"
+        },
+        "BoxTitle": {
+            "type": "string"
+        },
+        "BoxSubtitle": {
+            "type": "string"
+        },
+        "highlightWords": {
+            "type": "string"
+        },
+        "FooterText": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_miscellaneous_tab_item_component_icon_texts",
+    "info": {
+        "displayName": "Tab Item Component Icon Text"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "IconText": {
+            "type": "component",
+            "component": "miscellaneous.icon-text",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

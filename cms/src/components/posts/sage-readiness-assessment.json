@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_posts_sage_readiness_assessments",
+  "info": {
+    "displayName": "SAGE Readiness Assessment"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Config": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_miscellaneous_tab_category_boxes",
+    "info": {
+        "displayName": "Tab Category Box"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "text"
+        },
+        "Items": {
+            "type": "component",
+            "component": "miscellaneous.tab-item-box",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

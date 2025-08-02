@@ -44,6 +44,7 @@ export default function InteractiveTimeline({ events }: InteractiveTimelineProps
         </div>
       </div>
 
+    {events[activeEvent] && (
       <motion.div
         key={activeEvent}
         initial={{ opacity: 0, x: 20 }}
@@ -51,9 +52,13 @@ export default function InteractiveTimeline({ events }: InteractiveTimelineProps
         transition={{ duration: 0.5 }}
         className="bg-gray-900/40 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6 mt-4"
       >
-        <h3 className="text-xl font-bold mb-2 text-purple-400">{events[activeEvent].title}</h3>
+        <h3 className="text-xl font-bold mb-2 text-purple-400">
+          {events[activeEvent].title}
+        </h3>
         <p className="text-gray-200">{events[activeEvent].description}</p>
       </motion.div>
+    )}
+
     </motion.div>
   )
 }

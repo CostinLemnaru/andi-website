@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_miscellaneous_item_list_numbers",
+  "info": {
+    "displayName": "Item List Numbers"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

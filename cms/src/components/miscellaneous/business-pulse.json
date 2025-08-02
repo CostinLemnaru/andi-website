@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_miscellaneous_business_pulses",
+  "info": {
+    "displayName": "Business Pulse"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Config": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

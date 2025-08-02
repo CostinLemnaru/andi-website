@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_pricing_pricing_plan_features",
+  "info": {
+    "displayName": "Pricing Plan Feature"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Checked": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

@@ -19,7 +19,11 @@
         "icon": {
             "type": "enumeration",
             "enum": [
+                "Bot",
+                "User",
+                "Check",
                 "MessageSquare",
+                "ArrowRight",
                 "Database",
                 "Server",
                 "Cpu",

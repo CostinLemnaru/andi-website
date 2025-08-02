@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "posts.content",
+        "posts.title",
+        "posts.tabs-icons",
+        "posts.table-json",
+        "posts.sage-readiness-assessment",
+        "posts.related-resources",
+        "posts.quote",
+        "posts.list",
+        "posts.list-numbers",
+        "posts.evolution-tabs",
+        "posts.decision-flow-section",
+        "posts.comparison-slider",
+        "posts.colored-boxes-section",
+        "posts.business-impact-calculator",
+        "posts.box-buttons",
+        "posts.tabs-boxes-section",
+        "posts.tabs-colored-boxes-section"
+      ]
+    }
+  }
+}

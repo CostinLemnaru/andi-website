@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_page_roadmap_boxes_sections",
+    "info": {
+        "displayName": "Roadmap Boxes section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Items": {
+            "type": "component",
+            "component": "roadmap.feature",
+            "repeatable": true
+        },
+        "whiteTheme": {
+            "type": "boolean"
+        }
+    },
+    "config": {}
+}

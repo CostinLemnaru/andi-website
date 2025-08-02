@@ -395,7 +395,7 @@ export interface ApiPageCategoryPageCategory
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
-    page: Schema.Attribute.Relation<'oneToOne', 'api::page.page'>;
+    pages: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -421,6 +421,54 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'home.roadmap-section',
         'home.roi-calculator-section',
         'home.cta-section',
+        'page.tabs-section',
+        'page.tabs-components-section',
+        'page.tabs-box-section',
+        'page.table-section',
+        'page.section-icon-boxes',
+        'page.pricing-section',
+        'page.metrics-section',
+        'page.marketing-performance-dashboard',
+        'page.inline-boxes-section',
+        'page.header',
+        'page.business-pulse-section',
+        'page.boxes-columns',
+        'page.box-simple',
+        'page.box-q-and-a',
+        'page.box-nested-section',
+        'page.box-list-steps',
+        'page.box-items',
+        'page.box-list-items',
+        'page.box-icon',
+        'page.box-icon-list-section',
+        'page.team',
+        'page.tag-icon',
+        'page.tabs-vertical-section',
+        'page.seo',
+        'page.section-box-features-footer',
+        'page.roadmap-boxes-section',
+        'page.request-demo-box',
+        'page.posts-inline',
+        'page.post-box',
+        'page.join-early-access',
+        'page.inline-icon-boxes',
+        'page.icon-box',
+        'page.header-left',
+        'page.expected-launch-box',
+        'page.early-acces-button',
+        'page.columns-text-box',
+        'page.columns-list-section',
+        'page.bg-colored-boxed',
+        'page.add-ons-section',
+        'page.accordion',
+        'page.accordion-json',
+        'page.button',
+        'page.inline-icon-title-subtitle-boxes',
+        'page.header-icon',
+        'page.section-columns-icon-title-subtitle-boxes',
+        'page.content',
+        'page.cta-section',
+        'page.colored-icon-title-subtitle-boxes',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -430,13 +478,61 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'> &
       Schema.Attribute.Private;
     page_category: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'api::page-category.page-category'
     >;
     publishedAt: Schema.Attribute.DateTime;
     Seo: Schema.Attribute.Component<'page.seo', false>;
     slug: Schema.Attribute.UID;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Struct.CollectionTypeSchema {
+  collectionName: 'posts';
+  info: {
+    displayName: 'Post';
+    pluralName: 'posts';
+    singularName: 'post';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Content: Schema.Attribute.DynamicZone<
+      [
+        'posts.content',
+        'posts.title',
+        'posts.tabs-icons',
+        'posts.table-json',
+        'posts.sage-readiness-assessment',
+        'posts.related-resources',
+        'posts.quote',
+        'posts.list',
+        'posts.list-numbers',
+        'posts.evolution-tabs',
+        'posts.decision-flow-section',
+        'posts.comparison-slider',
+        'posts.colored-boxes-section',
+        'posts.business-impact-calculator',
+        'posts.box-buttons',
+        'posts.tabs-boxes-section',
+        'posts.tabs-colored-boxes-section',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -954,6 +1050,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::page-category.page-category': ApiPageCategoryPageCategory;
       'api::page.page': ApiPagePage;
+      'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

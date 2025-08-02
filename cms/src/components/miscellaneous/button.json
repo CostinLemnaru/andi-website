@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_miscellaneous_buttons",
+  "info": {
+    "displayName": "Button"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "string"
+    },
+    "Url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

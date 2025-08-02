@@ -12,6 +12,8 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
     </div>
   )
 
+  const collectionType = slugArray[0] == 'post' ? 'posts' : 'pages'
+
   if (
     slugPath.includes(".") ||
     reservedSlugs.some((s) => slugPath.startsWith(s))
@@ -20,7 +22,7 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
   }
 
   const lastSegment = slugArray.at(-1) || "home"
-  const data = await fetchPage(lastSegment)
+  const data = await fetchPage(lastSegment, collectionType)
 
   if (!data) {
     return notFound

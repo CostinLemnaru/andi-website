@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_posts_evolution_tabs",
+    "info": {
+        "displayName": "Evolution Tabs"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

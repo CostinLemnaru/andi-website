@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_request_demo_boxes",
+  "info": {
+    "displayName": "Request demo box"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "FooterText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

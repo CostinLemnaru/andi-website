@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_page_columns_text_boxes",
+    "info": {
+        "displayName": "Columns  Text Box"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "LeftColumn": {
+            "type": "blocks"
+        },
+        "RightColumn": {
+            "type": "blocks"
+        }
+    },
+    "config": {}
+}

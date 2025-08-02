@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_page_table_sections",
+    "info": {
+        "displayName": "Table Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Config": {
+            "type": "json"
+        },
+        "Footer": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}
