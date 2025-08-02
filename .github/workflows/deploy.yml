@@ -70,6 +70,8 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
             cd /var/www/andi-website
+            pm2 delete next-app || true
+            rm -rf .next
             npm ci --legacy-peer-deps
             npm run build
             pm2 restart next-app || pm2 start npm --name next-app -- run start -- -p 3000 -H 0.0.0.0
