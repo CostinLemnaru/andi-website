@@ -14,6 +14,9 @@
     "Title": {
       "type": "string"
     },
+    "slug": {
+      "type": "uid"
+    },
     "Subtitle": {
       "type": "string"
     },
@@ -23,8 +26,6 @@
         "posts.content",
         "posts.title",
         "posts.tabs-icons",
-        "posts.tabs-colored-box-section",
-        "posts.tabs-box-section",
         "posts.table-json",
         "posts.sage-readiness-assessment",
         "posts.related-resources",
@@ -36,7 +37,9 @@
         "posts.comparison-slider",
         "posts.colored-boxes-section",
         "posts.business-impact-calculator",
-        "posts.box-buttons"
+        "posts.box-buttons",
+        "posts.tabs-boxes-section",
+        "posts.tabs-colored-boxes-section"
       ]
     }
   }

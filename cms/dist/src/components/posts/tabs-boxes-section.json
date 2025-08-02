@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_posts_tabs_boxes_sections",
+    "info": {
+        "displayName": "Tabs Boxes Section"
+    },
+    "options": {},
+    "attributes": {
+        "Tabs": {
+            "type": "component",
+            "component": "miscellaneous.tabs-box-item",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

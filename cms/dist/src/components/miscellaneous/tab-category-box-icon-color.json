@@ -8,10 +8,10 @@
         "Title": {
             "type": "string"
         },
-        "Tabs": {
+        "TabContent": {
             "type": "component",
             "component": "miscellaneous.box-icon-color",
-            "repeatable": true
+            "repeatable": false
         }
     },
     "config": {}

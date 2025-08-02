@@ -40,15 +40,19 @@ export default function InlineBoxesSection({ data }: InlineBoxesSectionProps) {
     }
   }, [])
 
+  let layoutClasses = data.whiteTheme ? "max-w-6xl mx-auto" : "";
+  let themeClasses = data.whiteTheme 
+  ? "rounded-lg border text-card-foreground shadow-sm bg-white/5 backdrop-blur-sm border-white/10 p-6 flex flex-col items-center justify-center text-center"
+  : "bg-gradient-to-br from-gray-900/60 to-gray-800/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 flex flex-col items-center justify-center text-center"
   return (
-    <div id="inline-boxes-section" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-12">
+    <div id="inline-boxes-section" className={`${layoutClasses} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-12`}>
       {data.Items.map((item, index) => (
         <motion.div
           key={item.id}
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: index * 0.1 }}
-          className="bg-gradient-to-br from-gray-900/60 to-gray-800/30 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 flex flex-col items-center justify-center text-center"
+          className={`${themeClasses}`}
         >
           <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">
             {item.Title}

@@ -3,7 +3,7 @@
 import { componentsMap } from "@/lib/components-map"
 import PageLayout from "@/components/page-layout"
 import { useRef, useEffect } from "react"
-import dynamic from "next/dynamic"
+import PostHeader from "./PostHeader"
 
 type StrapiComponent =
   | {
@@ -29,13 +29,16 @@ type StrapiComponent =
 
 type PageData = {
   id: number
-  title: string
   slug: string
-  Components: StrapiComponent[]
+  Components?: StrapiComponent[]
+  Content?: StrapiComponent[]
   Seo?: {
     title: string
     description: string
   }
+  Title?: string
+  Subtitle?: string
+  createdAt?: string
 }
 
 type Props = {
@@ -43,7 +46,7 @@ type Props = {
 }
 
 export default function PageContent({ data }: Props) {
-  const components = data?.Components ?? []
+  const components = data?.Components || data?.Content || []
   const sectionsRef = useRef<HTMLDivElement>(null)
 
   // Setup scroll-based animations
@@ -159,6 +162,13 @@ export default function PageContent({ data }: Props) {
   return (
     <PageLayout className="pt-0">
       <div ref={sectionsRef} className="relative">
+        {data?.Title && data?.Subtitle && data?.createdAt && (
+          <PostHeader
+            Title={data.Title}
+            Subtitle={data.Subtitle}
+            createdAt={data.createdAt}
+          />
+        )}
         {components.map((component: any) => {
           const Component = componentsMap[component.__component]
           if (!Component) {

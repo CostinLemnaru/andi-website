@@ -465,6 +465,10 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.button',
         'page.inline-icon-title-subtitle-boxes',
         'page.header-icon',
+        'page.section-columns-icon-title-subtitle-boxes',
+        'page.content',
+        'page.cta-section',
+        'page.colored-icon-title-subtitle-boxes',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -503,8 +507,6 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
         'posts.content',
         'posts.title',
         'posts.tabs-icons',
-        'posts.tabs-colored-box-section',
-        'posts.tabs-box-section',
         'posts.table-json',
         'posts.sage-readiness-assessment',
         'posts.related-resources',
@@ -517,6 +519,8 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
         'posts.colored-boxes-section',
         'posts.business-impact-calculator',
         'posts.box-buttons',
+        'posts.tabs-boxes-section',
+        'posts.tabs-colored-boxes-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -526,6 +530,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
     Subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

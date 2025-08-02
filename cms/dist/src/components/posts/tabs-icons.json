@@ -14,7 +14,7 @@
         "Tabs": {
             "type": "component",
             "component": "miscellaneous.tab-category-box-icon-color",
-            "repeatable": false
+            "repeatable": true
         }
     },
     "config": {}

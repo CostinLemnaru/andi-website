@@ -434,6 +434,77 @@ export interface MiscellaneousColoredBox extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousColoredIconTitleSubtitleBox
+  extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_colored_icon_title_subtitle_boxes';
+  info: {
+    displayName: 'Colored Icon Title Subtitle Box';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+      ]
+    >;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousIconBox extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_icon_boxes';
   info: {
@@ -623,6 +694,7 @@ export interface MiscellaneousPerson extends Struct.ComponentSchema {
     Description: Schema.Attribute.String;
     Linkedin: Schema.Attribute.String;
     Name: Schema.Attribute.String;
+    Photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Subtitle: Schema.Attribute.String;
   };
 }
@@ -685,7 +757,10 @@ export interface MiscellaneousTabCategoryBoxIconColor
     displayName: 'Tab Category Box Icon Color';
   };
   attributes: {
-    Tabs: Schema.Attribute.Component<'miscellaneous.box-icon-color', true>;
+    TabContent: Schema.Attribute.Component<
+      'miscellaneous.box-icon-color',
+      false
+    >;
     Title: Schema.Attribute.String;
   };
 }
@@ -861,6 +936,94 @@ export interface MiscellaneousTabItemComponents extends Struct.ComponentSchema {
       true
     >;
     IconTitleDescription: Schema.Attribute.Component<'page.box-icon', true>;
+  };
+}
+
+export interface MiscellaneousTabsBoxItem extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_tabs_box_items';
+  info: {
+    displayName: 'Tabs Box Item';
+  };
+  attributes: {
+    TabContentDescription: Schema.Attribute.Text;
+    TabContentTitle: Schema.Attribute.String;
+    TabTitle: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousTabsColoredBoxItem
+  extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_tabs_colored_box_items';
+  info: {
+    displayName: 'Tabs Colored Box Item';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    TabContentDescription: Schema.Attribute.Text;
+    TabContentTitle: Schema.Attribute.String;
+    TabTitle: Schema.Attribute.String;
   };
 }
 
@@ -1051,6 +1214,9 @@ export interface PageBoxIconListSection extends Struct.ComponentSchema {
     displayName: 'Box Icon List Section';
   };
   attributes: {
+    hasBackground: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isTransparent: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isWideLayout: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     Items: Schema.Attribute.Component<'miscellaneous.box-icon-color', true>;
     Title: Schema.Attribute.String;
   };
@@ -1196,6 +1362,28 @@ export interface PageButton extends Struct.ComponentSchema {
   };
 }
 
+export interface PageColoredIconTitleSubtitleBoxes
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_colored_icon_title_subtitle_boxes';
+  info: {
+    displayName: 'Colored Icon Title Subtitle Boxes';
+  };
+  attributes: {
+    Boxes: Schema.Attribute.Component<
+      'miscellaneous.colored-icon-title-subtitle-box',
+      true
+    > &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+        },
+        number
+      >;
+    highlightWords: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageColumnsListSection extends Struct.ComponentSchema {
   collectionName: 'components_page_columns_list_sections';
   info: {
@@ -1216,6 +1404,29 @@ export interface PageColumnsTextBox extends Struct.ComponentSchema {
   attributes: {
     LeftColumn: Schema.Attribute.Blocks;
     RightColumn: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageContent extends Struct.ComponentSchema {
+  collectionName: 'components_page_contents';
+  info: {
+    displayName: 'Content';
+  };
+  attributes: {
+    Text: Schema.Attribute.RichText;
+  };
+}
+
+export interface PageCtaSection extends Struct.ComponentSchema {
+  collectionName: 'components_page_cta_sections';
+  info: {
+    displayName: 'Cta Section';
+  };
+  attributes: {
+    PrimaryButton: Schema.Attribute.Component<'miscellaneous.button', false>;
+    SecondaryButton: Schema.Attribute.Component<'miscellaneous.button', false>;
+    subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;
   };
 }
@@ -1644,36 +1855,13 @@ export interface PageTabsVerticalSection extends Struct.ComponentSchema {
 export interface PageTagIcon extends Struct.ComponentSchema {
   collectionName: 'components_page_tag_icons';
   info: {
-    displayName: 'Tag Icon';
+    displayName: 'Section Call to Action Module';
   };
   attributes: {
-    Color: Schema.Attribute.Enumeration<
-      [
-        'red',
-        'orange',
-        'amber',
-        'yellow',
-        'lime',
-        'green',
-        'emerald',
-        'teal',
-        'cyan',
-        'sky',
-        'blue',
-        'indigo',
-        'violet',
-        'purple',
-        'fuchsia',
-        'pink',
-        'rose',
-        'slate',
-        'gray',
-        'zinc',
-        'neutral',
-        'stone',
-      ]
-    >;
-    Icon: Schema.Attribute.Enumeration<
+    ButtonName: Schema.Attribute.String;
+    Description: Schema.Attribute.String;
+    highlightWords: Schema.Attribute.String;
+    IconButton: Schema.Attribute.Enumeration<
       [
         'Bot',
         'User',
@@ -1704,12 +1892,42 @@ export interface PageTagIcon extends Struct.ComponentSchema {
         'Rocket',
         'Wand',
         'Eye',
-        'Infinity',
-        'BarChart3',
-        'Webhook',
-        'Headphones',
       ]
     >;
+    TagIcon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+      ]
+    >;
+    TagName: Schema.Attribute.String;
     Title: Schema.Attribute.String;
   };
 }
@@ -1870,25 +2088,24 @@ export interface PostsTableJson extends Struct.ComponentSchema {
   };
 }
 
-export interface PostsTabsBoxSection extends Struct.ComponentSchema {
-  collectionName: 'components_posts_tabs_box_sections';
+export interface PostsTabsBoxesSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_tabs_boxes_sections';
   info: {
-    displayName: 'Tabs Box Section';
+    displayName: 'Tabs Boxes Section';
   };
   attributes: {
-    Tabs: Schema.Attribute.Component<'miscellaneous.tab-category-box', false>;
-    Title: Schema.Attribute.String;
+    Tabs: Schema.Attribute.Component<'miscellaneous.tabs-box-item', true>;
   };
 }
 
-export interface PostsTabsColoredBoxSection extends Struct.ComponentSchema {
-  collectionName: 'components_posts_tabs_colored_box_sections';
+export interface PostsTabsColoredBoxesSection extends Struct.ComponentSchema {
+  collectionName: 'components_posts_tabs_colored_boxes_sections';
   info: {
-    displayName: 'Tabs Colored Box Section';
+    displayName: 'Tabs Colored Boxes Section';
   };
   attributes: {
-    TabsColoredBoxes: Schema.Attribute.Component<
-      'miscellaneous.tab-category-box-colored',
+    Tabs: Schema.Attribute.Component<
+      'miscellaneous.tabs-colored-box-item',
       true
     >;
   };
@@ -1903,7 +2120,7 @@ export interface PostsTabsIcons extends Struct.ComponentSchema {
     Description: Schema.Attribute.Text;
     Tabs: Schema.Attribute.Component<
       'miscellaneous.tab-category-box-icon-color',
-      false
+      true
     >;
     Title: Schema.Attribute.String;
   };
@@ -2105,6 +2322,7 @@ declare module '@strapi/strapi' {
       'miscellaneous.business-pulse': MiscellaneousBusinessPulse;
       'miscellaneous.button': MiscellaneousButton;
       'miscellaneous.colored-box': MiscellaneousColoredBox;
+      'miscellaneous.colored-icon-title-subtitle-box': MiscellaneousColoredIconTitleSubtitleBox;
       'miscellaneous.icon-box': MiscellaneousIconBox;
       'miscellaneous.icon-text': MiscellaneousIconText;
       'miscellaneous.icon-title-subtitle': MiscellaneousIconTitleSubtitle;
@@ -2122,6 +2340,8 @@ declare module '@strapi/strapi' {
       'miscellaneous.tab-item-box': MiscellaneousTabItemBox;
       'miscellaneous.tab-item-component-icon-text': MiscellaneousTabItemComponentIconText;
       'miscellaneous.tab-item-components': MiscellaneousTabItemComponents;
+      'miscellaneous.tabs-box-item': MiscellaneousTabsBoxItem;
+      'miscellaneous.tabs-colored-box-item': MiscellaneousTabsColoredBoxItem;
       'miscellaneous.tabs-item-vertival': MiscellaneousTabsItemVertival;
       'miscellaneous.text': MiscellaneousText;
       'page.accordion': PageAccordion;
@@ -2139,8 +2359,11 @@ declare module '@strapi/strapi' {
       'page.boxes-columns': PageBoxesColumns;
       'page.business-pulse-section': PageBusinessPulseSection;
       'page.button': PageButton;
+      'page.colored-icon-title-subtitle-boxes': PageColoredIconTitleSubtitleBoxes;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
+      'page.content': PageContent;
+      'page.cta-section': PageCtaSection;
       'page.early-acces-button': PageEarlyAccesButton;
       'page.expected-launch-box': PageExpectedLaunchBox;
       'page.header': PageHeader;
@@ -2182,8 +2405,8 @@ declare module '@strapi/strapi' {
       'posts.related-resources': PostsRelatedResources;
       'posts.sage-readiness-assessment': PostsSageReadinessAssessment;
       'posts.table-json': PostsTableJson;
-      'posts.tabs-box-section': PostsTabsBoxSection;
-      'posts.tabs-colored-box-section': PostsTabsColoredBoxSection;
+      'posts.tabs-boxes-section': PostsTabsBoxesSection;
+      'posts.tabs-colored-boxes-section': PostsTabsColoredBoxesSection;
       'posts.tabs-icons': PostsTabsIcons;
       'posts.title': PostsTitle;
       'pricing.plan': PricingPlan;

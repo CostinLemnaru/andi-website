@@ -12,6 +12,18 @@
       "type": "component",
       "component": "miscellaneous.box-icon-color",
       "repeatable": true
+    },
+    "isTransparent": {
+      "type": "boolean",
+      "default": false
+    },
+    "isWideLayout": {
+      "type": "boolean",
+      "default": false
+    },
+    "hasBackground": {
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

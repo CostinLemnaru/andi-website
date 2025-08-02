@@ -79,7 +79,11 @@
         "page.accordion-json",
         "page.button",
         "page.inline-icon-title-subtitle-boxes",
-        "page.header-icon"
+        "page.header-icon",
+        "page.section-columns-icon-title-subtitle-boxes",
+        "page.content",
+        "page.cta-section",
+        "page.colored-icon-title-subtitle-boxes"
       ]
     }
   }
