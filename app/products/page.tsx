@@ -8,8 +8,10 @@ export default function ProductsPage() {
   return (
     <PageLayout>
       <PageHeader
-        title="Our Products"
-        subtitle="Discover how ANDI's AI-powered solutions can transform your business intelligence"
+        data={{
+          Title: "Our Products",
+          Subtitle: "Discover how ANDI's AI-powered solutions can transform your business intelligence"
+        }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
