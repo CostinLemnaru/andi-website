@@ -73,11 +73,13 @@ jobs:
             cd /var/www/andi-website
             npm ci --legacy-peer-deps
             npm run build
-            pm2 restart next-app || pm2 start npm --name next-app -- run start -- -p 3000 -H 0.0.0.0
+            pm2 delete next-app || true
+            pm2 start npm --name next-app -- run start -- -p 3000 -H 0.0.0.0
 
             cd cms
             npm ci --legacy-peer-deps
             npm run build
-            pm2 restart strapi-app || pm2 start npm --name strapi-app -- run start
+            pm2 delete strapi-app || true
+            pm2 start npm --name strapi-app -- run start
 
             pm2 save
