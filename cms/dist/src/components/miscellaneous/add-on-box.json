@@ -1,0 +1,84 @@
+{
+    "collectionName": "components_miscellaneous_add_on_boxes",
+    "info": {
+        "displayName": "Add-On Box"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "text"
+        },
+        "Icon": {
+            "type": "enumeration",
+            "enum": [
+                "Bot",
+                "User",
+                "Check",
+                "MessageSquare",
+                "ArrowRight",
+                "Database",
+                "Server",
+                "Cpu",
+                "Brain",
+                "Link",
+                "Tag",
+                "Shield",
+                "Lock",
+                "Unlock",
+                "Zap",
+                "Activity",
+                "CheckCircle",
+                "XCircle",
+                "AlertTriangle",
+                "Globe",
+                "Search",
+                "BarChart2",
+                "Calendar",
+                "Layers",
+                "GitBranch",
+                "Compass",
+                "Rocket",
+                "Wand",
+                "Eye",
+                "Infinity",
+                "BarChart3",
+                "Webhook",
+                "Headphones"
+            ]
+        },
+        "Color": {
+            "type": "enumeration",
+            "enum": [
+                "red",
+                "orange",
+                "amber",
+                "yellow",
+                "lime",
+                "green",
+                "emerald",
+                "teal",
+                "cyan",
+                "sky",
+                "blue",
+                "indigo",
+                "violet",
+                "purple",
+                "fuchsia",
+                "pink",
+                "rose",
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone"
+            ]
+        },
+        "Tag": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

@@ -23,89 +23,13 @@ interface Result {
   color: string
 }
 
-export default function SageReadinessQuiz() {
-  const questions: Question[] = [
-    {
-      id: "q1",
-      text: "How would you describe your organization's current approach to data-driven decision making?",
-      options: [
-        { id: "q1a", text: "We rarely use data to make decisions", score: 0 },
-        { id: "q1b", text: "We have basic reporting but struggle to act on insights", score: 1 },
-        { id: "q1c", text: "We use dashboards regularly but execution is manual", score: 2 },
-        { id: "q1d", text: "We have advanced analytics with some automation", score: 3 },
-      ],
-    },
-    {
-      id: "q2",
-      text: "How long does it typically take to go from identifying an issue to taking action?",
-      options: [
-        { id: "q2a", text: "Weeks or longer", score: 0 },
-        { id: "q2b", text: "Several days", score: 1 },
-        { id: "q2c", text: "Within a day", score: 2 },
-        { id: "q2d", text: "Hours or minutes", score: 3 },
-      ],
-    },
-    {
-      id: "q3",
-      text: "How many different tools do your teams use for analytics, reporting, and automation?",
-      options: [
-        { id: "q3a", text: "10+ separate tools", score: 0 },
-        { id: "q3b", text: "5-9 different systems", score: 1 },
-        { id: "q3c", text: "3-4 integrated platforms", score: 2 },
-        { id: "q3d", text: "1-2 unified solutions", score: 3 },
-      ],
-    },
-    {
-      id: "q4",
-      text: "What percentage of your workforce actively uses data in their daily decision making?",
-      options: [
-        { id: "q4a", text: "Less than 10%", score: 0 },
-        { id: "q4b", text: "10-25%", score: 1 },
-        { id: "q4c", text: "26-50%", score: 2 },
-        { id: "q4d", text: "More than 50%", score: 3 },
-      ],
-    },
-    {
-      id: "q5",
-      text: "How would you rate your organization's ability to execute on insights quickly?",
-      options: [
-        { id: "q5a", text: "Poor - insights rarely lead to timely action", score: 0 },
-        { id: "q5b", text: "Fair - we act on some insights but with delays", score: 1 },
-        { id: "q5c", text: "Good - we usually act on insights in a timely manner", score: 2 },
-        { id: "q5d", text: "Excellent - we have automated processes for acting on insights", score: 3 },
-      ],
-    },
-  ]
+interface Props {
+  questions: Question[]
+  results: Result[]
+  title?: string
+}
 
-  const results: Result[] = [
-    {
-      min: 0,
-      max: 5,
-      title: "Early Stage",
-      description:
-        "Your organization is in the early stages of data maturity and would benefit significantly from SAGE adoption.",
-      recommendation: "Start with a focused pilot in one department to demonstrate value and build momentum.",
-      color: "red",
-    },
-    {
-      min: 6,
-      max: 10,
-      title: "Developing",
-      description: "You have established data practices but significant gaps exist between insights and execution.",
-      recommendation: "Implement SAGE to bridge your insight-to-action gap and streamline decision processes.",
-      color: "yellow",
-    },
-    {
-      min: 11,
-      max: 15,
-      title: "Advanced",
-      description:
-        "Your organization has strong data capabilities but could benefit from greater automation and integration.",
-      recommendation: "SAGE can help you consolidate tools and accelerate your execution velocity.",
-      color: "blue",
-    },
-  ]
-
+export default function SageReadinessQuiz({ questions, results, title = "SAGE Readiness Assessment" }: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [showResults, setShowResults] = useState(false)
@@ -122,13 +46,12 @@ export default function SageReadinessQuiz() {
         setCurrentQuestion(currentQuestion + 1)
       }, 300)
     } else {
-      // Calculate final score
       const newScore = Object.keys(answers).reduce((total, qId) => {
         const q = questions.find((q) => q.id === qId)
         if (!q) return total
         const selectedOption = q.options.find((o) => o.id === answers[qId])
         return total + (selectedOption?.score || 0)
-      }, optionScore) // Add the score from the last question
+      }, optionScore)
 
       setScore(newScore)
       setShowResults(true)
@@ -161,12 +84,11 @@ export default function SageReadinessQuiz() {
       className="my-12 bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-lg p-6"
     >
       <h3 className="text-xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-500">
-        SAGE Readiness Assessment
+        {title}
       </h3>
 
       {!showResults ? (
         <div>
-          {/* Progress indicator */}
           <div className="w-full bg-gray-700 h-2 rounded-full mb-6">
             <motion.div
               className="bg-emerald-500 h-2 rounded-full"
@@ -185,7 +107,6 @@ export default function SageReadinessQuiz() {
               transition={{ duration: 0.3 }}
             >
               <h4 className="text-lg font-medium mb-4 text-white">{questions[currentQuestion].text}</h4>
-
               <div className="space-y-3">
                 {questions[currentQuestion].options.map((option) => (
                   <button
@@ -226,7 +147,9 @@ export default function SageReadinessQuiz() {
               Your Score: {score} / {questions.length * 3}
             </div>
             <h4
-              className={`text-2xl font-bold ${resultColors[getResult().color as keyof typeof resultColors].split(" ")[3]}`}
+              className={`text-2xl font-bold ${
+                resultColors[getResult().color as keyof typeof resultColors].split(" ")[3]
+              }`}
             >
               {getResult().title}
             </h4>

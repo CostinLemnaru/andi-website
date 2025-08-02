@@ -1,0 +1,13 @@
+{
+    "collectionName": "components_posts_comparison_sliders",
+    "info": {
+        "displayName": "Comparison Slider"
+    },
+    "options": {},
+    "attributes": {
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

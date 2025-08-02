@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_posts_tabs_colored_boxes_sections",
+    "info": {
+        "displayName": "Tabs Colored Boxes Section"
+    },
+    "options": {},
+    "attributes": {
+        "Tabs": {
+            "type": "component",
+            "component": "miscellaneous.tabs-colored-box-item",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

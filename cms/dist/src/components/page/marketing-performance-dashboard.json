@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_page_marketing_performance_dashboards",
+    "info": {
+        "displayName": "Marketing Performance Dashboard"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_box_nested_sections",
+  "info": {
+    "displayName": "Box Nested Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Boxes": {
+      "type": "component",
+      "component": "miscellaneous.box-nested",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_page_box_q_and_as",
+  "info": {
+    "displayName": "Box Q & A"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "qa": {
+      "type": "component",
+      "component": "miscellaneous.q-and-a",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_buttons",
+  "info": {
+    "displayName": "Button"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Button": {
+      "type": "component",
+      "component": "miscellaneous.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

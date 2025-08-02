@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_posts_tabs_icons",
+  "info": {
+    "displayName": "Tabs Icons"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Tabs": {
+      "type": "component",
+      "component": "miscellaneous.tab-category-box-icon-color",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

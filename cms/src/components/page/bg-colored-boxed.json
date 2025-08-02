@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_page_bg_colored_boxeds",
+  "info": {
+    "displayName": "BgColored Boxed"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Color": {
+      "type": "enumeration",
+      "enum": [
+        "red",
+        "orange",
+        "amber",
+        "yellow",
+        "lime",
+        "green",
+        "emerald",
+        "teal",
+        "cyan",
+        "sky",
+        "blue",
+        "indigo",
+        "violet",
+        "purple",
+        "fuchsia",
+        "pink",
+        "rose",
+        "slate",
+        "gray",
+        "zinc",
+        "neutral",
+        "stone"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_posts_table_jsons",
+    "info": {
+        "displayName": "Table JSON"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Config": {
+            "type": "json"
+        },
+        "FooterText": {
+            "type": "text"
+        }
+    },
+    "config": {}
+}

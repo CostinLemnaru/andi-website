@@ -1,0 +1,32 @@
+{
+    "collectionName": "components_posts_box_buttons",
+    "info": {
+        "displayName": "Box Buttons"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "text"
+        },
+        "MainButton": {
+            "type": "component",
+            "component": "miscellaneous.button",
+            "repeatable": false
+        },
+        "SecondaryButton": {
+            "type": "component",
+            "component": "miscellaneous.button",
+            "repeatable": false
+        },
+        "centered": {
+            "type": "boolean"
+        },
+        "transparentBackground": {
+            "type": "boolean"
+        }
+    },
+    "config": {}
+}

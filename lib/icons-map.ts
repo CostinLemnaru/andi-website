@@ -1,5 +1,9 @@
 import {
+  Bot,
+  User,
+  Check,
   MessageSquare,
+  ArrowRight,
   Database,
   Server,
   Cpu,
@@ -24,10 +28,22 @@ import {
   Rocket,
   Wand,
   Eye,
+  TrendingUp,
+  BarChart3,
+  LifeBuoy,
+  Users,
+  Infinity,
+  Webhook,
+  Headphones,
+  Video,
 } from "lucide-react"
 
 export const iconMap: Record<string, React.FC<{ className?: string }>> = {
+  Bot,
+  User,
+  Check,
   MessageSquare,
+  ArrowRight,
   Database,
   Server,
   Cpu,
@@ -52,6 +68,14 @@ export const iconMap: Record<string, React.FC<{ className?: string }>> = {
   Rocket,
   Wand,
   Eye,
+  TrendingUp,
+  BarChart3,
+  LifeBuoy,
+  Users,
+  Infinity,
+  Webhook,
+  Headphones,
+  Video
 }
 
 export function getLucideIcon(name: string): React.FC<{ className?: string }> | null {

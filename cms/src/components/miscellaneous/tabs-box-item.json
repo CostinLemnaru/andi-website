@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_miscellaneous_tabs_box_items",
+  "info": {
+    "displayName": "Tabs Box Item"
+  },
+  "options": {},
+  "attributes": {
+    "TabTitle": {
+      "type": "string"
+    },
+    "TabContentTitle": {
+      "type": "string"
+    },
+    "TabContentDescription": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

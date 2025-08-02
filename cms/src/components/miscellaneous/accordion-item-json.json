@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_miscellaneous_accordion_item_jsons",
+  "info": {
+    "displayName": "Accordion Item Json"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

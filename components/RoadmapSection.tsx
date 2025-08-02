@@ -27,12 +27,16 @@ type Version = {
 }
 type Props = {
   data: {
-    Versions: Version[]
+    Versions: Version[],
+    whiteTheme?: boolean
   }
 }
 
 export default function RoadmapSection({ data }: Props) {
-    const versions = data?.Versions ?? []
+  const { Versions = [], whiteTheme = false } = data
+  const versions = Versions
+
+    let layoutClasses = whiteTheme ? "max-w-6xl" : "max-w-5xl";
 
     const [selectedVersionId, setSelectedVersionId] = useState(
         versions.length > 0 ? versions[0].id : 0
@@ -55,7 +59,7 @@ export default function RoadmapSection({ data }: Props) {
 
     return (
         <section className="relative z-10 py-24 px-4 sm:px-6 mb-12 md:mb-0">
-            <div className="max-w-5xl mx-auto">
+            <div className={`${layoutClasses} mx-auto`}>
             <div className="scroll-fade fade-from-top transition-all duration-700 ease-in-out">
                 <h2 className="text-3xl sm:text-4xl font-light mb-16 text-center">
                 <GradientText>Roadmap</GradientText>
@@ -116,7 +120,7 @@ export default function RoadmapSection({ data }: Props) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -30 }}
                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="absolute w-full"
+                        className=" w-full"
                     >
                         <div className="text-center mb-8">
                         <div className="flex items-center justify-center gap-4 mb-4">
@@ -135,8 +139,13 @@ export default function RoadmapSection({ data }: Props) {
                             return (
                                 <Card
                                 key={feature.id}
-                                className="bg-gray-900/30 backdrop-blur-sm border-gray-800/50 hover:bg-gray-900/50 transition-all duration-300 h-full"
+                                className={`${
+                                    whiteTheme
+                                    ? "rounded-lg border text-card-foreground shadow-sm bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10"
+                                    : "backdrop-blur-sm bg-gray-900/30 border border-gray-800/50 hover:bg-gray-900/50"
+                                } transition-all duration-300 h-full`}
                                 >
+
                                 <CardHeader>
                                     <div className="flex items-center gap-3 mb-2">
                                     <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500/20 to-pink-500/20">

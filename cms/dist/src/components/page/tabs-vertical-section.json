@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_page_tabs_vertical_sections",
+    "info": {
+        "displayName": "Tabs Vertical Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Subtitle": {
+            "type": "string"
+        },
+        "Tabs": {
+            "type": "component",
+            "component": "miscellaneous.tab-category-vertical",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

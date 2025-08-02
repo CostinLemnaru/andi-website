@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_miscellaneous_q_and_a_s",
+  "info": {
+    "displayName": "Q & A "
+  },
+  "options": {},
+  "attributes": {
+    "QuestionLabel": {
+      "type": "string"
+    },
+    "Question": {
+      "type": "string"
+    },
+    "AnswerLabel": {
+      "type": "string"
+    },
+    "Answer": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

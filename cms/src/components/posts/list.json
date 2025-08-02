@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_posts_lists",
+  "info": {
+    "displayName": "List"
+  },
+  "options": {},
+  "attributes": {
+    "Item": {
+      "type": "component",
+      "component": "miscellaneous.icon-text",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

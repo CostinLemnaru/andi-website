@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_page_header_icons",
+  "info": {
+    "displayName": "Header Icon"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Icon": {
+      "type": "enumeration",
+      "enum": [
+        "Bot",
+        "User",
+        "Check",
+        "MessageSquare",
+        "ArrowRight",
+        "Database",
+        "Server",
+        "Cpu",
+        "Brain",
+        "Link",
+        "Tag",
+        "Shield",
+        "Lock",
+        "Unlock",
+        "Zap",
+        "Activity",
+        "CheckCircle",
+        "XCircle",
+        "AlertTriangle",
+        "Globe",
+        "Search",
+        "BarChart2",
+        "Calendar",
+        "Layers",
+        "GitBranch",
+        "Compass",
+        "Rocket",
+        "Wand",
+        "Eye"
+      ]
+    },
+    "highlightWords": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

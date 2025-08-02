@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_page_early_acces_buttons",
+  "info": {
+    "displayName": "EarlyAcces Button"
+  },
+  "options": {},
+  "attributes": {
+    "Tag": {
+      "type": "component",
+      "component": "page.tag-icon",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_miscellaneous_tab_item_boxes",
+  "info": {
+    "displayName": "Tab Item Box"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Items": {
+      "type": "component",
+      "component": "page.box-icon",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

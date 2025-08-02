@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_posts_contents",
+  "info": {
+    "displayName": "Content"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

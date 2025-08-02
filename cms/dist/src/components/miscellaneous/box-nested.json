@@ -1,0 +1,80 @@
+{
+    "collectionName": "components_miscellaneous_box_nesteds",
+    "info": {
+        "displayName": "Box Nested"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Icon": {
+            "type": "enumeration",
+            "enum": [
+                "Bot",
+                "User",
+                "Check",
+                "MessageSquare",
+                "ArrowRight",
+                "Database",
+                "Server",
+                "Cpu",
+                "Brain",
+                "Link",
+                "Tag",
+                "Shield",
+                "Lock",
+                "Unlock",
+                "Zap",
+                "Activity",
+                "CheckCircle",
+                "XCircle",
+                "AlertTriangle",
+                "Globe",
+                "Search",
+                "BarChart2",
+                "Calendar",
+                "Layers",
+                "GitBranch",
+                "Compass",
+                "Rocket",
+                "Wand",
+                "Eye"
+            ]
+        },
+        "IconColor": {
+            "type": "enumeration",
+            "enum": [
+                "red",
+                "orange",
+                "amber",
+                "yellow",
+                "lime",
+                "green",
+                "emerald",
+                "teal",
+                "cyan",
+                "sky",
+                "blue",
+                "indigo",
+                "violet",
+                "purple",
+                "fuchsia",
+                "pink",
+                "rose",
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone"
+            ]
+        },
+        "Description": {
+            "type": "text"
+        },
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

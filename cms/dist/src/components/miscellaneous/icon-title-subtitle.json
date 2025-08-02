@@ -1,0 +1,50 @@
+{
+    "collectionName": "components_miscellaneous_icon_title_subtitles",
+    "info": {
+        "displayName": "Icon Title Subtitle"
+    },
+    "options": {},
+    "attributes": {
+        "Icon": {
+            "type": "enumeration",
+            "enum": [
+                "Bot",
+                "User",
+                "Check",
+                "MessageSquare",
+                "ArrowRight",
+                "Database",
+                "Server",
+                "Cpu",
+                "Brain",
+                "Link",
+                "Tag",
+                "Shield",
+                "Lock",
+                "Unlock",
+                "Zap",
+                "Activity",
+                "CheckCircle",
+                "XCircle",
+                "AlertTriangle",
+                "Globe",
+                "Search",
+                "BarChart2",
+                "Calendar",
+                "Layers",
+                "GitBranch",
+                "Compass",
+                "Rocket",
+                "Wand",
+                "Eye"
+            ]
+        },
+        "Title": {
+            "type": "string"
+        },
+        "Subtitle": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

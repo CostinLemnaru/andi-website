@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_posts_decision_flow_sections",
+    "info": {
+        "displayName": "Decision Flow Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

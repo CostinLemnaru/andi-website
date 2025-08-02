@@ -1,0 +1,13 @@
+{
+    "collectionName": "components_posts_business_impact_calculators",
+    "info": {
+        "displayName": "Business Impact Calculator"
+    },
+    "options": {},
+    "attributes": {
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

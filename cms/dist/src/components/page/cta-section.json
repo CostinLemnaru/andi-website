@@ -1,0 +1,26 @@
+{
+    "collectionName": "components_page_cta_sections",
+    "info": {
+        "displayName": "Cta Section"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "subtitle": {
+            "type": "string"
+        },
+        "PrimaryButton": {
+            "type": "component",
+            "component": "miscellaneous.button",
+            "repeatable": false
+        },
+        "SecondaryButton": {
+            "type": "component",
+            "component": "miscellaneous.button",
+            "repeatable": false
+        }
+    },
+    "config": {}
+}
