@@ -15,7 +15,9 @@ interface PageLayoutProps {
 
 export default function PageLayout({ children, className = "", nav }: PageLayoutProps) {
   const pathname = usePathname()
-  const {main, footer} = nav
+  const main = nav?.main
+  const footer = nav?.footer
+
 
   // Add effect to scroll to top when pathname changes
   useEffect(() => {
