@@ -3,6 +3,8 @@ import PageHeader from "@/components/page-header"
 import TeamMember from "@/components/team-member"
 import ScrollReveal from "@/components/scroll-reveal"
 
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL
+
 export type TeamMemberType = {
   id: number
   Name: string
@@ -32,7 +34,9 @@ export default function Team({ data }: Props) {
                 name={member.Name}
                 role={member.Subtitle}
                 bio={member.Description}
-                imageSrc={member.Photo?.url || "/placeholder.png"}
+                // imageSrc={member.Photo?.url || "/placeholder.png"}
+                imageSrc={member.Photo?.url ? `${STRAPI_API_URL}${member.Photo?.url}` : "/placeholder.png"}
+
                 linkedin={member.Linkedin}
               />
             </ScrollReveal>
