@@ -29,9 +29,9 @@ export default function PageLayout({ children, className = "", nav }: PageLayout
       <div className="fixed inset-0 backdrop-blur-[80px]">
         <AnimatedBackground />
       </div>
-      <Navigation data={main} />
+      {main && <Navigation data={main} />}
       <main className={`relative z-10 pt-16 ${className}`}>{children}</main>
-      <Footer data={footer} />
+      {footer && <Footer data={footer} />}
     </div>
   )
 }
