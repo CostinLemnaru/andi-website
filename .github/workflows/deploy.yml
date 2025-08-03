@@ -46,7 +46,7 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
             echo "STRAPI_API_URL=${{ secrets.STRAPI_API_URL }}" > /var/www/andi-website/.env
-            echo "NEXT_PUBLIC_STRAPI_API_URL=${{ secrets.STRAPI_API_URL }}" >> /var/www/andi-website/.env
+            echo "NEXT_PUBLIC_STRAPI_API_URL=https://cms.andi.zamora.ai" >> /var/www/andi-website/.env
 
             mkdir -p /var/www/andi-website/cms/.tmp
 

@@ -34,7 +34,6 @@ export default function Team({ data }: Props) {
                 name={member.Name}
                 role={member.Subtitle}
                 bio={member.Description}
-                // imageSrc={member.Photo?.url || "/placeholder.png"}
                 imageSrc={member.Photo?.url ? `${STRAPI_API_URL}${member.Photo?.url}` : "/placeholder.png"}
 
                 linkedin={member.Linkedin}
