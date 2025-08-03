@@ -52,6 +52,8 @@ jobs:
             cat <<EOF > /var/www/andi-website/cms/.env
             HOST=0.0.0.0
             PORT=1337
+            APP_URL=https://cms.andi.zamora.ai
+            PROXY_ENABLED=true
             NODE_ENV=production
             APP_KEYS=${{ secrets.STRAPI_APP_KEYS }}
             API_TOKEN_SALT=${{ secrets.STRAPI_API_TOKEN_SALT }}
@@ -59,7 +61,7 @@ jobs:
             TRANSFER_TOKEN_SALT=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }}
             ENCRYPTION_KEY=${{ secrets.STRAPI_ENCRYPTION_KEY }}
             DATABASE_CLIENT=sqlite
-            DATABASE_FILENAME=.tmp/data.db
+            DATABASE_FILENAME=/var/www/strapi-data/data.db
             JWT_SECRET=rLBfGErF6kb0iiYycCHuTg==
             EOF
 
@@ -73,13 +75,15 @@ jobs:
             cd /var/www/andi-website
             npm ci --legacy-peer-deps
             npm run build
+
             pm2 delete next-app || true
-            pm2 start npm --name next-app -- run start -- -p 3000 -H 0.0.0.0
+            pm2 start "npm run start -- -p 3000 -H 0.0.0.0" --name next-app
 
             cd cms
             npm ci --legacy-peer-deps
             npm run build
+
             pm2 delete strapi-app || true
-            pm2 start npm --name strapi-app -- run start
+            pm2 start "npm run start" --name strapi-app
 
             pm2 save

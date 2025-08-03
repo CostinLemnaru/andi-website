@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ({ env }) => ({
+    url: '/admin/',
     auth: {
         secret: env('ADMIN_JWT_SECRET'),
     },
