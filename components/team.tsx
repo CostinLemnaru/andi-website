@@ -11,11 +11,6 @@ export type TeamMemberType = {
   Linkedin: string
   Photo?: {
     url: string
-    formats?: {
-      thumbnail?: {
-        url: string
-      }
-    }
   }
 }
 
@@ -37,7 +32,7 @@ export default function Team({ data }: Props) {
                 name={member.Name}
                 role={member.Subtitle}
                 bio={member.Description}
-                imageSrc={member.Photo?.formats?.thumbnail?.url || "/placeholder.png"}
+                imageSrc={member.Photo?.url || "/placeholder.png"}
                 linkedin={member.Linkedin}
               />
             </ScrollReveal>

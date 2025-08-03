@@ -152,3 +152,28 @@ const enrichedComponents = (
     return null
   }
 }
+
+export async function fetchNavigations() {
+  const query = qs.stringify({
+    populate: {
+      Sections: {
+        populate: {
+          Items: "*",
+        },
+      },
+    },
+  }, { encodeValuesOnly: true })
+
+  const res = await fetch(`${STRAPI_API_URL}/api/navigations?${query}`)
+  if (!res.ok) throw new Error("Failed to fetch navigations")
+
+  const json = await res.json()
+
+  const bySlug = Object.fromEntries(
+    json.data.map((entry: any) => [entry.Slug, entry])
+  )
+  return {
+    main: bySlug.main ?? null,
+    footer: bySlug.footer ?? null,
+  }
+}

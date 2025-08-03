@@ -9,11 +9,13 @@ import Footer from "./footer"
 
 interface PageLayoutProps {
   children: ReactNode
-  className?: string
+  className?: string,
+  nav?: any
 }
 
-export default function PageLayout({ children, className = "" }: PageLayoutProps) {
+export default function PageLayout({ children, className = "", nav }: PageLayoutProps) {
   const pathname = usePathname()
+  const {main, footer} = nav
 
   // Add effect to scroll to top when pathname changes
   useEffect(() => {
@@ -25,9 +27,9 @@ export default function PageLayout({ children, className = "" }: PageLayoutProps
       <div className="fixed inset-0 backdrop-blur-[80px]">
         <AnimatedBackground />
       </div>
-      <Navigation />
+      <Navigation data={main} />
       <main className={`relative z-10 pt-16 ${className}`}>{children}</main>
-      <Footer />
+      <Footer data={footer} />
     </div>
   )
 }

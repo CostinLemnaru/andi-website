@@ -1,5 +1,5 @@
 import PageContent from "@/components/page-content"
-import { fetchPage } from "@/lib/strapi"
+import { fetchPage, fetchNavigations } from "@/lib/strapi"
 
 export default async function Page({ params }: { params: { slug?: string[] } }) {
   const reservedSlugs = ["favicon", "robots", "sitemap", ".well-known"]
@@ -23,6 +23,7 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
 
   const lastSegment = slugArray.at(-1) || "home"
   const data = await fetchPage(lastSegment, collectionType)
+  const navData = await fetchNavigations()
 
   if (!data) {
     return notFound
@@ -32,5 +33,5 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
     return notFound
   }
 
-  return <PageContent data={data} />
+  return <PageContent data={data} nav={navData} />
 }

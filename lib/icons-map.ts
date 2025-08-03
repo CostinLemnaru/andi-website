@@ -36,6 +36,21 @@ import {
   Webhook,
   Headphones,
   Video,
+  Home,
+  Link2,
+  DollarSign,
+  LineChart,
+  Settings,
+  FileText,
+  BookOpen,
+  Download,
+  Building,
+  Building2,
+  ShoppingBag,
+  Stethoscope,
+  Factory,
+  Briefcase,
+  GraduationCap,
 } from "lucide-react"
 
 export const iconMap: Record<string, React.FC<{ className?: string }>> = {
@@ -75,7 +90,22 @@ export const iconMap: Record<string, React.FC<{ className?: string }>> = {
   Infinity,
   Webhook,
   Headphones,
-  Video
+  Video,
+  Home,
+  Link2,
+  DollarSign,
+  LineChart,
+  Settings,
+  FileText,
+  BookOpen,
+  Download,
+  Building,
+  Building2,
+  ShoppingBag,
+  Stethoscope,
+  Factory,
+  Briefcase,
+  GraduationCap,
 }
 
 export function getLucideIcon(name: string): React.FC<{ className?: string }> | null {

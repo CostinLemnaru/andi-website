@@ -1,0 +1,26 @@
+{
+    "kind": "collectionType",
+    "collectionName": "navigations",
+    "info": {
+        "singularName": "navigation",
+        "pluralName": "navigations",
+        "displayName": "Navigation"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Slug": {
+            "type": "uid"
+        },
+        "Sections": {
+            "type": "component",
+            "component": "navigation.section",
+            "repeatable": true
+        }
+    }
+}

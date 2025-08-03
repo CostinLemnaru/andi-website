@@ -1,18 +1,52 @@
 "use client"
 
-import RotatingWords from "./rotating-words"
-import GradientText from "./gradient-text"
-import ActionWords from "./action-words"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ChevronDown } from "lucide-react"
 import { useState } from "react"
+import GradientText from "./gradient-text"
+import RotatingWords from "./rotating-words"
+import ActionWords from "./action-words"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { ChevronDown } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
 
 export default function HeroSection({ data }: { data: any }) {
   const [email, setEmail] = useState("")
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false)
+  const [fullName, setFullName] = useState("")
+  const [company, setCompany] = useState("")
+  const [department, setDepartment] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
+
+  const { Title, Description, CtaText } = data
+
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Add your submit logic
+    setIsDialogOpen(true)
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError("")
+
+    try {
+      // Replace with actual submission logic
+      await new Promise((r) => setTimeout(r, 1000))
+
+      setIsDialogOpen(false)
+      setIsSuccessDialogOpen(true)
+      setEmail("")
+      setFullName("")
+      setCompany("")
+      setDepartment("")
+    } catch (err) {
+      setError("Submission failed. Try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const scrollToExplore = () => {
@@ -20,12 +54,10 @@ export default function HeroSection({ data }: { data: any }) {
     if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
-  const { Title, Description, CtaText } = data
-
   return (
     <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-0">
       <div className="w-full mx-auto flex flex-col md:flex-row items-center relative">
-        {/* Text Content */}
+        {/* Text */}
         <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0 px-4 sm:px-6 md:pl-12 lg:pl-16 md:pr-0 z-10">
           <div className="mb-8 flex flex-col items-center md:items-start">
             <div className="mb-1 text-4xl sm:text-5xl md:text-6xl">
@@ -53,6 +85,7 @@ export default function HeroSection({ data }: { data: any }) {
             </h1>
           </div>
 
+          {/* Email form */}
           <form onSubmit={handleEmailSubmit} className="w-full max-w-md mb-16">
             <div className="flex flex-col gap-4 sm:flex-row">
               <Input
@@ -84,7 +117,7 @@ export default function HeroSection({ data }: { data: any }) {
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ANDI%20by%20Zamora11-Photoroom-cgAFATavdXXslUkpuaJAj3M0HiIj8Y.png"
               alt="ANDI Dashboard Interface"
-              className="w-full object-contain md:object-contain max-h-[70vh] md:max-h-[80vh] lg:max-h-[90vh]"
+              className="w-full object-contain max-h-[70vh] md:max-h-[80vh] lg:max-h-[90vh]"
             />
           </div>
         </div>
@@ -102,6 +135,53 @@ export default function HeroSection({ data }: { data: any }) {
           <ChevronDown className="h-5 w-5 animate-bounce" style={{ animationDelay: "300ms" }} />
         </button>
       </div>
+
+      {/* Modal - Registration Form */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
+          <DialogHeader>
+            <DialogTitle>Complete your registration</DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Please provide additional information to get free POCs at launch.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
+            <div className="space-y-1">
+              <Label htmlFor="fullName" className="text-gray-400">Full Name</Label>
+              <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="company" className="text-gray-400">Company</Label>
+              <Input id="company" value={company} onChange={(e) => setCompany(e.target.value)} required />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="department" className="text-gray-400">Department</Label>
+              <Input id="department" value={department} onChange={(e) => setDepartment(e.target.value)} required />
+            </div>
+            {error && <p className="text-sm text-red-500">{error}</p>}
+            <div className="flex justify-end">
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Success Modal */}
+      <Dialog open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
+        <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white text-center">
+          <div className="py-6 flex flex-col items-center">
+            <div className="mb-4 text-2xl sm:text-3xl md:text-4xl">
+              <GradientText>Welcome to the future!</GradientText>
+            </div>
+            <p className="text-lg text-gray-400 mb-6">
+              The next era of AI is coming... and you'll be among the first to experience it!
+            </p>
+            <Button onClick={() => setIsSuccessDialogOpen(false)}>OK</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }

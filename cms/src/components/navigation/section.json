@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_navigation_sections",
+  "info": {
+    "displayName": "Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Standalone": {
+      "type": "boolean",
+      "default": false
+    },
+    "Href": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Standalone"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "Items": {
+      "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Standalone"
+            },
+            false
+          ]
+        }
+      },
+      "component": "navigation.item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

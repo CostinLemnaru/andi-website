@@ -42,10 +42,11 @@ type PageData = {
 }
 
 type Props = {
-  data?: PageData
+  data?: PageData,
+  nav?: any
 }
 
-export default function PageContent({ data }: Props) {
+export default function PageContent({ data, nav }: Props) {
   const components = data?.Components || data?.Content || []
   const sectionsRef = useRef<HTMLDivElement>(null)
 
@@ -160,7 +161,7 @@ export default function PageContent({ data }: Props) {
   }, [])
 
   return (
-    <PageLayout className="pt-0">
+    <PageLayout className="pt-0" nav={nav}>
       <div ref={sectionsRef} className="relative">
         {data?.Title && data?.Subtitle && data?.createdAt && (
           <PostHeader

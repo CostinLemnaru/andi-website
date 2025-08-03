@@ -1088,6 +1088,87 @@ export interface MiscellaneousText extends Struct.ComponentSchema {
   };
 }
 
+export interface NavigationItem extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_items';
+  info: {
+    displayName: 'Item';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Href: Schema.Attribute.String;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'TrendingUp',
+        'BarChart3',
+        'LifeBuoy',
+        'Users',
+        'Infinity',
+        'Webhook',
+        'Headphones',
+        'Video',
+        'Home',
+        'Link2',
+        'DollarSign',
+        'LineChart',
+        'Settings',
+        'FileText',
+        'BookOpen',
+        'Download',
+        'Building',
+        'Building2',
+        'ShoppingBag',
+        'Stethoscope',
+        'Factory',
+        'Briefcase',
+        'GraduationCap',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface NavigationSection extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_sections';
+  info: {
+    displayName: 'Section';
+  };
+  attributes: {
+    Href: Schema.Attribute.String;
+    Items: Schema.Attribute.Component<'navigation.item', true>;
+    Standalone: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageAccordion extends Struct.ComponentSchema {
   collectionName: 'components_page_accordions';
   info: {
@@ -2344,6 +2425,8 @@ declare module '@strapi/strapi' {
       'miscellaneous.tabs-colored-box-item': MiscellaneousTabsColoredBoxItem;
       'miscellaneous.tabs-item-vertival': MiscellaneousTabsItemVertival;
       'miscellaneous.text': MiscellaneousText;
+      'navigation.item': NavigationItem;
+      'navigation.section': NavigationSection;
       'page.accordion': PageAccordion;
       'page.accordion-json': PageAccordionJson;
       'page.add-ons-section': PageAddOnsSection;
