@@ -72,20 +72,30 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           script: |
+            set -e
+
             cd /var/www/andi-website
+
+            echo "🔧 STEP 1: Install & Build Next.js"
             npm ci --legacy-peer-deps
             npm run build
 
+            echo "🚀 STEP 2: Restart Next.js via PM2"
             pm2 delete next-app || true
             pm2 start "npm run start -- -p 3000 -H 0.0.0.0" --name next-app
-            sleep 3
 
+            sleep 5
+
+            echo "🛠 STEP 3: Install & Build Strapi"
             cd cms
             npm ci --legacy-peer-deps
             npm run build
 
+            echo "🚀 STEP 4: Restart Strapi via PM2"
             pm2 delete strapi-app || true
             pm2 start "npm run start" --name strapi-app
-            sleep 3
 
+            echo "💾 STEP 5: Save PM2 config"
             pm2 save
+
+            echo "✅ ALL DONE"
