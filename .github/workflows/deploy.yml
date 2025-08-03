@@ -78,6 +78,7 @@ jobs:
 
             pm2 delete next-app || true
             pm2 start "npm run start -- -p 3000 -H 0.0.0.0" --name next-app
+            sleep 3
 
             cd cms
             npm ci --legacy-peer-deps
@@ -85,5 +86,6 @@ jobs:
 
             pm2 delete strapi-app || true
             pm2 start "npm run start" --name strapi-app
+            sleep 3
 
             pm2 save
