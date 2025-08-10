@@ -53,7 +53,7 @@ export default function CardWithCodeblocks({ data }: CardWithCodeblocksProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={() => window.open(data.Button.Url, "_blank")}
-              className={`bg-${data.Color}-600 hover:bg-${data.Color}-700`}
+              className={`bg-${data.Color}-500 hover:bg-${data.Color}-700`}
             >
               <Download className="h-4 w-4 mr-2" />
               {data.Button.Text}

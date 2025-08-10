@@ -18,7 +18,8 @@ const NESTED_COMPONENTS: Record<string, string[]> = {
   "page.tabs-vertical-section": ["Tabs.Content.Items"],
   "page.boxes-columns": ["Items.Specs"],
   "page.team": ["Members.Photo"],
-  "posts.tabs-icons": ["Tabs.TabContent"]
+  "posts.tabs-icons": ["Tabs.TabContent"],
+  "page.card-nested": ["Cards"]
 }
 
 export async function fetchPage(slug: string, collectionType: "pages" | "posts") {

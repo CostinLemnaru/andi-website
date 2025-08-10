@@ -4,12 +4,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { getLucideIcon } from "@/lib/icons-map"
 
+interface CardButton {
+  id: number
+  Text: string
+  Url: string
+}
+
 interface CardNestedItem {
   id: number
   Title: string
   Description: string
   Icon: string
   Color: string
+  Button: CardButton
 }
 
 interface CardNestedData {
@@ -56,11 +63,9 @@ export default function CardNested({ data }: AIOptimizedResourcesProps) {
                     <span className="font-semibold text-white">{card.Title}</span>
                   </div>
                   <p className={`text-${card.Color}-200 text-sm mb-3 whitespace-pre-line`}>{card.Description}</p>
-                  {/* Exemplu linkuri din cod original (schimbă după nevoie) */}
-                  <Button size="sm" variant="outline" className={`border-${card.Color}-500/30 text-${card.Color}-300 hover:bg-${card.Color}-900/30 bg-transparent`}>
-                    {/* Presupunem aici iconul ExternalLink e global importat dacă trebuie îl pot adăuga */}
+                  <Button onClick={() => window.open(card.Button.Url, "_blank")} size="sm" variant="outline" className={`border-${card.Color}-500/30 text-${card.Color}-300 hover:bg-${card.Color}-900/30 bg-transparent`}>
                     <span className="h-4 w-4 mr-2">↗</span>
-                    View {card.Title}
+                    {card.Button.Text}
                   </Button>
                 </div>
               )
