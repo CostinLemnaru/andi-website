@@ -1,19 +1,9 @@
-import PageLayout from "@/components/page-layout"
-import PageHeader from "@/components/page-header"
 import SectionCard from "@/components/section-card"
 import { Brain, LineChart, Zap, MessageSquare, BarChart3 } from "lucide-react"
 import ScrollReveal from "@/components/scroll-reveal"
 
-export default function ProductsPage() {
+export default function Products() {
   return (
-    <PageLayout>
-      <PageHeader
-        data={{
-          Title: "Our Products",
-          Subtitle: "Discover how ANDI's AI-powered solutions can transform your business intelligence"
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <ScrollReveal>
@@ -62,6 +52,5 @@ export default function ProductsPage() {
           </ScrollReveal>
         </div>
       </div>
-    </PageLayout>
   )
 }

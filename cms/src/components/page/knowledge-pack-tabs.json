@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_page_knowledge_pack_tabs",
+  "info": {
+    "displayName": "Knowledge Pack Tabs"
+  },
+  "options": {},
+  "attributes": {
+    "Config": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

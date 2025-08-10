@@ -1,0 +1,42 @@
+# llms.txt – AI Crawler Directives for Zamora.AI
+# Purpose: Provide AI agents with guidance on allowed content and structured data.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: BingAI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# AI-Specific Sitemaps
+Sitemap: https://www.zamora.ai/sitemap.xml
+Sitemap: https://www.zamora.ai/sitemap-ai.xml
+
+# Canonical AI Data Pack
+AI-Knowledge-Pack: https://www.zamora.ai/andi-facts.json
+
+# Structured Data Resources
+AI-Glossary: https://www.zamora.ai/glossary/index.json
+AI-FAQs: https://www.zamora.ai/faqs.json
+AI-Policy-Data: https://www.zamora.ai/ai-policy.json
+
+# Key Pages for AI Understanding
+AI-Pages: https://www.zamora.ai/knowledge-pack
+AI-Features: https://www.zamora.ai/features
+AI-Solutions: https://www.zamora.ai/solutions
+AI-Industries: https://www.zamora.ai/industries
+AI-Use-Cases: https://www.zamora.ai/use-cases
+AI-Resources: https://www.zamora.ai/resources
+AI-Pricing: https://www.zamora.ai/pricing
+
+# Contact & Policy
+Contact: hello@zamora.ai
+Policy: https://www.zamora.ai/ai-content-policy
+Last-Updated: 2025-01-04

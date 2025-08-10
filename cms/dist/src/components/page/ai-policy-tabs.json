@@ -1,0 +1,13 @@
+{
+    "collectionName": "components_page_ai_policy_tabs",
+    "info": {
+        "displayName": "Ai Policy Tabs"
+    },
+    "options": {},
+    "attributes": {
+        "Config": {
+            "type": "json"
+        }
+    },
+    "config": {}
+}

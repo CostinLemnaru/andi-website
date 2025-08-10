@@ -1,0 +1,125 @@
+{
+  "version": "1.1",
+  "lastUpdated": "2025-01-24",
+  "categories": [
+    {
+      "category": "Platform Overview",
+      "questions": [
+        {
+          "question": "What is Zamora.ai and how does it work?",
+          "answer": "Zamora.ai is a unified business intelligence platform that allows users to interact with their data using natural language. Our SAGE engine converts plain English questions into database queries, analyzes multiple data sources simultaneously, and provides insights with confidence scores. Users can ask questions like 'What were our top-performing products last quarter?' and get immediate, accurate answers without needing technical expertise."
+        },
+        {
+          "question": "What makes Zamora.ai different from other BI tools?",
+          "answer": "Zamora.ai stands out through our natural language interface, LinkDNA™ technology for automatic data relationship discovery, confidence-based results, and the ability to analyze multiple datasets without complex preparation. Unlike traditional BI tools that require SQL knowledge or extensive setup, our platform is designed for business users to get insights immediately."
+        },
+        {
+          "question": "Who can benefit from using Zamora.ai?",
+          "answer": "Zamora.ai is designed for business users across all departments - from executives needing strategic insights to analysts requiring detailed data exploration. It's particularly valuable for organizations that want to democratize data access, reduce dependence on technical teams, and enable faster decision-making across the company."
+        }
+      ]
+    },
+    {
+      "category": "SAGE Engine",
+      "questions": [
+        {
+          "question": "What is the SAGE engine and how does it work?",
+          "answer": "SAGE (Smart Analytics and Generative Engine) is our proprietary AI engine that powers natural language understanding and data analysis. It interprets user questions, converts them into appropriate database queries, analyzes results across multiple data sources, and generates insights with confidence scores. SAGE continuously learns from interactions to improve accuracy and relevance."
+        },
+        {
+          "question": "How accurate are SAGE's results?",
+          "answer": "SAGE provides confidence scores with all results, typically achieving 90%+ accuracy for well-structured queries. The system is designed to indicate when it's uncertain about interpretations and can ask clarifying questions. Accuracy improves over time as SAGE learns from your specific data patterns and business context."
+        },
+        {
+          "question": "Can SAGE handle complex analytical queries?",
+          "answer": "Yes, SAGE can process complex multi-step analyses, cross-dataset correlations, time-series analysis, and advanced statistical calculations. It can understand context from previous questions in a conversation and build upon earlier analyses to provide deeper insights."
+        }
+      ]
+    },
+    {
+      "category": "LinkDNA Technology",
+      "questions": [
+        {
+          "question": "What is LinkDNA™ and how does it benefit users?",
+          "answer": "LinkDNA™ is our proprietary technology that automatically discovers and maps relationships between data points across different datasets. It eliminates the need for manual data preparation and enables seamless analysis across multiple sources. This means you can ask questions that span different systems and get unified answers without complex setup."
+        },
+        {
+          "question": "How does LinkDNA™ discover data relationships?",
+          "answer": "LinkDNA™ uses advanced algorithms to analyze data patterns, column names, data types, and content similarities across datasets. It identifies potential relationships based on semantic meaning, statistical correlations, and business logic patterns, then validates these connections to ensure accuracy."
+        },
+        {
+          "question": "Can LinkDNA™ work with any type of data?",
+          "answer": "LinkDNA™ supports structured data from databases, spreadsheets, and business applications, as well as semi-structured data from APIs and files. It works with popular formats including SQL databases, CSV files, JSON, and data from major business platforms like Salesforce, HubSpot, and Google Analytics."
+        }
+      ]
+    },
+    {
+      "category": "Data Integration",
+      "questions": [
+        {
+          "question": "What data sources can Zamora.ai connect to?",
+          "answer": "Zamora.ai integrates with popular databases (PostgreSQL, MySQL, MongoDB), cloud data warehouses (Snowflake, BigQuery, Redshift), business applications (Salesforce, HubSpot, Stripe), file formats (CSV, Excel, JSON), and supports custom API connections. We're continuously adding new integrations based on customer needs."
+        },
+        {
+          "question": "How long does it take to set up data connections?",
+          "answer": "Most standard integrations can be set up in minutes using our pre-built connectors. Custom integrations typically take 1-2 weeks depending on complexity. Our team provides support throughout the setup process to ensure smooth data flow and optimal performance."
+        },
+        {
+          "question": "Is my data secure during integration and analysis?",
+          "answer": "Yes, we implement enterprise-grade security including encryption in transit and at rest, SOC 2 Type II compliance, role-based access controls, and audit logging. Data can be processed in your preferred geographic region, and we offer on-premises deployment options for highly sensitive environments."
+        }
+      ]
+    },
+    {
+      "category": "Features & Capabilities",
+      "questions": [
+        {
+          "question": "Can I create custom dashboards and reports?",
+          "answer": "Yes, Zamora.ai automatically generates visualizations based on your queries and allows you to create custom dashboards. You can save frequently used analyses, schedule automated reports, and share insights with team members. The platform adapts visualizations to best represent your specific data types and analysis goals."
+        },
+        {
+          "question": "Does Zamora.ai support real-time data analysis?",
+          "answer": "Yes, our platform supports real-time data processing for supported data sources. You can set up live connections to databases and APIs to get up-to-the-minute insights. The system can also send alerts when key metrics change or anomalies are detected."
+        },
+        {
+          "question": "Can multiple team members collaborate on analyses?",
+          "answer": "Absolutely. Zamora.ai includes collaboration features like shared workspaces, comment threads on analyses, version control for reports, and role-based permissions. Team members can build upon each other's work and maintain a shared knowledge base of insights."
+        }
+      ]
+    },
+    {
+      "category": "Pricing & Plans",
+      "questions": [
+        {
+          "question": "How is Zamora.ai priced?",
+          "answer": "We offer usage-based pricing with three main tiers: Starter (for small teams), Professional (for growing companies), and Enterprise (for large organizations). Pricing factors include data volume, number of users, advanced features, and support level. Contact us for a customized quote based on your specific needs."
+        },
+        {
+          "question": "Is there a free trial available?",
+          "answer": "Yes, we offer a 14-day free trial that includes access to core features, sample datasets, and basic integrations. This allows you to experience the platform's capabilities with your own data before making a commitment."
+        },
+        {
+          "question": "What's included in the different pricing tiers?",
+          "answer": "Starter includes basic natural language queries, standard integrations, and email support. Professional adds advanced analytics, custom integrations, collaboration features, and priority support. Enterprise includes unlimited usage, custom features, dedicated support, and on-premises deployment options."
+        }
+      ]
+    },
+    {
+      "category": "Implementation & Support",
+      "questions": [
+        {
+          "question": "How long does it take to implement Zamora.ai?",
+          "answer": "Basic implementation typically takes 1-2 weeks, including data connection setup and user training. Enterprise implementations may take 4-8 weeks depending on complexity, custom requirements, and the number of data sources. We provide dedicated implementation support throughout the process."
+        },
+        {
+          "question": "What kind of training and support do you provide?",
+          "answer": "We offer comprehensive onboarding including live training sessions, documentation, video tutorials, and ongoing support. Enterprise customers receive dedicated customer success managers and can access priority support channels. We also provide best practices guidance for maximizing platform value."
+        },
+        {
+          "question": "Can Zamora.ai be customized for specific industry needs?",
+          "answer": "Yes, we offer industry-specific configurations and can develop custom features for unique requirements. Our platform is already optimized for various industries including healthcare, finance, retail, manufacturing, and SaaS, with pre-built templates and metrics relevant to each sector."
+        }
+      ]
+    }
+  ]
+}

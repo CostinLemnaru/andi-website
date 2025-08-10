@@ -61,6 +61,22 @@ import PostBusinessImpactCalculator from "@/components/benefits-calculator"
 import PostTabsIconsSection from "@/components/key-insights-tabs"
 import PostBox from "@/components/PostBox"
 import PostsInline from "@/components/PostsInline"
+import CardWithTags from "@/components/CardWithTags"
+import CardList from "@/components/CardList"
+import CardCodeBlock from "@/components/CardCodeBlock"
+import CardResources from "@/components/CardResources"
+import CardButtonAndTogglePreview from "@/components/CardButtonAndTogglePreview"
+import CardSimple from "@/components/CardSimpleData"
+import CardTwoColumns from "@/components/CardTwoColumns"
+import CardNested from "@/components/CardNested"
+import SitemapResources from "@/components/SitemapResources"
+import AiPolicyTabs from "@/components/AiPolicyTabs"
+import CardWithCodeblocks from "@/components/CardWithCodeblocks"
+import Glossary from "@/components/Glossary"
+import KnowledgePackPage from "@/components/KnowledgePack"
+import KnowledgePack from "@/components/KnowledgePack"
+import Faqs from "@/components/Faqs"
+import Products from "@/components/Products"
 
 export const componentsMap: Record<string, React.FC<any>> = {
   "hero.hero-section": HeroSection,
@@ -111,6 +127,21 @@ export const componentsMap: Record<string, React.FC<any>> = {
   "page.team": Team,
   "page.post-box": PostBox,
   "page.posts-inline": PostsInline,
+  "page.card-with-tags": CardWithTags,
+  "page.card-list": CardList,
+  "page.card-code-block": CardCodeBlock,
+  "page.card-resources": CardResources,
+  "page.card-button-and-toggle-preview": CardButtonAndTogglePreview,
+  "page.card-simple": CardSimple,
+  "page.card-2-columns": CardTwoColumns,
+  "page.card-nested": CardNested,
+  "page.sitemap-resources": SitemapResources,
+  "page.ai-policy-tabs": AiPolicyTabs,
+  "page.card-with-codeblock": CardWithCodeblocks,
+  "page.glossary": Glossary,
+  "page.knowledge-pack-tabs": KnowledgePack,
+  "page.faqs": Faqs,
+  "page.products": Products,
   "posts.content": PostContent,
   "posts.list": PostList,
   "posts.evolution-tabs": PostEvolutionTabs,
@@ -125,5 +156,5 @@ export const componentsMap: Record<string, React.FC<any>> = {
   "posts.tabs-boxes-section": PostTabsBoxesSection,
   "posts.tabs-colored-boxes-section": PostTabsColoredBoxesSection,
   "posts.business-impact-calculator": PostBusinessImpactCalculator,
-  "posts.tabs-icons": PostTabsIconsSection
+  "posts.tabs-icons": PostTabsIconsSection,
 }

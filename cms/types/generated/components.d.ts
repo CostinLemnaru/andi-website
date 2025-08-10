@@ -396,6 +396,81 @@ export interface MiscellaneousButton extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousCardButton extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_card_buttons';
+  info: {
+    displayName: 'Card button';
+  };
+  attributes: {
+    Button: Schema.Attribute.Component<'miscellaneous.button', false>;
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousColoredBox extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_colored_boxes';
   info: {
@@ -709,6 +784,110 @@ export interface MiscellaneousQAndA extends Struct.ComponentSchema {
     AnswerLabel: Schema.Attribute.String;
     Question: Schema.Attribute.String;
     QuestionLabel: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousResourceCard extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_resource_cards';
+  info: {
+    displayName: 'ResourceCard';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Link: Schema.Attribute.String;
+    TagName: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface MiscellaneousSitemapResource extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_sitemap_resources';
+  info: {
+    displayName: 'SitemapResource';
+  };
+  attributes: {
+    aiOptimized: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    Category: Schema.Attribute.String;
+    Changefreq: Schema.Attribute.String;
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Priority: Schema.Attribute.String;
+    Purpose: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+    Url: Schema.Attribute.String;
   };
 }
 
@@ -1078,6 +1257,79 @@ export interface MiscellaneousTabsItemVertival extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousTagIcon extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_tag_icons';
+  info: {
+    displayName: 'Tag Icon';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Name: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousText extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_texts';
   info: {
@@ -1205,6 +1457,16 @@ export interface PageAddOnsSection extends Struct.ComponentSchema {
     AddOns: Schema.Attribute.Component<'miscellaneous.add-on-box', true>;
     Subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageAiPolicyTabs extends Struct.ComponentSchema {
+  collectionName: 'components_page_ai_policy_tabs';
+  info: {
+    displayName: 'Ai Policy Tabs';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
   };
 }
 
@@ -1443,6 +1705,582 @@ export interface PageButton extends Struct.ComponentSchema {
   };
 }
 
+export interface PageCard2Columns extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_2_columns';
+  info: {
+    displayName: 'Card 2 Columns';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    LeftColumn: Schema.Attribute.RichText;
+    RightColumn: Schema.Attribute.RichText;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardButtonAndTogglePreview extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_button_and_toggle_previews';
+  info: {
+    displayName: 'Card Button and Toggle Preview';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    MainButton: Schema.Attribute.Component<'miscellaneous.button', false>;
+    PreviewContent: Schema.Attribute.RichText;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardCodeBlock extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_code_blocks';
+  info: {
+    displayName: 'Card Code Block';
+  };
+  attributes: {
+    CodeBlockText: Schema.Attribute.Text;
+    CodeBlockTitle: Schema.Attribute.String;
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    ColumnLeftText: Schema.Attribute.RichText;
+    ColumnRightText: Schema.Attribute.RichText;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardList extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_lists';
+  info: {
+    displayName: 'Card List';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    List: Schema.Attribute.Component<'miscellaneous.text', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardNested extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_nesteds';
+  info: {
+    displayName: 'Card nested';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'miscellaneous.card-button', true>;
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Subtitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardResources extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_resources';
+  info: {
+    displayName: 'Card Resources';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Resources: Schema.Attribute.Component<'miscellaneous.resource-card', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardSimple extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_simples';
+  info: {
+    displayName: 'Card Simple';
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Content: Schema.Attribute.RichText;
+    FooterText: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardWithCodeblock extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_with_codeblocks';
+  info: {
+    displayName: 'Card with codeblock';
+  };
+  attributes: {
+    Button: Schema.Attribute.Component<'miscellaneous.button', false>;
+    CodeBlockText: Schema.Attribute.Text;
+    CodeBlockTitle: Schema.Attribute.String;
+    Color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'green',
+        'emerald',
+        'teal',
+        'cyan',
+        'sky',
+        'blue',
+        'indigo',
+        'violet',
+        'purple',
+        'fuchsia',
+        'pink',
+        'rose',
+        'slate',
+        'gray',
+        'zinc',
+        'neutral',
+        'stone',
+      ]
+    >;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageCardWithTags extends Struct.ComponentSchema {
+  collectionName: 'components_page_card_with_tags';
+  info: {
+    displayName: 'Card with tags';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+        'Infinity',
+        'BarChart3',
+        'Webhook',
+        'Headphones',
+      ]
+    >;
+    Subtitle: Schema.Attribute.String;
+    Tags: Schema.Attribute.Component<'miscellaneous.tag-icon', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface PageColoredIconTitleSubtitleBoxes
   extends Struct.ComponentSchema {
   collectionName: 'components_page_colored_icon_title_subtitle_boxes';
@@ -1530,6 +2368,22 @@ export interface PageExpectedLaunchBox extends Struct.ComponentSchema {
   attributes: {
     Description: Schema.Attribute.String;
   };
+}
+
+export interface PageFaqs extends Struct.ComponentSchema {
+  collectionName: 'components_page_faqs';
+  info: {
+    displayName: 'Faqs';
+  };
+  attributes: {};
+}
+
+export interface PageGlossary extends Struct.ComponentSchema {
+  collectionName: 'components_page_glossaries';
+  info: {
+    displayName: 'Glossary';
+  };
+  attributes: {};
 }
 
 export interface PageHeader extends Struct.ComponentSchema {
@@ -1698,6 +2552,16 @@ export interface PageJoinEarlyAccess extends Struct.ComponentSchema {
   };
 }
 
+export interface PageKnowledgePackTabs extends Struct.ComponentSchema {
+  collectionName: 'components_page_knowledge_pack_tabs';
+  info: {
+    displayName: 'Knowledge Pack Tabs';
+  };
+  attributes: {
+    Config: Schema.Attribute.JSON;
+  };
+}
+
 export interface PageMarketingPerformanceDashboard
   extends Struct.ComponentSchema {
   collectionName: 'components_page_marketing_performance_dashboards';
@@ -1790,6 +2654,14 @@ export interface PagePricingSection extends Struct.ComponentSchema {
   };
 }
 
+export interface PageProducts extends Struct.ComponentSchema {
+  collectionName: 'components_page_products';
+  info: {
+    displayName: 'Products';
+  };
+  attributes: {};
+}
+
 export interface PageRequestDemoBox extends Struct.ComponentSchema {
   collectionName: 'components_page_request_demo_boxes';
   info: {
@@ -1867,6 +2739,19 @@ export interface PageSeo extends Struct.ComponentSchema {
   attributes: {
     description: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface PageSitemapResources extends Struct.ComponentSchema {
+  collectionName: 'components_page_sitemap_resources';
+  info: {
+    displayName: 'SitemapResources';
+  };
+  attributes: {
+    Resources: Schema.Attribute.Component<
+      'miscellaneous.sitemap-resource',
+      true
+    >;
   };
 }
 
@@ -2402,6 +3287,7 @@ declare module '@strapi/strapi' {
       'miscellaneous.box-nested': MiscellaneousBoxNested;
       'miscellaneous.business-pulse': MiscellaneousBusinessPulse;
       'miscellaneous.button': MiscellaneousButton;
+      'miscellaneous.card-button': MiscellaneousCardButton;
       'miscellaneous.colored-box': MiscellaneousColoredBox;
       'miscellaneous.colored-icon-title-subtitle-box': MiscellaneousColoredIconTitleSubtitleBox;
       'miscellaneous.icon-box': MiscellaneousIconBox;
@@ -2411,6 +3297,8 @@ declare module '@strapi/strapi' {
       'miscellaneous.list-item': MiscellaneousListItem;
       'miscellaneous.person': MiscellaneousPerson;
       'miscellaneous.q-and-a': MiscellaneousQAndA;
+      'miscellaneous.resource-card': MiscellaneousResourceCard;
+      'miscellaneous.sitemap-resource': MiscellaneousSitemapResource;
       'miscellaneous.tab-category': MiscellaneousTabCategory;
       'miscellaneous.tab-category-box': MiscellaneousTabCategoryBox;
       'miscellaneous.tab-category-box-colored': MiscellaneousTabCategoryBoxColored;
@@ -2424,12 +3312,14 @@ declare module '@strapi/strapi' {
       'miscellaneous.tabs-box-item': MiscellaneousTabsBoxItem;
       'miscellaneous.tabs-colored-box-item': MiscellaneousTabsColoredBoxItem;
       'miscellaneous.tabs-item-vertival': MiscellaneousTabsItemVertival;
+      'miscellaneous.tag-icon': MiscellaneousTagIcon;
       'miscellaneous.text': MiscellaneousText;
       'navigation.item': NavigationItem;
       'navigation.section': NavigationSection;
       'page.accordion': PageAccordion;
       'page.accordion-json': PageAccordionJson;
       'page.add-ons-section': PageAddOnsSection;
+      'page.ai-policy-tabs': PageAiPolicyTabs;
       'page.bg-colored-boxed': PageBgColoredBoxed;
       'page.box-icon': PageBoxIcon;
       'page.box-icon-list-section': PageBoxIconListSection;
@@ -2442,6 +3332,15 @@ declare module '@strapi/strapi' {
       'page.boxes-columns': PageBoxesColumns;
       'page.business-pulse-section': PageBusinessPulseSection;
       'page.button': PageButton;
+      'page.card-2-columns': PageCard2Columns;
+      'page.card-button-and-toggle-preview': PageCardButtonAndTogglePreview;
+      'page.card-code-block': PageCardCodeBlock;
+      'page.card-list': PageCardList;
+      'page.card-nested': PageCardNested;
+      'page.card-resources': PageCardResources;
+      'page.card-simple': PageCardSimple;
+      'page.card-with-codeblock': PageCardWithCodeblock;
+      'page.card-with-tags': PageCardWithTags;
       'page.colored-icon-title-subtitle-boxes': PageColoredIconTitleSubtitleBoxes;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
@@ -2449,6 +3348,8 @@ declare module '@strapi/strapi' {
       'page.cta-section': PageCtaSection;
       'page.early-acces-button': PageEarlyAccesButton;
       'page.expected-launch-box': PageExpectedLaunchBox;
+      'page.faqs': PageFaqs;
+      'page.glossary': PageGlossary;
       'page.header': PageHeader;
       'page.header-icon': PageHeaderIcon;
       'page.header-left': PageHeaderLeft;
@@ -2457,17 +3358,20 @@ declare module '@strapi/strapi' {
       'page.inline-icon-boxes': PageInlineIconBoxes;
       'page.inline-icon-title-subtitle-boxes': PageInlineIconTitleSubtitleBoxes;
       'page.join-early-access': PageJoinEarlyAccess;
+      'page.knowledge-pack-tabs': PageKnowledgePackTabs;
       'page.marketing-performance-dashboard': PageMarketingPerformanceDashboard;
       'page.metrics-section': PageMetricsSection;
       'page.post-box': PagePostBox;
       'page.posts-inline': PagePostsInline;
       'page.pricing-section': PagePricingSection;
+      'page.products': PageProducts;
       'page.request-demo-box': PageRequestDemoBox;
       'page.roadmap-boxes-section': PageRoadmapBoxesSection;
       'page.section-box-features-footer': PageSectionBoxFeaturesFooter;
       'page.section-columns-icon-title-subtitle-boxes': PageSectionColumnsIconTitleSubtitleBoxes;
       'page.section-icon-boxes': PageSectionIconBoxes;
       'page.seo': PageSeo;
+      'page.sitemap-resources': PageSitemapResources;
       'page.table-section': PageTableSection;
       'page.tabs-box-section': PageTabsBoxSection;
       'page.tabs-components-section': PageTabsComponentsSection;

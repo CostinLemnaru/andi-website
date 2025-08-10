@@ -1,0 +1,84 @@
+{
+    "collectionName": "components_page_card_simples",
+    "info": {
+        "displayName": "Card Simple"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Icon": {
+            "type": "enumeration",
+            "enum": [
+                "Bot",
+                "User",
+                "Check",
+                "MessageSquare",
+                "ArrowRight",
+                "Database",
+                "Server",
+                "Cpu",
+                "Brain",
+                "Link",
+                "Tag",
+                "Shield",
+                "Lock",
+                "Unlock",
+                "Zap",
+                "Activity",
+                "CheckCircle",
+                "XCircle",
+                "AlertTriangle",
+                "Globe",
+                "Search",
+                "BarChart2",
+                "Calendar",
+                "Layers",
+                "GitBranch",
+                "Compass",
+                "Rocket",
+                "Wand",
+                "Eye",
+                "Infinity",
+                "BarChart3",
+                "Webhook",
+                "Headphones"
+            ]
+        },
+        "Content": {
+            "type": "richtext"
+        },
+        "FooterText": {
+            "type": "text"
+        },
+        "Color": {
+            "type": "enumeration",
+            "enum": [
+                "red",
+                "orange",
+                "amber",
+                "yellow",
+                "lime",
+                "green",
+                "emerald",
+                "teal",
+                "cyan",
+                "sky",
+                "blue",
+                "indigo",
+                "violet",
+                "purple",
+                "fuchsia",
+                "pink",
+                "rose",
+                "slate",
+                "gray",
+                "zinc",
+                "neutral",
+                "stone"
+            ]
+        }
+    },
+    "config": {}
+}

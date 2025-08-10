@@ -1,0 +1,184 @@
+{
+  "policy": {
+    "version": "1.0",
+    "last_updated": "2025-01-24T00:00:00Z",
+    "effective_date": "2025-01-24",
+    "purpose": "Guidelines for AI systems, crawlers, and automated tools accessing Zamora.ai content",
+    "scope": "All publicly accessible content on zamora.ai domain"
+  },
+  "allowed_ai_systems": [
+    {
+      "name": "GPTBot",
+      "provider": "OpenAI",
+      "user_agent": "GPTBot",
+      "status": "allowed"
+    },
+    {
+      "name": "ClaudeBot",
+      "provider": "Anthropic",
+      "user_agent": "ClaudeBot",
+      "status": "allowed"
+    },
+    {
+      "name": "PerplexityBot",
+      "provider": "Perplexity AI",
+      "user_agent": "PerplexityBot",
+      "status": "allowed"
+    },
+    {
+      "name": "BingAI",
+      "provider": "Microsoft",
+      "user_agent": "BingAI",
+      "status": "allowed"
+    },
+    {
+      "name": "Google-Extended",
+      "provider": "Google",
+      "user_agent": "Google-Extended",
+      "status": "allowed"
+    }
+  ],
+  "rate_limits": {
+    "requests_per_minute": 60,
+    "requests_per_hour": 1000,
+    "requests_per_day": 10000,
+    "standard_crawlers": {
+      "limit": "60/minute",
+      "description": "General web crawlers and indexing bots"
+    },
+    "ai_training": {
+      "limit": "30/minute",
+      "description": "AI model training and data collection"
+    },
+    "research_purposes": {
+      "limit": "100/minute",
+      "description": "Academic and research institutions"
+    },
+    "enforcement": "Violations result in temporary or permanent IP blocking"
+  },
+  "permitted_uses": [
+    {
+      "activity": "indexing_public_content",
+      "description": "Indexing and crawling public content for search purposes",
+      "conditions": ["respect_rate_limits", "provide_attribution"]
+    },
+    {
+      "activity": "generating_summaries",
+      "description": "Generating summaries and insights from publicly available information",
+      "conditions": ["provide_attribution", "maintain_accuracy"]
+    },
+    {
+      "activity": "creating_citations",
+      "description": "Creating citations and references to our content with proper attribution",
+      "conditions": ["include_source_url", "mention_zamora_ai"]
+    },
+    {
+      "activity": "ai_training_with_attribution",
+      "description": "Training AI models on publicly accessible content with attribution",
+      "conditions": ["provide_attribution", "respect_rate_limits", "non_commercial_use"]
+    },
+    {
+      "activity": "answering_questions",
+      "description": "Answering user questions about Zamora.ai using our public information",
+      "conditions": ["provide_attribution", "maintain_accuracy"]
+    }
+  ],
+  "prohibited_uses": [
+    {
+      "activity": "reproduction_without_attribution",
+      "description": "Reproducing substantial portions of content without attribution",
+      "enforcement": "content_takedown_request"
+    },
+    {
+      "activity": "commercial_use_proprietary",
+      "description": "Using proprietary methodologies or trade secrets for commercial purposes",
+      "enforcement": "legal_action"
+    },
+    {
+      "activity": "impersonation",
+      "description": "Impersonating Zamora.ai or creating misleading representations",
+      "enforcement": "cease_and_desist"
+    },
+    {
+      "activity": "excessive_crawling",
+      "description": "Excessive crawling that impacts site performance",
+      "threshold": "100_requests_per_minute",
+      "enforcement": "ip_blocking"
+    },
+    {
+      "activity": "unauthorized_access",
+      "description": "Accessing or attempting to access non-public areas or user data",
+      "enforcement": "immediate_ip_ban"
+    }
+  ],
+  "attribution_requirements": {
+    "required": true,
+    "required_format": {
+      "source": "Zamora.ai - Built to Think. Ready to Act.",
+      "url": "https://www.zamora.ai/",
+      "accessed": "[Date in ISO format]"
+    },
+    "required_when": ["quoting_content", "summarizing_information", "training_ai_models", "creating_derivative_works"],
+    "guidelines": [
+      "Provide clear attribution to Zamora.ai",
+      "Include hyperlinks to original source pages",
+      "Maintain factual accuracy when summarizing",
+      "Preserve context and intent of content"
+    ],
+    "best_practices": [
+      "include_hyperlinks",
+      "mention_zamora_ai_prominently",
+      "provide_context",
+      "update_citations_when_content_changes"
+    ]
+  },
+  "structured_resources": [
+    {
+      "name": "AI Sitemap",
+      "url": "https://www.zamora.ai/sitemap-ai.xml",
+      "description": "Curated list of important pages for AI systems",
+      "format": "XML"
+    },
+    {
+      "name": "Knowledge Pack",
+      "url": "https://www.zamora.ai/andi-facts.json",
+      "description": "Structured company and product information",
+      "format": "JSON"
+    },
+    {
+      "name": "Glossary",
+      "url": "https://www.zamora.ai/glossary/index.json",
+      "description": "Definitions of key terms and concepts",
+      "format": "JSON"
+    },
+    {
+      "name": "FAQs",
+      "url": "https://www.zamora.ai/faqs.json",
+      "description": "Frequently asked questions in structured format",
+      "format": "JSON"
+    }
+  ],
+  "enforcement": {
+    "violations_result_in": [
+      "Rate limiting - temporary reduction in allowed requests",
+      "IP blocking - temporary or permanent access restrictions",
+      "Legal action - for serious violations or commercial misuse"
+    ],
+    "monitoring": "We actively monitor traffic patterns and may block IPs exhibiting abusive behavior",
+    "appeals": "Contact hello@zamora.ai to appeal enforcement actions"
+  },
+  "contact": {
+    "email": "hello@zamora.ai",
+    "purpose": "Questions about policy, partnership opportunities, or access permissions",
+    "response_time": "We aim to respond within 2-3 business days"
+  },
+  "legal": {
+    "disclaimer": "This policy is provided as guidance and does not constitute a waiver of any rights or remedies",
+    "updates": "Policy may be updated periodically - check lastUpdated field",
+    "governing_law": "This policy is governed by the laws of the United States",
+    "enforcement": "Violations may result in IP blocking, rate limiting, or legal action",
+    "liability": "Zamora.ai is not liable for damages from AI system use of our content",
+    "jurisdiction": "United States",
+    "contact_for_disputes": "hello@zamora.ai"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "version": "1.1",
+  "lastUpdated": "2025-07-24",
+  "terms": [
+    {
+      "term": "SAGE",
+      "fullForm": "Strategic AI Guidance & Execution",
+      "definition": "SAGE is the next evolution after Business Intelligence (BI) — a unified platform designed to guide strategic decisions and execute actions across an organization. Unlike BI tools that focus on retrospective data visualization, SAGE actively understands business context, anticipates needs, and drives cross-departmental execution through AI-powered insights. It represents a shift from passive dashboards to proactive, decision-oriented intelligence.",
+      "category": "Core Technology"
+    },
+    {
+      "term": "LinkDNA™",
+      "definition": "Proprietary technology that automatically discovers and maps relationships between data points across different datasets, enabling seamless cross-platform analysis without manual configuration.",
+      "category": "Core Technology"
+    },
+    {
+      "term": "Natural Language Query Engine",
+      "definition": "AI-powered system that allows users to ask questions about their data using plain English, automatically converting natural language into appropriate database queries.",
+      "category": "Feature"
+    },
+    {
+      "term": "Insight Labeling",
+      "definition": "Automated system that categorizes and tags data insights based on their type, importance, and business relevance, making it easier to organize and retrieve analytical findings.",
+      "category": "Feature"
+    },
+    {
+      "term": "Multi-Dataset Analysis",
+      "definition": "Capability to analyze and correlate data from multiple sources simultaneously, providing comprehensive insights that span across different systems and databases.",
+      "category": "Feature"
+    },
+    {
+      "term": "Confidence-Based NLP",
+      "definition": "Natural language processing approach that assigns confidence scores to interpretations and results, helping users understand the reliability of AI-generated insights.",
+      "category": "Technology"
+    },
+    {
+      "term": "Business Intelligence",
+      "fullForm": "BI",
+      "definition": "Technologies, applications, and practices for collecting, integrating, analyzing, and presenting business information to support decision-making.",
+      "category": "General"
+    },
+    {
+      "term": "Data Silos",
+      "definition": "Isolated data repositories that are not easily accessible by other parts of an organization, creating barriers to comprehensive analysis and insights.",
+      "category": "Problem"
+    },
+    {
+      "term": "Unified Analytics",
+      "definition": "Approach to data analysis that brings together multiple data sources and analytical tools into a single, cohesive platform for comprehensive business insights.",
+      "category": "Concept"
+    },
+    {
+      "term": "Real-time Processing",
+      "definition": "Capability to analyze and respond to data as it arrives, providing immediate insights and enabling rapid decision-making based on current information.",
+      "category": "Technology"
+    },
+    {
+      "term": "Data Democratization",
+      "definition": "Process of making data accessible to non-technical users through intuitive interfaces and tools, enabling broader organizational participation in data-driven decision making.",
+      "category": "Concept"
+    },
+    {
+      "term": "SQL",
+      "fullForm": "Structured Query Language",
+      "definition": "Programming language designed for managing and querying relational databases. Zamora.ai eliminates the need for users to know SQL through natural language interfaces.",
+      "category": "Technology"
+    },
+    {
+      "term": "Data Warehouse",
+      "definition": "Centralized repository that stores integrated data from multiple sources, optimized for analysis and reporting rather than transaction processing.",
+      "category": "Infrastructure"
+    },
+    {
+      "term": "ETL",
+      "fullForm": "Extract, Transform, Load",
+      "definition": "Process of extracting data from various sources, transforming it into a suitable format, and loading it into a target system like a data warehouse.",
+      "category": "Process"
+    },
+    {
+      "term": "API",
+      "fullForm": "Application Programming Interface",
+      "definition": "Set of protocols and tools that allow different software applications to communicate with each other, enabling data integration and system connectivity.",
+      "category": "Technology"
+    },
+    {
+      "term": "Dashboard",
+      "definition": "Visual interface that displays key metrics, KPIs, and data insights in an organized, easy-to-understand format for monitoring business performance.",
+      "category": "Interface"
+    },
+    {
+      "term": "KPI",
+      "fullForm": "Key Performance Indicator",
+      "definition": "Measurable values that demonstrate how effectively an organization is achieving key business objectives and goals.",
+      "category": "Metrics"
+    },
+    {
+      "term": "Data Visualization",
+      "definition": "Graphical representation of data and information using visual elements like charts, graphs, and maps to make complex data more accessible and understandable.",
+      "category": "Concept"
+    },
+    {
+      "term": "Machine Learning",
+      "fullForm": "ML",
+      "definition": "Type of artificial intelligence that enables systems to automatically learn and improve from experience without being explicitly programmed for every scenario.",
+      "category": "Technology"
+    },
+    {
+      "term": "Artificial Intelligence",
+      "fullForm": "AI",
+      "definition": "Technology that enables machines to simulate human intelligence, including learning, reasoning, and problem-solving capabilities.",
+      "category": "Technology"
+    },
+    {
+      "term": "Data Integration",
+      "definition": "Process of combining data from different sources into a unified view, enabling comprehensive analysis across multiple systems and platforms.",
+      "category": "Process"
+    },
+    {
+      "term": "Cloud Computing",
+      "definition": "Delivery of computing services including servers, storage, databases, and software over the internet, providing scalable and flexible IT resources.",
+      "category": "Technology"
+    },
+    {
+      "term": "Scalability",
+      "definition": "Ability of a system to handle increased workload or expand to accommodate growth without compromising performance or requiring complete redesign.",
+      "category": "Concept"
+    },
+    {
+      "term": "Data Governance",
+      "definition": "Framework of policies, procedures, and standards that ensure data quality, security, and compliance throughout an organization.",
+      "category": "Management"
+    },
+    {
+      "term": "ROI",
+      "fullForm": "Return on Investment",
+      "definition": "Performance measure used to evaluate the efficiency and profitability of an investment, calculated as the ratio of net profit to investment cost.",
+      "category": "Metrics"
+    },
+    {
+      "term": "SaaS",
+      "fullForm": "Software as a Service",
+      "definition": "Cloud-based software delivery model where applications are hosted by a service provider and made available to customers over the internet.",
+      "category": "Business Model"
+    },
+    {
+      "term": "Data Lake",
+      "definition": "Storage repository that holds vast amounts of raw data in its native format until it's needed for analysis, supporting both structured and unstructured data.",
+      "category": "Infrastructure"
+    },
+    {
+      "term": "Predictive Analytics",
+      "definition": "Use of statistical algorithms and machine learning techniques to identify the likelihood of future outcomes based on historical data patterns.",
+      "category": "Analytics"
+    },
+    {
+      "term": "Data Mining",
+      "definition": "Process of discovering patterns, correlations, and insights from large datasets using statistical and computational techniques.",
+      "category": "Process"
+    },
+    {
+      "term": "Big Data",
+      "definition": "Extremely large datasets that require specialized tools and techniques to capture, store, manage, and analyze due to their volume, velocity, and variety.",
+      "category": "Concept"
+    }
+  ]
+}

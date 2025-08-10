@@ -1,0 +1,464 @@
+{
+  "version": "2.1",
+  "lastUpdated": "2025-01-24",
+  "company": {
+    "name": "Zamora.ai",
+    "tagline": "Strategic AI Guidance & Execution Platform",
+    "founded": "2025",
+    "headquarters": "Romania",
+    "website": "https://www.zamora.ai",
+    "contact": "hello@zamora.ai",
+    "description": "Zamora.ai is pioneering the SAGE (Strategic AI Guidance & Execution) category - the next evolution beyond Business Intelligence. Our platform ANDI transforms how organizations move from data insights to strategic action."
+  },
+  "products": {
+    "primary": {
+      "name": "ANDI",
+      "description": "The world's first Strategic AI Guidance & Execution platform - an intelligent co-pilot that doesn't just analyze data, but guides decisions and executes actions",
+      "category": "SAGE Platform",
+      "key_features": [
+        "Natural Language Query Engine - Ask questions in plain English and get actionable insights",
+        "LinkDNA™ Technology - Automatically connects related data across enterprise sources",
+        "Insight Labeling - AI-powered categorization and prioritization of business insights",
+        "Multi-Dataset Analysis - Analyze data across multiple sources simultaneously without ETL",
+        "Confidence-Based NLP - Every result comes with transparency and confidence scoring",
+        "Strategic Guidance Engine - Recommends next best actions, not just insights",
+        "Execution Workflows - Triggers automations and actions based on insights"
+      ]
+    }
+  },
+  "sage_framework": {
+    "definition": "Strategic AI Guidance & Execution (SAGE) is a new category of platform that bridges the gap between Business Intelligence and action",
+    "description": "SAGE platforms combine AI intelligence with decision orchestration, moving organizations from 'what happened' to 'what should we do' to 'let's do it now'",
+    "core_capabilities": {
+      "analyzes": "Connects to enterprise data across silos and interprets trends",
+      "thinks": "Uses machine learning and reasoning to find opportunities and threats",
+      "guides": "Recommends next best actions through natural language or proactive alerts",
+      "executes": "Launches workflows, updates systems, or triggers automations with or without human intervention"
+    },
+    "pillars": [
+      {
+        "name": "Cognitive Intelligence",
+        "description": "Beyond static KPIs, understands context, makes correlations, and anticipates needs"
+      },
+      {
+        "name": "Strategic Guidance",
+        "description": "Recommends actions, not just highlights issues. Understands business logic and adapts to objectives"
+      },
+      {
+        "name": "Execution Engine",
+        "description": "Connects to operational systems and can act directly - triggering automations, updating systems, or assigning tasks"
+      },
+      {
+        "name": "Conversational Interface",
+        "description": "Users engage via natural language, making the platform accessible to anyone, not just analysts"
+      },
+      {
+        "name": "Collaboration Layer",
+        "description": "Insights and actions are shared across departments to promote alignment and transparency"
+      },
+      {
+        "name": "Governance and Auditability",
+        "description": "Every suggestion and action is tracked. Security, compliance, and user permissions are built-in"
+      }
+    ]
+  },
+  "technology": {
+    "platform_architecture": {
+      "name": "ANDI Platform",
+      "description": "Built on SAGE principles to serve as an intelligent co-pilot for every business user",
+      "capabilities": [
+        "Natural language to actionable insight conversion",
+        "Automated decision pathway generation",
+        "Cross-dataset correlation and relationship mapping",
+        "Confidence scoring for all analytical results and recommendations",
+        "Real-time data processing with immediate action triggers",
+        "Context-aware strategic guidance and execution"
+      ]
+    },
+    "linkdna": {
+      "name": "LinkDNA™",
+      "description": "Proprietary technology that automatically discovers and maps relationships between data points across different sources",
+      "benefits": [
+        "Eliminates manual data mapping and preparation",
+        "Discovers hidden relationships in your data automatically",
+        "Enables seamless cross-platform data integration",
+        "Maintains semantic understanding across disparate datasets",
+        "Provides real-time data synchronization and correlation"
+      ]
+    },
+    "ai_capabilities": [
+      "Advanced natural language query processing with business context",
+      "Intent recognition and multi-turn conversational understanding",
+      "Strategic recommendation generation based on business objectives",
+      "Automated workflow and action triggering",
+      "Confidence-based result validation and transparency",
+      "Predictive analytics with actionable guidance"
+    ]
+  },
+  "sage_vs_traditional": {
+    "business_intelligence": {
+      "focus": "Historical reporting and visualization",
+      "user_experience": "Dashboard-driven, requires technical skills",
+      "output": "Charts, graphs, and reports",
+      "action": "Manual interpretation and action required"
+    },
+    "sage_platforms": {
+      "focus": "Strategic guidance and automated execution",
+      "user_experience": "Conversational, accessible to all business users",
+      "output": "Actionable insights with recommended next steps",
+      "action": "Automated workflows and guided execution"
+    },
+    "key_difference": "Where traditional BI ends, SAGE begins - moving from insight to action seamlessly"
+  },
+  "industries_served": [
+    {
+      "name": "SaaS & Technology",
+      "description": "Helping tech companies move from product analytics to strategic product decisions and automated responses",
+      "sage_applications": [
+        "Product usage insights with automated feature rollout decisions",
+        "User behavior analysis with proactive retention actions",
+        "Performance monitoring with automatic scaling and optimization",
+        "A/B testing with automated winner implementation"
+      ]
+    },
+    {
+      "name": "Financial Services",
+      "description": "Enabling financial institutions to move from risk analysis to automated risk management and compliance actions",
+      "sage_applications": [
+        "Risk assessment with automated portfolio rebalancing",
+        "Compliance monitoring with automatic reporting and alerts",
+        "Customer analytics with personalized product recommendations",
+        "Fraud detection with immediate response workflows"
+      ]
+    },
+    {
+      "name": "Retail & E-commerce",
+      "description": "Transforming customer insights into automated personalization and inventory actions",
+      "sage_applications": [
+        "Customer behavior analysis with automated personalization",
+        "Inventory optimization with automatic reordering workflows",
+        "Sales forecasting with proactive inventory and staffing adjustments",
+        "Marketing campaign analysis with automated optimization"
+      ]
+    },
+    {
+      "name": "Healthcare",
+      "description": "Moving from patient data analysis to proactive care recommendations and automated workflows",
+      "sage_applications": [
+        "Patient outcome analysis with proactive care plan adjustments",
+        "Resource allocation with automated scheduling optimization",
+        "Clinical research with automated protocol adjustments",
+        "Compliance monitoring with automatic documentation and reporting"
+      ]
+    },
+    {
+      "name": "Manufacturing & Logistics",
+      "description": "Transforming operational insights into automated supply chain and production optimizations",
+      "sage_applications": [
+        "Supply chain analysis with automated vendor and routing decisions",
+        "Quality control with immediate corrective action workflows",
+        "Predictive maintenance with automated service scheduling",
+        "Production planning with real-time resource reallocation"
+      ]
+    },
+    {
+      "name": "Consulting Services",
+      "description": "Empowering consultants to move from data analysis to strategic recommendations and automated client actions",
+      "sage_applications": [
+        "Client performance analysis with automated improvement recommendations",
+        "Benchmarking with strategic guidance for competitive positioning",
+        "ROI measurement with automated optimization suggestions",
+        "Custom analytics with actionable strategic roadmaps"
+      ]
+    },
+    {
+      "name": "Public Sector & Education",
+      "description": "Transforming performance tracking into proactive resource allocation and automated interventions",
+      "sage_applications": [
+        "Student performance tracking with automated intervention programs",
+        "Resource allocation with predictive budget optimization",
+        "Program effectiveness with automated improvement workflows",
+        "Compliance monitoring with proactive reporting and adjustments"
+      ]
+    }
+  ],
+  "solutions_by_size": [
+    {
+      "segment": "Emerging Businesses",
+      "description": "Startups and small businesses (1-50 employees) adopting SAGE principles for competitive advantage",
+      "sage_benefits": [
+        "Automated decision-making without requiring data science expertise",
+        "Strategic guidance that scales with business growth",
+        "Execution workflows that eliminate manual bottlenecks",
+        "Cost-effective intelligence-to-action platform"
+      ],
+      "typical_sage_use_cases": [
+        "Customer acquisition insights with automated marketing adjustments",
+        "Product-market fit analysis with strategic pivot recommendations",
+        "Marketing ROI analysis with automatic budget reallocation",
+        "Business performance monitoring with proactive alerts and actions"
+      ]
+    },
+    {
+      "segment": "Growth Companies",
+      "description": "Mid-size companies (50-500 employees) implementing SAGE for scalable decision-making",
+      "sage_benefits": [
+        "Cross-functional strategic guidance and automated workflows",
+        "Advanced predictive analytics with executable recommendations",
+        "Team collaboration with shared strategic insights and actions",
+        "Scalable automation that grows with organizational complexity"
+      ],
+      "typical_sage_use_cases": [
+        "Cross-departmental analytics with automated coordination workflows",
+        "Advanced customer segmentation with personalized action triggers",
+        "Operational efficiency analysis with automatic process optimization",
+        "Strategic planning with data-driven execution roadmaps"
+      ]
+    },
+    {
+      "segment": "Enterprise Organizations",
+      "description": "Large enterprises (500+ employees) deploying SAGE for enterprise-wide intelligence and execution",
+      "sage_benefits": [
+        "Enterprise-scale strategic guidance with governance and compliance",
+        "Complex multi-system integration with automated decision workflows",
+        "Advanced collaboration with role-based strategic insights and actions",
+        "Comprehensive audit trails for all AI-guided decisions and executions"
+      ],
+      "typical_sage_use_cases": [
+        "Enterprise-wide strategic analytics with automated execution workflows",
+        "Complex regulatory compliance with proactive monitoring and response",
+        "Multi-business unit coordination with strategic alignment automation",
+        "Executive decision support with real-time strategic guidance and execution"
+      ]
+    }
+  ],
+  "use_cases_by_department": [
+    {
+      "department": "Finance",
+      "description": "Moving from financial reporting to strategic financial guidance and automated actions",
+      "sage_applications": [
+        "Budget variance analysis with automated reallocation recommendations and approvals",
+        "Cash flow forecasting with proactive financing and investment actions",
+        "Revenue analysis with strategic pricing and product mix guidance",
+        "Cost optimization with automated vendor negotiations and contract adjustments",
+        "Financial planning with scenario-based strategic recommendations and execution"
+      ]
+    },
+    {
+      "department": "Marketing",
+      "description": "Transforming campaign analysis into strategic marketing guidance and automated optimizations",
+      "sage_applications": [
+        "Campaign performance analysis with real-time budget and targeting adjustments",
+        "Customer segmentation with automated personalization and outreach workflows",
+        "Attribution modeling with strategic channel investment recommendations",
+        "Lead scoring with automated nurturing and sales handoff workflows",
+        "Brand sentiment analysis with proactive reputation management actions"
+      ]
+    },
+    {
+      "department": "Operations",
+      "description": "Converting operational insights into strategic process guidance and automated optimizations",
+      "sage_applications": [
+        "Process efficiency analysis with automated workflow optimization",
+        "Resource allocation with predictive staffing and capacity adjustments",
+        "Quality monitoring with immediate corrective action workflows",
+        "Supply chain analysis with automated vendor and logistics optimization",
+        "Cost analysis with strategic sourcing recommendations and automated negotiations"
+      ]
+    },
+    {
+      "department": "Product",
+      "description": "Evolving from product analytics to strategic product guidance and automated feature management",
+      "sage_applications": [
+        "Feature usage analysis with automated A/B testing and rollout decisions",
+        "User behavior insights with proactive engagement and retention workflows",
+        "Product performance monitoring with strategic roadmap adjustments",
+        "Customer feedback analysis with automated product improvement workflows",
+        "Competitive analysis with strategic positioning and feature development guidance"
+      ]
+    },
+    {
+      "department": "Leadership",
+      "description": "Advancing from executive dashboards to strategic decision guidance and automated execution oversight",
+      "sage_applications": [
+        "Strategic KPI monitoring with proactive alerts and recommended actions",
+        "Market analysis with strategic positioning and competitive response guidance",
+        "Performance tracking with automated intervention and optimization workflows",
+        "Risk assessment with proactive mitigation strategies and automated responses",
+        "Competitive intelligence with strategic decision recommendations and execution tracking"
+      ]
+    }
+  ],
+  "key_differentiators": [
+    "World's first Strategic AI Guidance & Execution (SAGE) platform",
+    "Moves beyond traditional BI to provide strategic guidance and automated execution",
+    "Natural language interface that guides decisions, not just provides data",
+    "LinkDNA™ technology automatically discovers actionable relationships across data sources",
+    "Confidence-based recommendations with transparent decision-making processes",
+    "Real-time strategic guidance with immediate execution capabilities",
+    "Eliminates the gap between insight and action through automated workflows",
+    "Accessible to all business users, not just data analysts or technical teams"
+  ],
+  "pricing_model": {
+    "structure": "SAGE platform pricing based on strategic value and execution capabilities",
+    "plans": [
+      {
+        "name": "Launch",
+        "target": "Small teams adopting SAGE principles",
+        "features": [
+          "Basic strategic guidance",
+          "Standard integrations",
+          "Email support",
+          "Limited automation workflows"
+        ]
+      },
+      {
+        "name": "Grow",
+        "target": "Growing companies implementing SAGE at scale",
+        "features": [
+          "Advanced strategic analytics",
+          "10+ Integragions",
+          "Priority support",
+          "Full automation capabilities"
+        ]
+      },
+      {
+        "name": "Enterprise",
+        "target": "Large organizations deploying enterprise SAGE",
+        "features": [
+          "Complete SAGE platform",
+          "Custom strategic workflows",
+          "Dedicated support",
+          "Advanced governance and compliance"
+        ]
+      }
+    ],
+    "pricing_factors": [
+      "Strategic guidance complexity and frequency",
+      "Number of automated execution workflows",
+      "Data sources and integration complexity",
+      "User count and departmental scope",
+      "Advanced SAGE features and customization"
+    ]
+  },
+
+  "competitive_advantages": [
+    "First-mover advantage in defining and leading the SAGE category",
+    "Proprietary platform that implements all six pillars of Strategic AI Guidance & Execution",
+    "Seamless bridge between traditional BI insights and automated business execution",
+    "Natural language interface that provides strategic guidance, not just data visualization",
+    "Real-time decision orchestration with transparent confidence scoring",
+    "Enterprise-grade automation workflows with comprehensive governance",
+    "Democratizes strategic decision-making across all business users",
+    "Unified platform that eliminates the need for multiple disconnected analytics and automation tools"
+  ],
+  "integration_capabilities": [
+    {
+      "category": "Data Sources",
+      "systems": ["PostgreSQL", "MySQL", "MongoDB", "Oracle", "SQL Server", "SQLite"],
+      "sage_purpose": "Connects enterprise data across silos for comprehensive strategic analysis"
+    },
+    {
+      "category": "Cloud Data Warehouses",
+      "systems": ["Snowflake", "Google BigQuery", "Amazon Redshift", "Azure Synapse", "Databricks"],
+      "sage_purpose": "Integrates with modern data infrastructure for scalable strategic intelligence"
+    },
+    {
+      "category": "Business Applications",
+      "systems": ["Salesforce", "HubSpot", "Stripe", "Shopify", "Zendesk", "Intercom"],
+      "sage_purpose": "Enables automated execution workflows across operational systems"
+    },
+    {
+      "category": "Automation Platforms",
+      "systems": ["Zapier", "Microsoft Power Automate", "Workato", "MuleSoft", "Custom APIs"],
+      "sage_purpose": "Triggers strategic actions and workflows based on AI guidance"
+    },
+    {
+      "category": "Communication Tools",
+      "systems": ["Slack", "Microsoft Teams", "Email", "SMS", "Webhooks"],
+      "sage_purpose": "Delivers strategic guidance and coordinates execution across teams"
+    },
+    {
+      "category": "Cloud Platforms",
+      "systems": ["AWS", "Google Cloud", "Microsoft Azure", "Vercel", "Heroku"],
+      "sage_purpose": "Deploys SAGE capabilities with enterprise-grade scalability and security"
+    }
+  ],
+  "security_compliance": [
+    {
+      "standard": "SOC 2 Type II",
+      "description": "Comprehensive security controls for strategic data and automated execution workflows"
+    },
+    {
+      "standard": "GDPR Compliance",
+      "description": "Full compliance with data protection regulations for AI-guided decision making"
+    },
+    {
+      "standard": "Enterprise Encryption",
+      "description": "End-to-end encryption for strategic insights and execution commands"
+    },
+    {
+      "standard": "Role-Based Access Control",
+      "description": "Granular permissions for strategic guidance access and execution authority"
+    },
+    {
+      "standard": "Audit Logging",
+      "description": "Comprehensive tracking of all AI-guided decisions and automated executions"
+    },
+    {
+      "standard": "Governance Framework",
+      "description": "Built-in governance for strategic AI recommendations and automated business actions"
+    }
+  ],
+  "roadmap_highlights": [
+    {
+      "phase": "Q1 2025",
+      "features": ["Enhanced strategic visualization", "Mobile SAGE access", "Advanced execution APIs"]
+    },
+    {
+      "phase": "Q2 2025",
+      "features": ["Predictive strategic guidance", "Advanced collaboration workflows", "Custom SAGE model training"]
+    },
+    {
+      "phase": "Q3 2025",
+      "features": ["Real-time strategic streaming", "Advanced governance features", "Industry-specific SAGE templates"]
+    },
+    {
+      "phase": "Q4 2025",
+      "features": [
+        "AI-powered strategic planning",
+        "Advanced security and compliance",
+        "Global SAGE platform expansion"
+      ]
+    }
+  ],
+  "success_metrics": {
+    "decision_velocity": "90% reduction in time from insight to strategic action",
+    "execution_accuracy": "95% success rate in AI-guided automated executions",
+    "strategic_confidence": "98% confidence in strategic recommendations and guidance",
+    "operational_efficiency": "Average 60% reduction in manual decision-making processes",
+    "business_impact": "5x increase in strategic decision implementation speed across organizations"
+  },
+  "sage_adoption_framework": [
+    {
+      "step": "Map Decision Bottlenecks",
+      "description": "Identify where insights stall before strategic action in your organization"
+    },
+    {
+      "step": "Evaluate Disconnected Tools",
+      "description": "Assess duplication across BI, RPA, analytics, and dashboard tools"
+    },
+    {
+      "step": "Run SAGE Pilot",
+      "description": "Choose one strategic area for initial ANDI implementation and SAGE principles"
+    },
+    {
+      "step": "Measure Strategic Outcomes",
+      "description": "Focus on decision time, accuracy, and time-to-execution improvements"
+    },
+    {
+      "step": "Scale SAGE Intelligently",
+      "description": "Expand Strategic AI Guidance & Execution across departments and use cases"
+    }
+  ]
+}

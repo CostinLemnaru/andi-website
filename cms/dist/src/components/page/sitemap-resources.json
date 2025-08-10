@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_page_sitemap_resources",
+    "info": {
+        "displayName": "SitemapResources"
+    },
+    "options": {},
+    "attributes": {
+        "Resources": {
+            "type": "component",
+            "component": "miscellaneous.sitemap-resource",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}
