@@ -42,10 +42,10 @@ npm run start      # starts the Strapi API (no reload)
 ```
 
 Admin panel is served via Nginx at:  
-🌐 `https://cms.andi.zamora.ai`
+🌐 `https://cms.zamora.ai`
 
 Frontend is served at:  
-🌐 `https://andi.zamora.ai`
+🌐 `https://zamora.ai`
 
 ---
 
@@ -145,8 +145,8 @@ cms/**/*.db
 
 Strapi is reverse-proxied via **Nginx**:
 
-- `https://cms.andi.zamora.ai` → Strapi (`localhost:1337`)
-- `https://andi.zamora.ai` → Next.js frontend (`localhost:3000`)
+- `https://cms.zamora.ai` → Strapi (`localhost:1337`)
+- `https://zamora.ai` → Next.js frontend (`localhost:3000`)
 
 SSL certificates are handled with **Let's Encrypt** (`certbot`).
 
