@@ -8,6 +8,9 @@
     "Title": {
       "type": "string"
     },
+    "Description": {
+      "type": "blocks"
+    },
     "Items": {
       "type": "component",
       "component": "miscellaneous.box-icon-color",

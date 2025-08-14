@@ -1557,6 +1557,7 @@ export interface PageBoxIconListSection extends Struct.ComponentSchema {
     displayName: 'Box Icon List Section';
   };
   attributes: {
+    Description: Schema.Attribute.Blocks;
     hasBackground: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isTransparent: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isWideLayout: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1636,6 +1637,30 @@ export interface PageBoxListSteps extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBoxMessageSmall extends Struct.ComponentSchema {
+  collectionName: 'components_page_box_message_smalls';
+  info: {
+    displayName: 'Box Message small';
+  };
+  attributes: {
+    Content: Schema.Attribute.Blocks;
+    highlightWords: Schema.Attribute.String;
+  };
+}
+
+export interface PageBoxMessageWide extends Struct.ComponentSchema {
+  collectionName: 'components_page_box_message_wides';
+  info: {
+    displayName: 'Box Message wide';
+  };
+  attributes: {
+    highlightBlueWords: Schema.Attribute.String;
+    highlightPurpleWords: Schema.Attribute.String;
+    Subtitle: Schema.Attribute.String;
+    TItle: Schema.Attribute.String;
+  };
+}
+
 export interface PageBoxNestedSection extends Struct.ComponentSchema {
   collectionName: 'components_page_box_nested_sections';
   info: {
@@ -1666,6 +1691,19 @@ export interface PageBoxSimple extends Struct.ComponentSchema {
   };
   attributes: {
     Content: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageBoxTextWysiwg extends Struct.ComponentSchema {
+  collectionName: 'components_page_box_text_wysiwgs';
+  info: {
+    displayName: 'Box Text WYSIWG';
+  };
+  attributes: {
+    centered: Schema.Attribute.Boolean;
+    Content: Schema.Attribute.Blocks;
+    highlightWords: Schema.Attribute.String;
     Title: Schema.Attribute.String;
   };
 }
@@ -2298,6 +2336,26 @@ export interface PageColoredIconTitleSubtitleBoxes
         },
         number
       >;
+    highlightWords: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface PageColumnTextAndBox extends Struct.ComponentSchema {
+  collectionName: 'components_page_column_text_and_boxes';
+  info: {
+    displayName: 'Column text and box';
+  };
+  attributes: {
+    Content: Schema.Attribute.Text;
+    FeatureDescription1: Schema.Attribute.String;
+    FeatureDescription2: Schema.Attribute.String;
+    FeatureDescription3: Schema.Attribute.String;
+    FeatureDescription4: Schema.Attribute.String;
+    FeatureTitle1: Schema.Attribute.String;
+    FeatureTitle2: Schema.Attribute.String;
+    FeatureTitle3: Schema.Attribute.String;
+    FeatureTitle4: Schema.Attribute.String;
     highlightWords: Schema.Attribute.String;
     Title: Schema.Attribute.String;
   };
@@ -3326,9 +3384,12 @@ declare module '@strapi/strapi' {
       'page.box-items': PageBoxItems;
       'page.box-list-items': PageBoxListItems;
       'page.box-list-steps': PageBoxListSteps;
+      'page.box-message-small': PageBoxMessageSmall;
+      'page.box-message-wide': PageBoxMessageWide;
       'page.box-nested-section': PageBoxNestedSection;
       'page.box-q-and-a': PageBoxQAndA;
       'page.box-simple': PageBoxSimple;
+      'page.box-text-wysiwg': PageBoxTextWysiwg;
       'page.boxes-columns': PageBoxesColumns;
       'page.business-pulse-section': PageBusinessPulseSection;
       'page.button': PageButton;
@@ -3342,6 +3403,7 @@ declare module '@strapi/strapi' {
       'page.card-with-codeblock': PageCardWithCodeblock;
       'page.card-with-tags': PageCardWithTags;
       'page.colored-icon-title-subtitle-boxes': PageColoredIconTitleSubtitleBoxes;
+      'page.column-text-and-box': PageColumnTextAndBox;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
       'page.content': PageContent;

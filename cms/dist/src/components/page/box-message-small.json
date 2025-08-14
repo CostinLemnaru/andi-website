@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_page_box_message_smalls",
+    "info": {
+        "displayName": "Box Message small"
+    },
+    "options": {},
+    "attributes": {
+        "Content": {
+            "type": "blocks"
+        },
+        "highlightWords": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

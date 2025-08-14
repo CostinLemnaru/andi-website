@@ -1,0 +1,43 @@
+{
+    "collectionName": "components_page_column_text_and_boxes",
+    "info": {
+        "displayName": "Column text and box"
+    },
+    "options": {},
+    "attributes": {
+        "Title": {
+            "type": "string"
+        },
+        "Content": {
+            "type": "text"
+        },
+        "highlightWords": {
+            "type": "string"
+        },
+        "FeatureTitle1": {
+            "type": "string"
+        },
+        "FeatureDescription1": {
+            "type": "string"
+        },
+        "FeatureTitle2": {
+            "type": "string"
+        },
+        "FeatureDescription2": {
+            "type": "string"
+        },
+        "FeatureTitle3": {
+            "type": "string"
+        },
+        "FeatureDescription3": {
+            "type": "string"
+        },
+        "FeatureTitle4": {
+            "type": "string"
+        },
+        "FeatureDescription4": {
+            "type": "string"
+        }
+    },
+    "config": {}
+}

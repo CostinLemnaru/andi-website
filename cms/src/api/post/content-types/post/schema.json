@@ -106,7 +106,11 @@
         "page.glossary",
         "page.card-with-codeblock",
         "page.faqs",
-        "page.products"
+        "page.products",
+        "page.column-text-and-box",
+        "page.box-text-wysiwg",
+        "page.box-message-wide",
+        "page.box-message-small"
       ]
     }
   }

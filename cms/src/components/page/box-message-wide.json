@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_box_message_wides",
+  "info": {
+    "displayName": "Box Message wide"
+  },
+  "options": {},
+  "attributes": {
+    "TItle": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "highlightPurpleWords": {
+      "type": "string"
+    },
+    "highlightBlueWords": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

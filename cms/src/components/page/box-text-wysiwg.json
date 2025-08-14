@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_box_text_wysiwgs",
+  "info": {
+    "displayName": "Box Text WYSIWG"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "blocks"
+    },
+    "centered": {
+      "type": "boolean"
+    },
+    "highlightWords": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
