@@ -1,0 +1,15 @@
+{
+    "collectionName": "components_page_boxes_learn_mores",
+    "info": {
+        "displayName": "Boxes Learn More"
+    },
+    "options": {},
+    "attributes": {
+        "Boxes": {
+            "type": "component",
+            "component": "miscellaneous.card-learn-more",
+            "repeatable": true
+        }
+    },
+    "config": {}
+}

@@ -75,7 +75,7 @@ import CardWithCodeblocks from "@/components/CardWithCodeblocks"
 import Glossary from "@/components/Glossary"
 import KnowledgePack from "@/components/KnowledgePack"
 import Faqs from "@/components/Faqs"
-import Products from "@/components/Products"
+import BoxesLearnMore from "@/components/BoxesLearnMore"
 import BoxTextWysiwg from "@/components/BoxTextWysiwg"
 import ColumnTextAndBox from "@/components/ColumnTextAndBox"
 import BoxMessageSmall from "@/components/BoxMessageSmall"
@@ -144,7 +144,7 @@ export const componentsMap: Record<string, React.FC<any>> = {
   "page.glossary": Glossary,
   "page.knowledge-pack-tabs": KnowledgePack,
   "page.faqs": Faqs,
-  "page.products": Products,
+  "page.boxes-learn-more": BoxesLearnMore,
   "page.box-text-wysiwg": BoxTextWysiwg,
   "page.column-text-and-box": ColumnTextAndBox,
   "page.box-message-small": BoxMessageSmall,

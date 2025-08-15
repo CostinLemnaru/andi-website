@@ -471,6 +471,51 @@ export interface MiscellaneousCardButton extends Struct.ComponentSchema {
   };
 }
 
+export interface MiscellaneousCardLearnMore extends Struct.ComponentSchema {
+  collectionName: 'components_miscellaneous_card_learn_mores';
+  info: {
+    displayName: 'Card Learn More';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Enumeration<
+      [
+        'Bot',
+        'User',
+        'Check',
+        'MessageSquare',
+        'ArrowRight',
+        'Database',
+        'Server',
+        'Cpu',
+        'Brain',
+        'Link',
+        'Tag',
+        'Shield',
+        'Lock',
+        'Unlock',
+        'Zap',
+        'Activity',
+        'CheckCircle',
+        'XCircle',
+        'AlertTriangle',
+        'Globe',
+        'Search',
+        'BarChart2',
+        'Calendar',
+        'Layers',
+        'GitBranch',
+        'Compass',
+        'Rocket',
+        'Wand',
+        'Eye',
+      ]
+    >;
+    Title: Schema.Attribute.String;
+    Url: Schema.Attribute.String;
+  };
+}
+
 export interface MiscellaneousColoredBox extends Struct.ComponentSchema {
   collectionName: 'components_miscellaneous_colored_boxes';
   info: {
@@ -1721,6 +1766,16 @@ export interface PageBoxesColumns extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBoxesLearnMore extends Struct.ComponentSchema {
+  collectionName: 'components_page_boxes_learn_mores';
+  info: {
+    displayName: 'Boxes Learn More';
+  };
+  attributes: {
+    Boxes: Schema.Attribute.Component<'miscellaneous.card-learn-more', true>;
+  };
+}
+
 export interface PageBusinessPulseSection extends Struct.ComponentSchema {
   collectionName: 'components_page_business_pulse_sections';
   info: {
@@ -2712,14 +2767,6 @@ export interface PagePricingSection extends Struct.ComponentSchema {
   };
 }
 
-export interface PageProducts extends Struct.ComponentSchema {
-  collectionName: 'components_page_products';
-  info: {
-    displayName: 'Products';
-  };
-  attributes: {};
-}
-
 export interface PageRequestDemoBox extends Struct.ComponentSchema {
   collectionName: 'components_page_request_demo_boxes';
   info: {
@@ -3346,6 +3393,7 @@ declare module '@strapi/strapi' {
       'miscellaneous.business-pulse': MiscellaneousBusinessPulse;
       'miscellaneous.button': MiscellaneousButton;
       'miscellaneous.card-button': MiscellaneousCardButton;
+      'miscellaneous.card-learn-more': MiscellaneousCardLearnMore;
       'miscellaneous.colored-box': MiscellaneousColoredBox;
       'miscellaneous.colored-icon-title-subtitle-box': MiscellaneousColoredIconTitleSubtitleBox;
       'miscellaneous.icon-box': MiscellaneousIconBox;
@@ -3391,6 +3439,7 @@ declare module '@strapi/strapi' {
       'page.box-simple': PageBoxSimple;
       'page.box-text-wysiwg': PageBoxTextWysiwg;
       'page.boxes-columns': PageBoxesColumns;
+      'page.boxes-learn-more': PageBoxesLearnMore;
       'page.business-pulse-section': PageBusinessPulseSection;
       'page.button': PageButton;
       'page.card-2-columns': PageCard2Columns;
@@ -3426,7 +3475,6 @@ declare module '@strapi/strapi' {
       'page.post-box': PagePostBox;
       'page.posts-inline': PagePostsInline;
       'page.pricing-section': PagePricingSection;
-      'page.products': PageProducts;
       'page.request-demo-box': PageRequestDemoBox;
       'page.roadmap-boxes-section': PageRoadmapBoxesSection;
       'page.section-box-features-footer': PageSectionBoxFeaturesFooter;

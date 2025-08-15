@@ -115,11 +115,11 @@
         "page.card-with-codeblock",
         "page.glossary",
         "page.faqs",
-        "page.products",
         "page.column-text-and-box",
         "page.box-text-wysiwg",
         "page.box-message-wide",
-        "page.box-message-small"
+        "page.box-message-small",
+        "page.boxes-learn-more"
       ]
     }
   }

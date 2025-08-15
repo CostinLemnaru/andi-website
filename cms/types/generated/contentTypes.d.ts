@@ -530,11 +530,11 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.card-with-codeblock',
         'page.glossary',
         'page.faqs',
-        'page.products',
         'page.column-text-and-box',
         'page.box-text-wysiwg',
         'page.box-message-wide',
         'page.box-message-small',
+        'page.boxes-learn-more',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -653,11 +653,12 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
         'page.glossary',
         'page.card-with-codeblock',
         'page.faqs',
-        'page.products',
         'page.column-text-and-box',
         'page.box-text-wysiwg',
         'page.box-message-wide',
         'page.box-message-small',
+        'hero.hero-section',
+        'page.boxes-learn-more',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
