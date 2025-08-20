@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import HubspotForm from "@/components/HubspotForm";
 
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL
 
@@ -146,32 +147,7 @@ export default function HeroSection({ data }: { data: any }) {
       {/* Modal - Registration Form */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-          <DialogHeader>
-            <DialogTitle>Complete your registration</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Please provide additional information to get free POCs at launch.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="space-y-1">
-              <Label htmlFor="fullName" className="text-gray-400">Full Name</Label>
-              <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="company" className="text-gray-400">Company</Label>
-              <Input id="company" value={company} onChange={(e) => setCompany(e.target.value)} required />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="department" className="text-gray-400">Department</Label>
-              <Input id="department" value={department} onChange={(e) => setDepartment(e.target.value)} required />
-            </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
-            <div className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </Button>
-            </div>
-          </form>
+          <HubspotForm />
         </DialogContent>
       </Dialog>
 
