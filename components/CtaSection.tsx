@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import GradientText from "./gradient-text"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import HubspotForm from "@/components/HubspotForm";
 
 type Props = {
     data: any
@@ -276,66 +277,7 @@ export default function CtaSection({ data }: Props) {
             {/* Dialog with additional details form */}
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-                    <DialogHeader>
-                        <DialogTitle>Complete your registration</DialogTitle>
-                        <DialogDescription className="text-gray-400">
-                            Please provide additional information to get free POCs at launch.
-                        </DialogDescription>
-                    </DialogHeader>
-                    {/* This form submits to Google Sheets when submitted */}
-                    <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-                        <div className="space-y-1">
-                            <Label htmlFor="fullName" className="text-gray-400">
-                                Full Name
-                            </Label>
-                            <Input
-                                id="fullName"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
-                                required
-                                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-                            />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="company" className="text-gray-400">
-                                Company
-                            </Label>
-                            <Input
-                                id="company"
-                                value={company}
-                                onChange={(e) => setCompany(e.target.value)}
-                                required
-                                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-                            />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="department" className="text-gray-400">
-                                Department
-                            </Label>
-                            <Input
-                                id="department"
-                                value={department}
-                                onChange={(e) => setDepartment(e.target.value)}
-                                required
-                                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
-                            />
-                        </div>
-                        {error && <p className="text-sm text-red-500">{error}</p>}
-                        <div className="flex justify-end">
-                            <Button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white"
-                                style={{
-                                    animation: "gradient 8s linear infinite",
-                                    backgroundSize: "300% 100%",
-                                    backgroundPosition: "left",
-                                }}
-                            >
-                                {isSubmitting ? "Submitting..." : "Submit"}
-                            </Button>
-                        </div>
-                    </form>
+                    <HubspotForm />
                 </DialogContent>
             </Dialog>
         </section>

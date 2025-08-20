@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
+import HubspotForm from "@/components/HubspotForm";
 
 type ContactFormProps = {
   isOpen: boolean
@@ -47,7 +48,7 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
           >
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-white">Contact Us</h2>
+                <h2 className="text-xl font-bold text-white"></h2>
                 <button
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors focus:outline-none"
@@ -57,101 +58,8 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
                 </button>
               </div>
 
-              <p className="text-gray-300 mb-6">
-                Interested in our <span className="font-semibold text-white">{selectedPlan}</span> plan? Fill out the
-                form below and our team will get in touch with you.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your company"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">
-                    Role
-                  </label>
-                  <input
-                    type="text"
-                    id="role"
-                    name="role"
-                    required
-                    value={formData.role}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your role (e.g., CTO, Marketing Director)"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="useCase" className="block text-sm font-medium text-gray-300 mb-1">
-                    How would you like to use ANDI?
-                  </label>
-                  <textarea
-                    id="useCase"
-                    name="useCase"
-                    required
-                    value={formData.useCase}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                    placeholder="Tell us about your use case and requirements..."
-                  ></textarea>
-                </div>
-
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-md shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    Submit Request
-                  </button>
-                </div>
-              </form>
+              <HubspotForm />
+              
             </div>
           </motion.div>
         </div>
