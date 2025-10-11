@@ -17,7 +17,20 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Andi by Zamora",
   description: "The next generation of intelligence",
-  generator: 'v0.dev'
+  generator: "v0.dev",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon/favicon.ico", rel: "shortcut icon" },
+    ],
+    apple: [{ url: "/favicon/apple-touch-icon.png", sizes: "180x180" }],
+    other: [
+      { rel: "android-chrome", url: "/favicon/android-chrome-192x192.png" },
+      { rel: "android-chrome", url: "/favicon/android-chrome-512x512.png" },
+    ],
+  },
+  manifest: "/favicon/site.webmanifest",
 }
 
 export default function RootLayout({
