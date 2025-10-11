@@ -42,6 +42,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head />
       <body className={`${montserrat.className} antialiased`}>
+        <link rel="stylesheet" href="/hubspot-chat.css" />
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
