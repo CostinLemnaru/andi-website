@@ -1515,6 +1515,14 @@ export interface PageAiPolicyTabs extends Struct.ComponentSchema {
   };
 }
 
+export interface PageAndiLogin extends Struct.ComponentSchema {
+  collectionName: 'components_page_andi_logins';
+  info: {
+    displayName: 'Andi Login';
+  };
+  attributes: {};
+}
+
 export interface PageBgColoredBoxed extends Struct.ComponentSchema {
   collectionName: 'components_page_bg_colored_boxeds';
   info: {
@@ -2438,6 +2446,14 @@ export interface PageColumnsTextBox extends Struct.ComponentSchema {
     RightColumn: Schema.Attribute.Blocks;
     Title: Schema.Attribute.String;
   };
+}
+
+export interface PageContactPage extends Struct.ComponentSchema {
+  collectionName: 'components_page_contact_pages';
+  info: {
+    displayName: 'Contact Page';
+  };
+  attributes: {};
 }
 
 export interface PageContent extends Struct.ComponentSchema {
@@ -3426,6 +3442,7 @@ declare module '@strapi/strapi' {
       'page.accordion-json': PageAccordionJson;
       'page.add-ons-section': PageAddOnsSection;
       'page.ai-policy-tabs': PageAiPolicyTabs;
+      'page.andi-login': PageAndiLogin;
       'page.bg-colored-boxed': PageBgColoredBoxed;
       'page.box-icon': PageBoxIcon;
       'page.box-icon-list-section': PageBoxIconListSection;
@@ -3455,6 +3472,7 @@ declare module '@strapi/strapi' {
       'page.column-text-and-box': PageColumnTextAndBox;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
+      'page.contact-page': PageContactPage;
       'page.content': PageContent;
       'page.cta-section': PageCtaSection;
       'page.early-acces-button': PageEarlyAccesButton;
