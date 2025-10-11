@@ -2440,6 +2440,14 @@ export interface PageColumnsTextBox extends Struct.ComponentSchema {
   };
 }
 
+export interface PageContactPage extends Struct.ComponentSchema {
+  collectionName: 'components_page_contact_pages';
+  info: {
+    displayName: 'Contact Page';
+  };
+  attributes: {};
+}
+
 export interface PageContent extends Struct.ComponentSchema {
   collectionName: 'components_page_contents';
   info: {
@@ -3455,6 +3463,7 @@ declare module '@strapi/strapi' {
       'page.column-text-and-box': PageColumnTextAndBox;
       'page.columns-list-section': PageColumnsListSection;
       'page.columns-text-box': PageColumnsTextBox;
+      'page.contact-page': PageContactPage;
       'page.content': PageContent;
       'page.cta-section': PageCtaSection;
       'page.early-acces-button': PageEarlyAccesButton;

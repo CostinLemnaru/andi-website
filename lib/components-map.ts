@@ -80,6 +80,7 @@ import BoxTextWysiwg from "@/components/BoxTextWysiwg"
 import ColumnTextAndBox from "@/components/ColumnTextAndBox"
 import BoxMessageSmall from "@/components/BoxMessageSmall"
 import BoxMessageWide from "@/components/BoxMessageWide"
+import ContactPage from "@/components/contact-page"
 
 export const componentsMap: Record<string, React.FC<any>> = {
   "hero.hero-section": HeroSection,
@@ -149,6 +150,7 @@ export const componentsMap: Record<string, React.FC<any>> = {
   "page.column-text-and-box": ColumnTextAndBox,
   "page.box-message-small": BoxMessageSmall,
   "page.box-message-wide": BoxMessageWide,
+  "page.contact-page": ContactPage,
   "posts.content": PostContent,
   "posts.list": PostList,
   "posts.evolution-tabs": PostEvolutionTabs,

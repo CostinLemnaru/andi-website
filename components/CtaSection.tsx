@@ -16,15 +16,21 @@ export default function CtaSection({ data }: Props) {
     const [email, setEmail] = useState("")
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false)
-    const [fullName, setFullName] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [useCase, setUseCase] = useState("")
     const [company, setCompany] = useState("")
     const [department, setDepartment] = useState("")
+    const [keepUpdated, setKeepUpdated] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState("")
+    const [emailErrors, setEmailErrors] = useState<Record<string, string>>({})
+
     const formRef = useRef<HTMLFormElement>(null)
     const exploreRef = useRef<HTMLDivElement>(null)
     const sectionsRef = useRef<HTMLDivElement>(null)
 
+    //  UI scroll effects (păstrat exact cum aveai)
     useEffect(() => {
         let ticking = false
         let animationFrameId: number
@@ -33,79 +39,53 @@ export default function CtaSection({ data }: Props) {
             const scrollElements = document.querySelectorAll(".scroll-fade")
             const windowHeight = window.innerHeight
             const windowCenter = windowHeight / 2
-
-            // Check if we're at the bottom of the page
             const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100
 
             scrollElements.forEach((element) => {
                 const rect = element.getBoundingClientRect()
-
-                // Check for special classes
                 const isFadeFromTop = element.classList.contains("fade-from-top")
                 const isFadeAtBottom = element.classList.contains("fade-at-bottom")
                 const isFadeEarly = element.classList.contains("fade-early")
-
                 let opacity = 0
 
-                // Special case for elements that should be visible at the bottom of the page
                 if (isFadeAtBottom && isAtBottom) {
                     opacity = 1
                 } else if (isFadeFromTop) {
-                    // For roadmap section:
-                    // 1. Start fading in when top reaches center
-                    // 2. Fully visible when top is above center
-                    // 3. Stay visible until bottom reaches center
-                    // 4. Start fading out when bottom moves above center
-
                     if (rect.top <= windowCenter) {
                         if (rect.bottom >= windowCenter) {
-                            // Element is still in view (between top passing center and bottom passing center)
                             opacity = 1
                         } else {
-                            // Bottom has passed center, start fading out
                             const distanceFromCenter = (rect.bottom - windowCenter) / windowHeight
                             opacity = Math.max(0, 1 + distanceFromCenter * 2)
                         }
                     } else {
-                        // Top hasn't reached center yet, calculate fade in
                         const distanceFromCenter = (rect.top - windowCenter) / windowHeight
                         opacity = Math.max(0, 1 - distanceFromCenter * 2)
                     }
                 } else if (isFadeEarly) {
-                    // For ROI calculator - start fading in as soon as top enters viewport
                     if (rect.top <= windowHeight) {
-                        // Element top is visible in viewport, calculate fade based on how much is visible
                         if (rect.top <= windowHeight * 0.8) {
-                            // Fully visible when top reaches 80% of viewport height
                             opacity = 1
                         } else {
-                            // Gradual fade in from 100% to 80% of viewport height
                             const fadeProgress = (windowHeight - rect.top) / (windowHeight * 0.2)
                             opacity = Math.max(0, Math.min(1, fadeProgress))
                         }
                     } else {
-                        // Element not yet visible
                         opacity = 0
                     }
                 } else {
-                    // For all other elements, use modified calculation to fade out later when scrolling up
                     const elementCenter = rect.top + rect.height / 2
                     const distanceFromCenter = (elementCenter - windowCenter) / windowHeight
-                    // If element is above center (scrolling up), use a gentler fade rate
                     if (distanceFromCenter < 0) {
-                        // Element is above center (scrolling up) - fade out more slowly
-                        opacity = Math.max(0, 1 - Math.abs(distanceFromCenter * 1.2)) // Reduced from 2 to 1.2 for slower fade
+                        opacity = Math.max(0, 1 - Math.abs(distanceFromCenter * 1.2))
                     } else {
-                        // Element is below center (scrolling down) - use original fade rate
                         opacity = Math.max(0, 1 - Math.abs(distanceFromCenter * 2))
                     }
                 }
-                // Apply opacity directly without transitions for immediate effect
-                ; (element as HTMLElement).style.opacity = opacity.toString()
 
-                // Apply transform based on position (subtle parallax effect)
+                ; (element as HTMLElement).style.opacity = opacity.toString()
                 const distanceFromCenter = (rect.top + rect.height / 2 - windowCenter) / windowHeight
-                const translateY = Math.abs(distanceFromCenter) * 20 // max 20px shift
+                const translateY = Math.abs(distanceFromCenter) * 20
                     ; (element as HTMLElement).style.transform = `translateY(${distanceFromCenter > 0 ? translateY : 0}px)`
             })
 
@@ -114,66 +94,134 @@ export default function CtaSection({ data }: Props) {
 
         const handleScroll = () => {
             if (!ticking) {
-                // Use requestAnimationFrame for smoother animations
                 ticking = true
                 animationFrameId = window.requestAnimationFrame(updateElements)
             }
         }
 
-        // Initial update
         updateElements()
-
-        // Add scroll event listener
         window.addEventListener("scroll", handleScroll, { passive: true })
 
         return () => {
             window.removeEventListener("scroll", handleScroll)
-            if (animationFrameId) {
-                window.cancelAnimationFrame(animationFrameId)
-            }
+            if (animationFrameId) window.cancelAnimationFrame(animationFrameId)
         }
     }, [])
+    // ———————————————————————————————————
+
+    // Helpers — validare email business
+    const personalDomains = [
+        "gmail.com", "gmail.co.uk", "gmail.ca", "gmail.com.au", "gmail.de", "gmail.fr", "gmail.it", "gmail.es",
+        "yahoo.com", "yahoo.co.uk", "yahoo.ca", "yahoo.com.au", "yahoo.de", "yahoo.fr", "yahoo.it", "yahoo.es",
+        "aol.com", "aol.co.uk", "aol.ca", "aol.com.au", "aol.de", "aol.fr",
+        "hotmail.com", "hotmail.co.uk", "hotmail.ca", "hotmail.com.au", "hotmail.de", "hotmail.fr",
+        "outlook.com", "outlook.co.uk", "outlook.ca", "outlook.com.au", "outlook.de", "outlook.fr",
+        "live.com", "live.co.uk", "live.ca", "live.com.au", "live.de", "live.fr"
+    ]
+    const validateBusinessEmail = (v: string) => {
+        const okFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+        if (!okFormat) return { ok: false, msg: "Please enter a valid email" }
+        const domain = v.split("@")[1]?.toLowerCase()
+        if (domain && personalDomains.includes(domain)) {
+            return { ok: false, msg: "Please use a valid business email address" }
+        }
+        return { ok: true, msg: "" }
+    }
+    const setFieldEmailError = (key: string, msg: string) => setEmailErrors((p) => ({ ...p, [key]: msg }))
+    const clearEmailError = (key: string) => emailErrors[key] && setEmailErrors((p) => ({ ...p, [key]: "" }))
+
+    // Helpers — cookie hutk pentru HubSpot
+    const getCookie = (name: string) => {
+        if (typeof document === "undefined") return ""
+        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"))
+        return match ? decodeURIComponent(match[2]) : ""
+    }
+
+    // Submit către HubSpot (principal)
+    const submitToHubSpot = async () => {
+        const hutk = getCookie("hubspotutk")
+
+        const payload = {
+            fields: [
+                { name: "email", value: email },
+                { name: "firstname", value: firstName },
+                { name: "lastname", value: lastName },
+                { name: "company", value: company },
+                { name: "use_case", value: useCase }, // nu ai câmp în UI aici; rămâne empty (sau adaugă un textarea dacă vrei)
+                { name: "role_department", value: department },
+                { name: "LEGAL_CONSENT.subscription_type_1062787159", value: keepUpdated ? "true" : "false" },
+                { name: "LEGAL_CONSENT.processing", value: "true" },
+            ],
+            context: {
+                pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai",
+                pageName: typeof document !== "undefined" ? document.title : "Landing",
+                hutk: hutk || undefined,
+            },
+        }
+
+        const res = await fetch("/api/hubspot/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(payload),
+        })
+
+        if (!res.ok) {
+            const text = await res.text().catch(() => "")
+            throw new Error(`HubSpot submit failed (${res.status}): ${text}`)
+        }
+
+        return res.json()
+    }
 
     // Scroll to explore section
     const scrollToExplore = () => {
         exploreRef.current?.scrollIntoView({ behavior: "smooth" })
     }
 
-    // This function only opens the dialog, it doesn't submit anything
+    // Formularul inițial (email) — doar deschide dialog dacă emailul e valid business
     const handleEmailSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (email) {
-            setIsDialogOpen(true)
+        const v = validateBusinessEmail(email)
+        if (!v.ok) {
+            setFieldEmailError("top", v.msg)
+            return
         }
+        setIsDialogOpen(true)
     }
 
-    // This function handles the actual submission with all details
+    // Formularul din dialog — trimite la HubSpot (+ fallback-urile tale)
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
         setError("")
 
+        const v = validateBusinessEmail(email)
+        if (!v.ok) {
+            setFieldEmailError("dialog", v.msg)
+            setIsSubmitting(false)
+            return
+        }
+
         try {
-            // Only submit to Google Sheets when the dialog form is submitted
-            await fallbackSubmit()
+            // 1) HubSpot (principal)
+            await submitToHubSpot()
 
-            // Also try the server action as a backup
-            const result = await submitToGoogleSheets({
-                email,
-                fullName,
-                company,
-                department,
-            })
+            // 2) Fallback: form ascuns (Sheets via Apps Script)
+            // await fallbackSubmit()
 
-            // Close the form dialog and show the success dialog
+
             setIsDialogOpen(false)
             setIsSuccessDialogOpen(true)
 
-            // Reset form fields
+            // reset
             setEmail("")
-            setFullName("")
+            setFirstName("")
+            setLastName("")
+            setUseCase("")
             setCompany("")
             setDepartment("")
+            setKeepUpdated(true)
         } catch (err) {
             console.error("Form submission error:", err)
             setError("Failed to submit. Please try again.")
@@ -182,48 +230,18 @@ export default function CtaSection({ data }: Props) {
         }
     }
 
-    const fallbackSubmit = async () => {
-        return new Promise<void>((resolve) => {
-            try {
-                // Set all form values in the hidden form
-                const directEmailInput = document.getElementById("direct-email") as HTMLInputElement
-                const directNameInput = document.getElementById("direct-fullName") as HTMLInputElement
-                const directCompanyInput = document.getElementById("direct-company") as HTMLInputElement
-                const directDepartmentInput = document.getElementById("direct-department") as HTMLInputElement
-
-                if (directEmailInput) directEmailInput.value = email
-                if (directNameInput) directNameInput.value = fullName
-                if (directCompanyInput) directCompanyInput.value = company
-                if (directDepartmentInput) directDepartmentInput.value = department
-
-                // Submit the form
-                if (formRef.current) {
-                    formRef.current.submit()
-                }
-
-                // Consider this successful regardless of actual result
-                // since we can't track the result of a no-cors form submission
-                setTimeout(resolve, 500)
-            } catch (err) {
-                console.error("Fallback error:", err)
-                // Resolve anyway to prevent blocking the UI
-                resolve()
-            }
-        })
-    }
-
     return (
         <section className="relative z-10 py-24 px-4 sm:px-6">
             <div className="max-w-4xl mx-auto text-center">
                 <h2 className="scroll-fade fade-at-bottom text-3xl sm:text-4xl font-light mb-6 text-gray-400">
                     {data.Title.split("andi").map((part: string, i: number, arr: string[]) =>
                         i < arr.length - 1 ? (
-                        <span key={i}>
-                            {part}
-                            <GradientText>ANDI</GradientText>
-                        </span>
+                            <span key={i}>
+                                {part}
+                                <GradientText>ANDI</GradientText>
+                            </span>
                         ) : (
-                        <span key={i}>{part}</span>
+                            <span key={i}>{part}</span>
                         )
                     )}
                 </h2>
@@ -231,49 +249,41 @@ export default function CtaSection({ data }: Props) {
                     {data.Description}
                 </p>
 
-                <form onSubmit={handleEmailSubmit} className="scroll-fade fade-at-bottom mx-auto w-full max-w-md px-4">
-                    <div className="flex flex-col gap-4 sm:flex-row">
+                {/* FORMULAR INIȚIAL */}
+                <form
+                    onSubmit={handleEmailSubmit}
+                    className="scroll-fade fade-at-bottom mx-auto w-full max-w-md px-4"
+                    data-hs-ignore="true"
+                >
+                    <div className="flex flex-col gap-2 sm:flex-row">
                         <Input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="your.email@company.com"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                                clearEmailError("top")
+                            }}
+                            onBlur={(e) => {
+                                const v = validateBusinessEmail(e.target.value)
+                                if (!v.ok) setFieldEmailError("top", v.msg)
+                            }}
                             required
                             className="h-12 flex-1 bg-gray-900/50 border border-gray-800 text-white placeholder:text-gray-400 backdrop-blur-sm focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
                         />
                         <Button
                             type="submit"
                             className="h-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6"
-                            style={{
-                                animation: "gradient 8s linear infinite",
-                                backgroundSize: "300% 100%",
-                                backgroundPosition: "left",
-                            }}
+                            style={{ animation: "gradient 8s linear infinite", backgroundSize: "300% 100%", backgroundPosition: "left" }}
                         >
                             {data.CtaButton}
                         </Button>
                     </div>
+                    {emailErrors.top && <p className="text-red-400 text-sm mt-1 text-left">{emailErrors.top}</p>}
                 </form>
             </div>
 
-            {/* Hidden form for direct submission fallback - only used when dialog form is submitted */}
-            <form
-                id="directSubmitForm"
-                ref={formRef}
-                method="POST"
-                action="https://script.google.com/macros/s/AKfycbyUZ6-YLtr13J4Gqmp5JoqmUssQifIIGZrb9jdeVUgm_Ujk4hKATmKpvQ_07O3AyWST/exec"
-                target="hidden-iframe"
-                style={{ display: "none" }}
-            >
-                <input type="email" name="email" id="direct-email" />
-                <input type="text" name="fullName" id="direct-fullName" />
-                <input type="text" name="company" id="direct-company" />
-                <input type="text" name="department" id="direct-department" />
-                <input type="submit" value="Submit" />
-            </form>
-            <iframe name="hidden-iframe" style={{ display: "none" }}></iframe>
-
-            {/* Dialog with additional details form */}
+            {/* DIALOG COMPLETARE */}
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
                     <DialogHeader>
@@ -282,60 +292,128 @@ export default function CtaSection({ data }: Props) {
                             Please provide additional information to get free POCs at launch.
                         </DialogDescription>
                     </DialogHeader>
-                    {/* This form submits to Google Sheets when submitted */}
-                    <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
+
+                    <form onSubmit={handleFormSubmit} className="space-y-4 pt-4" data-hs-ignore="true">
                         <div className="space-y-1">
-                            <Label htmlFor="fullName" className="text-gray-400">
-                                Full Name
-                            </Label>
+                            <Label htmlFor="dialog-email" className="text-gray-400">Business Email</Label>
                             <Input
-                                id="fullName"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
+                                id="dialog-email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value)
+                                    clearEmailError("dialog")
+                                }}
+                                onBlur={(e) => {
+                                    const v = validateBusinessEmail(e.target.value)
+                                    if (!v.ok) setFieldEmailError("dialog", v.msg)
+                                }}
                                 required
+                                placeholder="your.email@company.com"
                                 className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
                             />
+                            {emailErrors.dialog && <p className="text-red-400 text-sm">{emailErrors.dialog}</p>}
                         </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="company" className="text-gray-400">
-                                Company
-                            </Label>
-                            <Input
-                                id="company"
-                                value={company}
-                                onChange={(e) => setCompany(e.target.value)}
+
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <input
+                                type="text"
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
                                 required
-                                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
+                                className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                                required
                             />
                         </div>
+                        <input
+                            type="text"
+                            placeholder="Company"
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                            className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Role/Department"
+                            value={department}
+                            onChange={(e) => setDepartment(e.target.value)}
+                            className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                            required
+                        />
                         <div className="space-y-1">
-                            <Label htmlFor="department" className="text-gray-400">
-                                Department
+                            <Label htmlFor="useCase" className="text-gray-400">
+                                Use Case
                             </Label>
-                            <Input
-                                id="department"
-                                value={department}
-                                onChange={(e) => setDepartment(e.target.value)}
-                                required
-                                className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                            <textarea
+                                id="useCase"
+                                value={useCase}
+                                onChange={(e) => setUseCase(e.target.value)}
+                                placeholder="What's the #1 challenge you'd like us to help with?"
+                                rows={3}
+                                className="w-full px-3 py-2 bg-gray-900/50 border border-gray-800 text-white placeholder:text-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500 rounded-md resize-none"
                             />
                         </div>
+
+                        <label className="flex items-center gap-2 text-gray-400 text-sm">
+                            <input
+                                type="checkbox"
+                                checked={keepUpdated}
+                                onChange={(e) => setKeepUpdated(e.target.checked)}
+                                className="w-4 h-4 text-purple-600 bg-gray-900/50 border-gray-800 rounded focus:ring-purple-500 focus:ring-2"
+                            />
+                            Keep me updated with launch news and resources
+                        </label>
+
                         {error && <p className="text-sm text-red-500">{error}</p>}
+
                         <div className="flex justify-end">
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white"
-                                style={{
-                                    animation: "gradient 8s linear infinite",
-                                    backgroundSize: "300% 100%",
-                                    backgroundPosition: "left",
-                                }}
+                                style={{ animation: "gradient 8s linear infinite", backgroundSize: "300% 100%", backgroundPosition: "left" }}
                             >
                                 {isSubmitting ? "Submitting..." : "Submit"}
                             </Button>
                         </div>
                     </form>
+                </DialogContent>
+            </Dialog>
+
+            {/* DIALOG DE SUCCES */}
+            <Dialog open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
+                <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white text-center">
+                    <div className="py-6 flex flex-col items-center">
+                        <div className="mb-4 text-2xl sm:text-3xl md:text-4xl">
+                            <DialogTitle>
+                                <GradientText>Welcome to the future!</GradientText>
+                            </DialogTitle>
+                        </div>
+                        <p className="text-lg text-gray-400 mb-6">
+                            The next era of AI is coming... and you'll be among the first to experience it!
+                        </p>
+                        <Button
+                            onClick={() => setIsSuccessDialogOpen(false)}
+                            className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-8"
+                            style={{
+                                animation: "gradient 8s linear infinite",
+                                backgroundSize: "300% 100%",
+                                backgroundPosition: "left",
+                            }}
+                        >
+                            OK
+                        </Button>
+                    </div>
                 </DialogContent>
             </Dialog>
         </section>

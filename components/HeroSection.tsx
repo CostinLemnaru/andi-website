@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import GradientText from "./gradient-text"
 import RotatingWords from "./rotating-words"
 import ActionWords from "./action-words"
@@ -19,12 +19,208 @@ export default function HeroSection({ data }: { data: any }) {
   const [department, setDepartment] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState("")
+  const formRef = useRef<HTMLFormElement>(null)
+  const exploreRef = useRef<HTMLDivElement>(null)
+  const sectionsRef = useRef<HTMLDivElement>(null)
+  const [selectedVersion, setSelectedVersion] = useState("mvp")
+
+  const [implementationScope, setImplementationScope] = useState<"company-wide" | "team">("team")
+  const [companySize, setCompanySize] = useState(100)
+  const [teamSize, setTeamSize] = useState(5)
+  const [numberOfTeams, setNumberOfTeams] = useState(1)
+  const [avgAnalystSalary, setAvgAnalystSalary] = useState(85000)
+  const [hoursPerWeek, setHoursPerWeek] = useState(20)
+  const [currentToolCost, setCurrentToolCost] = useState(30000)
+
+  // Temporary input values for display while typing
+  const [companySizeInput, setCompanySizeInput] = useState("100")
+  const [teamSizeInput, setTeamSizeInput] = useState("5")
+  const [numberOfTeamsInput, setNumberOfTeamsInput] = useState("1")
+  const [avgAnalystSalaryInput, setAvgAnalystSalaryInput] = useState("85,000")
+  const [hoursPerWeekInput, setHoursPerWeekInput] = useState("20")
+  const [currentToolCostInput, setCurrentToolCostInput] = useState("30,000")
+
+  const [employees, setEmployees] = useState(100)
+  const [decisionMakers, setDecisionMakers] = useState(1)
+  const [avgSalary, setAvgSalary] = useState(100000)
+  // const [currentToolCost, setCurrentToolCost] = useState(30000)
+  const [decisionTime, setDecisionTime] = useState(1)
+  const [decisionsPerWeek, setDecisionsPerWeek] = useState(1)
+
+  // Temporary input values for display while typing
+  const [employeesInput, setEmployeesInput] = useState("100")
+  const [decisionMakersInput, setDecisionMakersInput] = useState("1")
+  const [avgSalaryInput, setAvgSalaryInput] = useState("100,000")
+  // const [currentToolCostInput, setCurrentToolCostInput] = useState("30,000")
+  const [decisionTimeInput, setDecisionTimeInput] = useState("1")
+  const [decisionsPerWeekInput, setDecisionsPerWeekInput] = useState("1")
+
+  const [isReportDialogOpen, setIsReportDialogOpen] = useState(false)
+  const [reportForm, setReportForm] = useState({
+    firstName: "",
+    lastName: "",
+    role: "",
+    department: "",
+    email: "",
+    company: "",
+  })
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false)
+
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false)
+  const [contactForm, setContactForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    role: "",
+    message: "",
+  })
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false)
+  const [isContactSuccessDialogOpen, setIsContactSuccessDialogOpen] = useState(false)
+
+  const [useCase, setUseCase] = useState("")
+  const [keepUpdated, setKeepUpdated] = useState(true)
+
+  const [emailErrors, setEmailErrors] = useState<Record<string, string>>({})
+
+  const validateBusinessEmail = (email: string) => {
+    const personalDomains = [
+      // Gmail variants
+      "gmail.com",
+      "gmail.co.uk",
+      "gmail.ca",
+      "gmail.com.au",
+      "gmail.de",
+      "gmail.fr",
+      "gmail.it",
+      "gmail.es",
+      // Yahoo variants
+      "yahoo.com",
+      "yahoo.co.uk",
+      "yahoo.ca",
+      "yahoo.com.au",
+      "yahoo.de",
+      "yahoo.fr",
+      "yahoo.it",
+      "yahoo.es",
+      // AOL variants
+      "aol.com",
+      "aol.co.uk",
+      "aol.ca",
+      "aol.com.au",
+      "aol.de",
+      "aol.fr",
+      // Other common personal email providers
+      "hotmail.com",
+      "hotmail.co.uk",
+      "hotmail.ca",
+      "hotmail.com.au",
+      "hotmail.de",
+      "hotmail.fr",
+      "outlook.com",
+      "outlook.co.uk",
+      "outlook.ca",
+      "outlook.com.au",
+      "outlook.de",
+      "outlook.fr",
+      "live.com",
+      "live.co.uk",
+      "live.ca",
+      "live.com.au",
+      "live.de",
+      "live.fr",
+    ]
+    const domain = email.split("@")[1]?.toLowerCase()
+    return !personalDomains.includes(domain)
+  }
+
+  const handleEmailBlur = (email: string, fieldName: string) => {
+    if (email.trim()) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setEmailErrors((prev) => ({ ...prev, [fieldName]: "Please enter a valid email" }))
+      } else if (!validateBusinessEmail(email)) {
+        setEmailErrors((prev) => ({ ...prev, [fieldName]: "Please use a valid business email address" }))
+      } else {
+        setEmailErrors((prev) => ({ ...prev, [fieldName]: "" }))
+      }
+    }
+  }
+
+  const clearEmailError = (fieldName: string) => {
+    if (emailErrors[fieldName]) {
+      setEmailErrors((prev) => ({ ...prev, [fieldName]: "" }))
+    }
+  }
+
+  const [earlyAccessEmail, setEarlyAccessEmail] = useState("")
+
 
   const { Title, Description, CtaText } = data
 
+  const handleEarlyAccessSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateBusinessEmail(earlyAccessEmail)) {
+      setEmailErrors((prev) => ({ ...prev, earlyAccess: "Please use a valid business email address" }))
+      return
+    }
+
+    setEmail(earlyAccessEmail)
+    setIsDialogOpen(true)
+  }
+
+  // This function only opens the dialog, it doesn't submit anything
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsDialogOpen(true)
+
+    if (!validateBusinessEmail(email)) {
+      setEmailErrors((prev) => ({ ...prev, bottom: "Please use a valid business email address" }))
+      return
+    }
+
+    if (email) {
+      setIsDialogOpen(true)
+    }
+  }
+
+  const getCookie = (name: string) => {
+    if (typeof document === "undefined") return ""
+    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+    return match ? decodeURIComponent(match[2]) : ""
+  }
+
+  const submitToHubSpot = async () => {
+    const hutk = getCookie("hubspotutk")
+    const payload = {
+      fields: [
+        { name: "email", value: email },
+        { name: "firstname", value: firstName },
+        { name: "lastname", value: lastName },
+        { name: "company", value: company },
+        { name: "use_case", value: useCase || "" },
+        { name: "role_department", value: department },
+        { name: "LEGAL_CONSENT.subscription_type_1062787159", value: keepUpdated ? "true" : "false" },
+        { name: "LEGAL_CONSENT.processing", value: "true" },
+      ],
+      context: {
+        pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai",
+        pageName: typeof document !== "undefined" ? document.title : "Landing",
+        hutk: hutk || undefined,
+      },
+    }
+
+    const res = await fetch("/api/hubspot/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "")
+      throw new Error(`HubSpot submit failed (${res.status}): ${text}`)
+    }
+
+    return res.json()
   }
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -33,21 +229,68 @@ export default function HeroSection({ data }: { data: any }) {
     setError("")
 
     try {
-      // Replace with actual submission logic
-      await new Promise((r) => setTimeout(r, 1000))
+      // 1) trimite către HubSpot (cererea reală)
+      await submitToHubSpot()
 
+      // 2) opțional: și fallbackul tău spre Google Sheets
+      // await fallbackSubmit()
+
+      // succes UI
       setIsDialogOpen(false)
       setIsSuccessDialogOpen(true)
+
+      // reset câmpuri
       setEmail("")
-      setFullName("")
+      setFirstName("")
+      setLastName("")
       setCompany("")
       setDepartment("")
-    } catch (err) {
-      setError("Submission failed. Try again.")
+      setUseCase("")
+      setKeepUpdated(true)
+    } catch (err: any) {
+      console.error("Form submission error:", err)
+      setError("Failed to submit. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
   }
+
+  const fallbackSubmit = async () => {
+    return new Promise<void>((resolve) => {
+      try {
+        // Set all form values in the hidden form
+        const directEmailInput = document.getElementById("direct-email") as HTMLInputElement
+        const directNameInput = document.getElementById("direct-fullName") as HTMLInputElement
+        const directCompanyInput = document.getElementById("direct-company") as HTMLInputElement
+        const directDepartmentInput = document.getElementById("direct-department") as HTMLInputElement
+        const directUseCaseInput = document.getElementById("direct-useCase") as HTMLInputElement
+        const directKeepUpdatedInput = document.getElementById("direct-keepUpdated") as HTMLInputElement
+
+        if (directEmailInput) directEmailInput.value = email
+        if (directNameInput) directNameInput.value = `${firstName} ${lastName}`
+        if (directCompanyInput) directCompanyInput.value = company
+        if (directDepartmentInput) directDepartmentInput.value = department
+        if (directUseCaseInput) directUseCaseInput.value = useCase
+        if (directKeepUpdatedInput) directKeepUpdatedInput.checked = keepUpdated
+
+        // Submit the form
+        if (formRef.current) {
+          formRef.current.submit()
+        }
+
+        // Consider this successful regardless of actual result
+        // since we can't track the result of a no-cors form submission
+        setTimeout(resolve, 500)
+      } catch (err) {
+        console.error("Fallback error:", err)
+        // Resolve anyway to prevent blocking the UI
+        resolve()
+      }
+    })
+  }
+
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
 
   const scrollToExplore = () => {
     const el = document.getElementById("explore")
@@ -86,19 +329,27 @@ export default function HeroSection({ data }: { data: any }) {
           </div>
 
           {/* Email form */}
-          <form onSubmit={handleEmailSubmit} className="w-full max-w-md mb-16">
+          <form onSubmit={handleEarlyAccessSubmit} className="w-full max-w-md mb-16 relative">
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Input
+              <input
                 type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={earlyAccessEmail}
+                onChange={(e) => {
+                  setEarlyAccessEmail(e.target.value)
+                  clearEmailError("earlyAccess")
+                }}
+                onBlur={(e) => handleEmailBlur(e.target.value, "earlyAccess")}
+                placeholder="your.email@company.com"
                 required
-                className="h-12 flex-1 bg-gray-900/50 border border-gray-800 text-white placeholder:text-gray-400 backdrop-blur-sm focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                className="flex-1 px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
+
+              {emailErrors.earlyAccess && (
+                <p className="text-red-400 text-sm mt-1 absolute top-full left-0">{emailErrors.earlyAccess}</p>
+              )}
               <Button
                 type="submit"
-                className="h-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6"
+                className="h-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6 rounded-r-lg"
                 style={{
                   animation: "gradient 8s linear infinite",
                   backgroundSize: "300% 100%",
@@ -136,31 +387,103 @@ export default function HeroSection({ data }: { data: any }) {
         </button>
       </div>
 
-      {/* Modal - Registration Form */}
+      {/* Dialog with additional details form */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
           <DialogHeader>
-            <DialogTitle>Complete your registration</DialogTitle>
+            <DialogTitle>Thanks for joining! Let’s get you set up for early access</DialogTitle>
             <DialogDescription className="text-gray-400">
-              Please provide additional information to get free POCs at launch.
+              You’re almost in! Share a few details so we can personalize your POC experience at launch.
             </DialogDescription>
           </DialogHeader>
+          {/* This form submits to Google Sheets when submitted */}
           <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="space-y-1">
-              <Label htmlFor="fullName" className="text-gray-400">Full Name</Label>
-              <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="your.email@company.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  clearEmailError("dialog")
+                }}
+                onBlur={(e) => handleEmailBlur(e.target.value, "dialog")}
+                className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                required
+              />
+              {emailErrors.dialog && <p className="text-red-400 text-sm mt-1">{emailErrors.dialog}</p>}
             </div>
-            <div className="space-y-1">
-              <Label htmlFor="company" className="text-gray-400">Company</Label>
-              <Input id="company" value={company} onChange={(e) => setCompany(e.target.value)} required />
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                required
+              />
             </div>
+            <input
+              type="text"
+              placeholder="Company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Role/Department"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+              className="w-full p-3 bg-gray-900/50 border border-gray-800 rounded-lg text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+              required
+            />
             <div className="space-y-1">
-              <Label htmlFor="department" className="text-gray-400">Department</Label>
-              <Input id="department" value={department} onChange={(e) => setDepartment(e.target.value)} required />
+              <Label htmlFor="useCase" className="text-gray-400">
+                Use Case
+              </Label>
+              <textarea
+                id="useCase"
+                value={useCase}
+                onChange={(e) => setUseCase(e.target.value)}
+                placeholder="What's the #1 challenge you'd like us to help with?"
+                rows={3}
+                className="w-full px-3 py-2 bg-gray-900/50 border border-gray-800 text-white placeholder:text-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500 rounded-md resize-none"
+              />
+            </div>
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="keepUpdated"
+                checked={keepUpdated}
+                onChange={(e) => setKeepUpdated(e.target.checked)}
+                className="w-4 h-4 text-purple-600 bg-gray-900/50 border-gray-800 rounded focus:ring-purple-500 focus:ring-2"
+              />
+              <Label htmlFor="keepUpdated" className="text-gray-400 text-sm">
+                Keep me updated with launch news and resources
+              </Label>
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
             <div className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button
+                // type="Submit"
+                disabled={isSubmitting}
+                className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white"
+                style={{
+                  animation: "gradient 8s linear infinite",
+                  backgroundSize: "300% 100%",
+                  backgroundPosition: "left",
+                }}
+              >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </Button>
             </div>
@@ -168,17 +491,29 @@ export default function HeroSection({ data }: { data: any }) {
         </DialogContent>
       </Dialog>
 
-      {/* Success Modal */}
+      {/* Success Dialog */}
       <Dialog open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
         <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white text-center">
           <div className="py-6 flex flex-col items-center">
             <div className="mb-4 text-2xl sm:text-3xl md:text-4xl">
-              <GradientText>Welcome to the future!</GradientText>
+              <DialogTitle>
+                <GradientText>Welcome to the future!</GradientText>
+              </DialogTitle>
             </div>
             <p className="text-lg text-gray-400 mb-6">
               The next era of AI is coming... and you'll be among the first to experience it!
             </p>
-            <Button onClick={() => setIsSuccessDialogOpen(false)}>OK</Button>
+            <Button
+              onClick={() => setIsSuccessDialogOpen(false)}
+              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-8"
+              style={{
+                animation: "gradient 8s linear infinite",
+                backgroundSize: "300% 100%",
+                backgroundPosition: "left",
+              }}
+            >
+              OK
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
