@@ -12,6 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import HubspotForm from "@/components/HubspotForm";
 
 interface Props {
   data: {
@@ -128,32 +129,7 @@ export default function JoinEarlyAccess({ data }: Props) {
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-          <DialogHeader>
-            <DialogTitle>Join our foundational partners</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Complete your application to become an early access partner and help shape the future of AI.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="space-y-1">
-              <Label htmlFor="fullName" className="text-gray-400">Full Name</Label>
-              <Input id="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="company" className="text-gray-400">Company</Label>
-              <Input id="company" value={company} onChange={(e) => setCompany(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="department" className="text-gray-400">Department</Label>
-              <Input id="department" value={department} onChange={(e) => setDepartment(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white" />
-            </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
-            <div className="flex justify-end">
-              <Button type="submit" disabled={isSubmitting} className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white">
-                {isSubmitting ? "Submitting..." : "Apply Now"}
-              </Button>
-            </div>
-          </form>
+            <HubspotForm />
         </DialogContent>
       </Dialog>
 

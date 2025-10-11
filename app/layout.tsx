@@ -36,6 +36,18 @@ export default function RootLayout({
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "sr3x23iskp");`}
         </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N6K1CL30S1"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-N6K1CL30S1');
+          `}
+        </Script>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <BetaBanner />
           <div className="pt-28">{children}</div>

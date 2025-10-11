@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import GradientText from "./gradient-text"
+import HubspotForm from "@/components/HubspotForm";
 
 interface RequestDemoBoxProps {
   data: {
@@ -90,100 +91,7 @@ export default function RequestDemoBox({ data }: RequestDemoBoxProps) {
       {/* Demo Request Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-lg bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-          <DialogHeader>
-            <DialogTitle>Request Your Personal Demo</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Tell us about your needs and we'll schedule a personalized demonstration of andi's capabilities.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <Label htmlFor="firstName" className="text-gray-400">First Name</Label>
-                <Input id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="lastName" className="text-gray-400">Last Name</Label>
-                <Input id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500" />
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="email" className="text-gray-400">Email</Label>
-              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500" />
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="company" className="text-gray-400">Company</Label>
-              <Input id="company" value={company} onChange={(e) => setCompany(e.target.value)} required className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500" />
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="role" className="text-gray-400">Role</Label>
-              <Select value={role} onValueChange={setRole} required>
-                <SelectTrigger className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500">
-                  <SelectValue placeholder="Select your role" />
-                </SelectTrigger>
-                <SelectContent className="bg-gray-900 border border-gray-800 text-white">
-                  {[
-                    "ceo", "cto", "data-analyst", "business-analyst", "product-manager",
-                    "operations", "marketing", "finance", "other",
-                  ].map((val) => (
-                    <SelectItem key={val} value={val}>
-                      {val.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="useCase" className="text-gray-400">Potential Use Case</Label>
-              <Textarea id="useCase" value={useCase} onChange={(e) => setUseCase(e.target.value)} placeholder="Tell us about your specific needs or challenges..." required className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500 min-h-[80px]" />
-            </div>
-
-            {error && <p className="text-sm text-red-500">{error}</p>}
-
-            <div className="flex justify-end pt-4">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6"
-                style={{
-                  animation: "gradient 8s linear infinite",
-                  backgroundSize: "300% 100%",
-                  backgroundPosition: "left",
-                }}
-              >
-                {isSubmitting ? "Submitting..." : "Request Demo"}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* Success Dialog */}
-      <Dialog open={isSuccessDialogOpen} onOpenChange={setIsSuccessDialogOpen}>
-        <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white text-center">
-          <div className="py-6 flex flex-col items-center">
-            <div className="mb-4 text-2xl sm:text-3xl md:text-4xl">
-              <GradientText>Demo requested!</GradientText>
-            </div>
-            <p className="text-lg text-gray-400 mb-6">
-              Thank you for your interest! Our team will reach out within 24 hours to schedule your personalized demo.
-            </p>
-            <Button
-              onClick={() => setIsSuccessDialogOpen(false)}
-              className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-8"
-              style={{
-                animation: "gradient 8s linear infinite",
-                backgroundSize: "300% 100%",
-                backgroundPosition: "left",
-              }}
-            >
-              OK
-            </Button>
-          </div>
+          <HubspotForm />
         </DialogContent>
       </Dialog>
     </>

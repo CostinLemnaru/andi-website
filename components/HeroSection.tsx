@@ -170,7 +170,7 @@ export default function HeroSection({ data }: { data: any }) {
   const [earlyAccessEmail, setEarlyAccessEmail] = useState("")
 
 
-  const { Title, Description, CtaText } = data
+  const { Title, Description, CtaText, Image } = data
 
   const handleEarlyAccessSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -313,6 +313,10 @@ export default function HeroSection({ data }: { data: any }) {
     if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
+  // fallback la alt text și url
+  const imgUrl = Image?.url ? `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${Image.url}` : ""
+  const imgAlt = Image?.alternativeText ?? Title?.highlight ?? "Hero image"
+
   return (
     <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-0">
       <div className="w-full mx-auto flex flex-col md:flex-row items-center relative">
@@ -381,11 +385,13 @@ export default function HeroSection({ data }: { data: any }) {
         {/* Image */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end md:absolute md:right-0 md:top-1/2 md:transform md:-translate-y-1/2">
           <div className="relative w-full max-w-lg md:max-w-none md:w-auto px-4 md:px-0">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ANDI%20by%20Zamora11-Photoroom-cgAFATavdXXslUkpuaJAj3M0HiIj8Y.png"
-              alt="ANDI Dashboard Interface"
-              className="w-full object-contain max-h-[70vh] md:max-h-[80vh] lg:max-h-[90vh]"
-            />
+            {imgUrl && (
+              <img
+                src={imgUrl}
+                alt={imgAlt}
+                className="w-full object-contain max-h-[70vh] md:max-h-[80vh] lg:max-h-[90vh]"
+              />
+            )}
           </div>
         </div>
       </div>
@@ -502,8 +508,8 @@ export default function HeroSection({ data }: { data: any }) {
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </Button>
-            </div>
-          </form>
+                        </div>
+                    </form>
         </DialogContent>
       </Dialog>
 

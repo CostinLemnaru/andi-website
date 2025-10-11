@@ -182,7 +182,7 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
           >
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-white">Contact Us</h2>
+                <h2 className="text-xl font-bold text-white"></h2>
                 <button
                   onClick={onClose}
                   className="text-gray-400 hover:text-white transition-colors focus:outline-none"
