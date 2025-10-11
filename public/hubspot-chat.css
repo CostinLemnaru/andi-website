@@ -1,0 +1,8 @@
+iframe[id^="hubspot-conversations-iframe"],
+iframe[id^="hubspot-messages-iframe"],
+iframe[src*="conversations.hubspot.com"],
+iframe[src*="chat.hubspot.com"],
+iframe {
+  background: transparent !important;
+  border: none !important;
+}
