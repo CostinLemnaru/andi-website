@@ -128,7 +128,7 @@ const enrichedComponents = (
       populate,
     }, { encodeValuesOnly: true })
 
-    const nestedRes = await fetch(`${STRAPI_API_URL}/api/${collectionType}?${query}`, {
+    const nestedRes = await fetch(`${STRAPI_API_URL}/api/${collectionType}?populate[Seo][populate]=*&${query}`, {
       next: { revalidate: 60 },
     })
 

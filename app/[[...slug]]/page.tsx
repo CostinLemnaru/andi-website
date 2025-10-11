@@ -1,10 +1,64 @@
+import type { Metadata } from "next"
 import PageContent from "@/components/page-content"
 import { fetchPage, fetchNavigations } from "@/lib/strapi"
 
-export default async function Page({ params }: { params: { slug?: string[] } }) {
-  const reservedSlugs = ["favicon", "robots", "sitemap", ".well-known"]
+const DEFAULT_TITLE = "Andi by Zamora"
+const DEFAULT_DESCRIPTION = "The next generation of intelligence."
+
+const RESERVED_SLUGS = ["favicon", "robots", "sitemap", ".well-known"]
+
+const normalize = (value?: string | null) => value?.replace(/\s+/g, " ").trim()
+
+const resolveCollectionType = (slugArray: string[]) => (slugArray[0] === "post" ? "posts" : "pages")
+
+const resolveSlugPath = (slugArray: string[]) => (slugArray.length === 0 ? "home" : slugArray.join("/"))
+
+export async function generateMetadata({ params }: { params: { slug?: string[] } }): Promise<Metadata> {
   const slugArray = Array.isArray(params.slug) ? params.slug : []
-  const slugPath = slugArray.join("/") || "home"
+  const slugPath = resolveSlugPath(slugArray)
+
+  if (slugPath.includes(".") || RESERVED_SLUGS.some((s) => slugPath.startsWith(s))) {
+    return {
+      title: DEFAULT_TITLE,
+      description: DEFAULT_DESCRIPTION,
+    }
+  }
+
+  const collectionType = resolveCollectionType(slugArray)
+  const lastSegment = slugArray.at(-1) || "home"
+  const data = await fetchPage(lastSegment, collectionType)
+
+  if (!data) {
+    return {
+      title: DEFAULT_TITLE,
+      description: DEFAULT_DESCRIPTION,
+    }
+  }
+
+  const title = normalize(data?.Seo?.title) || normalize(data?.Title) || DEFAULT_TITLE
+  const description =
+    normalize(data?.Seo?.description) ||
+    normalize((data as any)?.Description) ||
+    DEFAULT_DESCRIPTION
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  }
+}
+
+export default async function Page({ params }: { params: { slug?: string[] } }) {
+  const slugArray = Array.isArray(params.slug) ? params.slug : []
+  const slugPath = resolveSlugPath(slugArray)
 
   const notFound = (
     <div className="flex items-center justify-center min-h-screen">
@@ -12,12 +66,9 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
     </div>
   )
 
-  const collectionType = slugArray[0] == 'post' ? 'posts' : 'pages'
+  const collectionType = resolveCollectionType(slugArray)
 
-  if (
-    slugPath.includes(".") ||
-    reservedSlugs.some((s) => slugPath.startsWith(s))
-  ) {
+  if (slugPath.includes(".") || RESERVED_SLUGS.some((s) => slugPath.startsWith(s))) {
     return notFound
   }
 

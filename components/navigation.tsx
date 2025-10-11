@@ -100,11 +100,7 @@ export default function Navigation({ data }: Props) {
     <nav className="fixed left-0 right-0 top-12 z-50 border-b border-gray-800/50 bg-[#0c0c14]/80 backdrop-blur-md">
       <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-12">
         <Link href="/" className="flex items-center">
-          <span className="text-2xl font-medium">
-            <GradientText>ANDI</GradientText>
-          </span>
-          <span className="mx-2 text-xl text-gray-400">by</span>
-          <img src="/zamora-logo.png" alt="Zamora" className="ml-2 h-8 w-auto" />
+          <img src="/zamora-logo.png" alt="Zamora" className="ml-2 h-8 w-auto" style={{height: "auto", maxHeight: "32px"}} />
         </Link>
 
         <div className="hidden lg:block">
