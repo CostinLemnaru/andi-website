@@ -2,9 +2,83 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
+
+const personalDomains = [
+  "gmail.com",
+  "gmail.co.uk",
+  "gmail.ca",
+  "gmail.com.au",
+  "gmail.de",
+  "gmail.fr",
+  "gmail.it",
+  "gmail.es",
+  "yahoo.com",
+  "yahoo.co.uk",
+  "yahoo.ca",
+  "yahoo.com.au",
+  "yahoo.de",
+  "yahoo.fr",
+  "aol.com",
+  "aol.co.uk",
+  "aol.ca",
+  "aol.com.au",
+  "aol.de",
+  "aol.fr",
+  "hotmail.com",
+  "hotmail.co.uk",
+  "hotmail.ca",
+  "hotmail.com.au",
+  "hotmail.de",
+  "hotmail.fr",
+  "outlook.com",
+  "outlook.co.uk",
+  "outlook.ca",
+  "outlook.com.au",
+  "outlook.de",
+  "outlook.fr",
+  "live.com",
+  "live.co.uk",
+  "live.ca",
+  "live.com.au",
+  "live.de",
+  "live.fr",
+]
+
+const validateBusinessEmail = (email: string) => {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false, msg: "Please enter a valid email" }
+  }
+  const domain = email.split("@")[1]?.toLowerCase()
+  if (domain && personalDomains.includes(domain)) {
+    return { ok: false, msg: "Please use a valid business email address" }
+  }
+  return { ok: true, msg: "" }
+}
+
+const getCookie = (name: string) => {
+  if (typeof document === "undefined") return ""
+  const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+  return match ? decodeURIComponent(match[2]) : ""
+}
+
+const submitToHubSpot = async (payload: Record<string, unknown>) => {
+  const res = await fetch("/api/hubspot/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify(payload),
+  })
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "")
+    throw new Error(`HubSpot submit failed (${res.status}): ${text}`)
+  }
+
+  return res.json()
+}
 
 type ContactFormProps = {
   isOpen: boolean
@@ -14,24 +88,85 @@ type ContactFormProps = {
 
 export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps) {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     company: "",
     role: "",
     useCase: "",
   })
+  const [emailError, setEmailError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+  const planSelected = useMemo(() => selectedPlan || "Unknown", [selectedPlan])
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (name === "email" && emailError) {
+      setEmailError("")
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // In a real implementation, this would send the form data to a server
-    console.log("Form submitted:", { ...formData, plan: selectedPlan })
-    alert("Thank you for your interest! Our team will contact you shortly.")
-    onClose()
+  const handleEmailBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const validation = validateBusinessEmail(event.target.value)
+    if (!validation.ok) {
+      setEmailError(validation.msg)
+    }
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    const validation = validateBusinessEmail(formData.email)
+    if (!validation.ok) {
+      setEmailError(validation.msg)
+      return
+    }
+
+    setIsSubmitting(true)
+    setSubmitError("")
+
+    try {
+      const hutk = getCookie("hubspotutk")
+      const payload = {
+        formGuid: "a4057aad-daeb-4c9c-9d9b-3d6c6e64bdfc",
+        fields: [
+          { name: "firstname", value: formData.firstName },
+          { name: "lastname", value: formData.lastName },
+          { name: "email", value: formData.email },
+          { name: "company", value: formData.company },
+          { name: "role_department", value: formData.role },
+          { name: "use_case", value: formData.useCase },
+          { name: "plan_selected", value: planSelected },
+          { name: "LEGAL_CONSENT.subscription_type_1062787159", value: "true" },
+          { name: "LEGAL_CONSENT.processing", value: "true" },
+        ],
+        context: {
+          pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai/pricing",
+          pageName: typeof document !== "undefined" ? document.title : "Pricing",
+          hutk: hutk || undefined,
+        },
+      }
+
+      await submitToHubSpot(payload)
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        role: "",
+        useCase: "",
+      })
+      setEmailError("")
+      onClose()
+    } catch (error) {
+      console.error("HubSpot contact submission error:", error)
+      setSubmitError("Failed to submit. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -63,25 +198,42 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Your name"
-                  />
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label htmlFor="firstName" className="mb-1 block text-sm font-medium text-gray-300">
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      required
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="First name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="mb-1 block text-sm font-medium text-gray-300">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      required
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Last name"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                    Email
+                  <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-300">
+                    Business Email
                   </label>
                   <input
                     type="email"
@@ -90,13 +242,15 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onBlur={handleEmailBlur}
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="your.email@company.com"
                   />
+                  {emailError && <p className="mt-1 text-sm text-red-400">{emailError}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="company" className="mb-1 block text-sm font-medium text-gray-300">
                     Company
                   </label>
                   <input
@@ -106,13 +260,13 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
                     required
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Your company"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="role" className="mb-1 block text-sm font-medium text-gray-300">
                     Role
                   </label>
                   <input
@@ -122,13 +276,13 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
                     required
                     value={formData.role}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Your role (e.g., CTO, Marketing Director)"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="useCase" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="useCase" className="mb-1 block text-sm font-medium text-gray-300">
                     How would you like to use ANDI?
                   </label>
                   <textarea
@@ -138,17 +292,20 @@ export function ContactForm({ isOpen, onClose, selectedPlan }: ContactFormProps)
                     value={formData.useCase}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full resize-none rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Tell us about your use case and requirements..."
                   ></textarea>
                 </div>
 
+                {submitError && <p className="text-sm text-red-400">{submitError}</p>}
+
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-md shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    disabled={isSubmitting}
+                    className="w-full rounded-md bg-gradient-to-r from-blue-600 to-purple-600 py-3 px-4 font-medium text-white shadow-lg transition-all hover:from-blue-700 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60"
                   >
-                    Submit Request
+                    {isSubmitting ? "Submitting..." : "Submit Request"}
                   </button>
                 </div>
               </form>

@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
+import Link from "next/link"
 import { CheckCircle, Info } from "lucide-react"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { submitToGoogleSheets } from "@/lib/google-sheets"
 import { Button } from "@/components/ui/button"
 
 type InputConfig = {
@@ -50,17 +50,92 @@ export default function RoiCalculatorSection({ data }: Props) {
       Object.entries(config.inputs).map(([key, input]) => [key, input.default])
     )
   )
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [isReportDialogOpen, setIsReportDialogOpen] = useState(false)
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false)
+  const [emailErrors, setEmailErrors] = useState<Record<string, string>>({})
   const [reportForm, setReportForm] = useState({
     firstName: "",
     lastName: "",
     role: "",
-    department: "",
     email: "",
     company: "",
   })
-  const [isGeneratingReport, setIsGeneratingReport] = useState(false)
+
+  const validateBusinessEmail = (email: string) => {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return "Please enter a valid email address"
+    }
+
+    const personalDomains = [
+      "gmail.com",
+      "gmail.co.uk",
+      "gmail.ca",
+      "gmail.com.au",
+      "gmail.de",
+      "gmail.fr",
+      "gmail.it",
+      "gmail.es",
+      "yahoo.com",
+      "yahoo.co.uk",
+      "yahoo.ca",
+      "yahoo.com.au",
+      "yahoo.de",
+      "yahoo.fr",
+      "aol.com",
+      "aol.co.uk",
+      "aol.ca",
+      "aol.com.au",
+      "aol.de",
+      "aol.fr",
+      "hotmail.com",
+      "hotmail.co.uk",
+      "hotmail.ca",
+      "hotmail.com.au",
+      "hotmail.de",
+      "hotmail.fr",
+      "outlook.com",
+      "outlook.co.uk",
+      "outlook.ca",
+      "outlook.com.au",
+      "outlook.de",
+      "outlook.fr",
+      "live.com",
+      "live.co.uk",
+      "live.ca",
+      "live.com.au",
+      "live.de",
+      "live.fr",
+    ]
+
+    const domain = email.split("@")[1]?.toLowerCase()
+    if (domain && personalDomains.includes(domain)) {
+      return "Please use your business email address"
+    }
+
+    return ""
+  }
+
+  const getCookie = (name: string) => {
+    if (typeof document === "undefined") return ""
+    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+    return match ? decodeURIComponent(match[2]) : ""
+  }
+
+  const submitToHubSpot = async (payload: Record<string, unknown>) => {
+    const res = await fetch("/api/hubspot/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "")
+      throw new Error(`HubSpot submit failed (${res.status}): ${text}`)
+    }
+
+    return res.json()
+  }
 
   const roiCalculatorTitle = config.title
   const [inputs, setInputs] = useState(
@@ -75,25 +150,12 @@ export default function RoiCalculatorSection({ data }: Props) {
     setInputs({ ...inputs, [key]: rawValue.replace(/[^0-9]/g, "") })
   }
 
-
-    const [email, setEmail] = useState("")
-    const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false)
-    const [fullName, setFullName] = useState("")
-    const [company, setCompany] = useState("")
-    const [department, setDepartment] = useState("")
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [error, setError] = useState("")
-    const formRef = useRef<HTMLFormElement>(null)
-    const exploreRef = useRef<HTMLDivElement>(null)
-    const sectionsRef = useRef<HTMLDivElement>(null)
-    const [selectedVersion, setSelectedVersion] = useState("mvp")
-  
-    const employees = values.employees
-    const decisionMakers = values.decisionMakers
-    const avgSalary = values.avgSalary
-    const currentToolCost = values.currentToolCost
-    const decisionTime = values.decisionTime
-    const decisionsPerWeek = values.decisionsPerWeek
+  const employees = values.employees
+  const decisionMakers = values.decisionMakers
+  const avgSalary = values.avgSalary
+  const currentToolCost = values.currentToolCost
+  const decisionTime = values.decisionTime
+  const decisionsPerWeek = values.decisionsPerWeek
 
   const hourlyRate = avgSalary / 2080
   const usageComplexityScore =
@@ -126,131 +188,68 @@ export default function RoiCalculatorSection({ data }: Props) {
     usageComplexityScore <= 0.8 ? planFeatures[config.plans[1].name] :
     planFeatures[config.plans[2].name]
 
-  const fallbackSubmit = async () => {
-    return new Promise<void>((resolve) => {
-      try {
-        // Set all form values in the hidden form
-        const directEmailInput = document.getElementById("direct-email") as HTMLInputElement
-        const directNameInput = document.getElementById("direct-fullName") as HTMLInputElement
-        const directCompanyInput = document.getElementById("direct-company") as HTMLInputElement
-        const directDepartmentInput = document.getElementById("direct-department") as HTMLInputElement
-
-        if (directEmailInput) directEmailInput.value = email
-        if (directNameInput) directNameInput.value = fullName
-        if (directCompanyInput) directCompanyInput.value = company
-        if (directDepartmentInput) directDepartmentInput.value = department
-
-        // Submit the form
-        if (formRef.current) {
-          formRef.current.submit()
-        }
-
-        // Consider this successful regardless of actual result
-        // since we can't track the result of a no-cors form submission
-        setTimeout(resolve, 500)
-      } catch (err) {
-        console.error("Fallback error:", err)
-        // Resolve anyway to prevent blocking the UI
-        resolve()
-      }
-    })
-  }
-    const handleFormSubmit = async (e: React.FormEvent) => {
-      e.preventDefault()
-      setIsSubmitting(true)
-      setError("")
-  
-      try {
-        // Only submit to Google Sheets when the dialog form is submitted
-        await fallbackSubmit()
-  
-        // Also try the server action as a backup
-        const result = await submitToGoogleSheets({
-          email,
-          fullName,
-          company,
-          department,
-        })
-  
-        // Close the form dialog and show the success dialog
-        setIsDialogOpen(false)
-        setIsSuccessDialogOpen(true)
-  
-        // Reset form fields
-        setEmail("")
-        setFullName("")
-        setCompany("")
-        setDepartment("")
-      } catch (err) {
-        console.error("Form submission error:", err)
-        setError("Failed to submit. Please try again.")
-      } finally {
-        setIsSubmitting(false)
-      }
-    }
-
   const entries = Object.entries(config.inputs)
   const firstThreeEntries = entries.slice(0, 3)
   const lastThreeEntries = entries.slice(3, 6)
 
-    const handleReportGeneration = async (e: React.FormEvent) => {
-      e.preventDefault()
-      setIsGeneratingReport(true)
-  
-      // Simulate report generation
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-  
-      // Create report data
-      const reportData = {
-        ...reportForm,
-        employees,
-        decisionMakers,
-        avgSalary,
-        currentToolCost,
-        decisionTime,
-        decisionsPerWeek,
-        hourlyRate,
-        annualCostSaved,
-        annualTimeSaved,
-        toolConsolidationSavings,
-        opportunityCostSavings,
-        totalAnnualSavings,
-        suggestedPlan,
-        toolsConsolidated,
-        consolidationSavingsRate,
-        generatedAt: new Date().toISOString(),
+  const handleEmailBlur = (email: string, field: string) => {
+    if (!email) return
+    const error = validateBusinessEmail(email)
+    setEmailErrors((prev) => ({ ...prev, [field]: error }))
+  }
+
+  const clearEmailError = (field: string) => {
+    if (emailErrors[field]) {
+      setEmailErrors((prev) => ({ ...prev, [field]: "" }))
+    }
+  }
+
+  const handleGenerateReport = async (event: React.FormEvent) => {
+    event.preventDefault()
+    const emailError = validateBusinessEmail(reportForm.email)
+    if (emailError) {
+      setEmailErrors((prev) => ({ ...prev, report: emailError }))
+      return
+    }
+
+    setIsGeneratingReport(true)
+
+    try {
+      const hutk = getCookie("hubspotutk")
+      const payload = {
+        formGuid: "6cad5655-f33a-45aa-b115-8fd7bc5c4efb",
+        fields: [
+          { name: "firstname", value: reportForm.firstName },
+          { name: "lastname", value: reportForm.lastName },
+          { name: "role_department", value: reportForm.role },
+          { name: "email", value: reportForm.email },
+          { name: "company", value: reportForm.company },
+        ],
+        context: {
+          pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai/roi",
+          pageName: typeof document !== "undefined" ? document.title : "ROI Calculator",
+          hutk: hutk || undefined,
+        },
       }
-  
-      // Store in localStorage with error handling
-      try {
-        localStorage.setItem("roiReportData", JSON.stringify(reportData))
-        console.log("Report data stored:", reportData)
-  
-        // Also store in sessionStorage as backup
-        sessionStorage.setItem("roiReportData", JSON.stringify(reportData))
-  
-        // Create URL with data as backup
-        const encodedData = encodeURIComponent(JSON.stringify(reportData))
-        const reportUrl = `/roi-report?data=${encodedData}`
-  
-        // Open report in new tab
-        window.open(reportUrl, "_blank")
-      } catch (error) {
-        console.error("Error storing report data:", error)
-        alert("Error generating report. Please try again.")
-      }
-  
+
+      await submitToHubSpot(payload)
+
       setIsReportDialogOpen(false)
-      setIsGeneratingReport(false)
       setReportForm({
         firstName: "",
         lastName: "",
         role: "",
-        department: "",
         email: "",
         company: "",
       })
+      setEmailErrors({})
+    } catch (error) {
+      console.error("ROI report submission error:", error)
+      setEmailErrors((prev) => ({ ...prev, report: "Failed to submit. Please try again." }))
+    } finally {
+      setIsGeneratingReport(false)
     }
+  }
 
   const getInputMax = (key: string) => {
     if (key === "decisionMakers") {
@@ -534,17 +533,21 @@ export default function RoiCalculatorSection({ data }: Props) {
                           </div>
       
                           {/* CTA Button */}
-                          <button
-                            onClick={() => setIsDialogOpen(true)}
-                            className="w-full py-3 md:py-4 mt-6 md:mt-8 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white rounded-lg font-semibold text-base md:text-lg transition-all duration-300 transform hover:scale-105"
-                            style={{
-                              animation: "gradient 8s linear infinite",
-                              backgroundSize: "300% 100%",
-                              backgroundPosition: "left",
-                            }}
+                          <Link
+                            href="/contact?source=sales"
+                            className="block w-full"
                           >
-                            Contact Sales
-                          </button>
+                            <span
+                              className="inline-flex w-full justify-center py-3 md:py-4 mt-6 md:mt-8 rounded-lg font-semibold text-base md:text-lg text-white bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 transition-all duration-300 transform hover:scale-105"
+                              style={{
+                                animation: "gradient 8s linear infinite",
+                                backgroundSize: "300% 100%",
+                                backgroundPosition: "left",
+                              }}
+                            >
+                              Contact Sales
+                            </span>
+                          </Link>
                           {/* Generate Report Button */}
                           <button
                             onClick={() => setIsReportDialogOpen(true)}
@@ -571,174 +574,92 @@ export default function RoiCalculatorSection({ data }: Props) {
             </div>
         </div>
 
-      {/* Dialog with additional details form */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog open={isReportDialogOpen} onOpenChange={setIsReportDialogOpen}>
         <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
           <DialogHeader>
-            <DialogTitle>Complete your registration</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Please provide additional information to get free POCs at launch.
-            </DialogDescription>
+            <DialogTitle className="text-xl font-semibold text-white">Explore ANDI pricing & ROI options</DialogTitle>
           </DialogHeader>
-          {/* This form submits to Google Sheets when submitted */}
-          <form onSubmit={handleFormSubmit} className="space-y-4 pt-4">
-            <div className="space-y-1">
-              <Label htmlFor="fullName" className="text-gray-400">
-                Full Name
+          <form onSubmit={handleGenerateReport} className="space-y-4 pt-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="firstName" className="text-gray-400">
+                  First Name
+                </Label>
+                <Input
+                  id="firstName"
+                  value={reportForm.firstName}
+                  onChange={(e) => setReportForm((prev) => ({ ...prev, firstName: e.target.value }))}
+                  required
+                  className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName" className="text-gray-400">
+                  Last Name
+                </Label>
+                <Input
+                  id="lastName"
+                  value={reportForm.lastName}
+                  onChange={(e) => setReportForm((prev) => ({ ...prev, lastName: e.target.value }))}
+                  required
+                  className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="role" className="text-gray-400">
+                Role/Department
               </Label>
               <Input
-                id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                id="role"
+                value={reportForm.role}
+                onChange={(e) => setReportForm((prev) => ({ ...prev, role: e.target.value }))}
                 required
                 className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
               />
             </div>
-            <div className="space-y-1">
+
+            <div>
               <Label htmlFor="company" className="text-gray-400">
                 Company
               </Label>
               <Input
                 id="company"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
+                value={reportForm.company}
+                onChange={(e) => setReportForm((prev) => ({ ...prev, company: e.target.value }))}
                 required
                 className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
               />
             </div>
-            <div className="space-y-1">
-              <Label htmlFor="department" className="text-gray-400">
-                Department
+
+            <div>
+              <Label htmlFor="email" className="text-gray-400">
+                Work Email
               </Label>
               <Input
-                id="department"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
+                id="email"
+                type="email"
+                value={reportForm.email}
+                onChange={(e) => {
+                  setReportForm((prev) => ({ ...prev, email: e.target.value }))
+                  clearEmailError("report")
+                }}
+                onBlur={(e) => handleEmailBlur(e.target.value, "report")}
                 required
                 className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
               />
+              {emailErrors.report && <p className="text-sm text-red-400 mt-1">{emailErrors.report}</p>}
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
-            <div className="flex justify-end">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white"
-                style={{
-                  animation: "gradient 8s linear infinite",
-                  backgroundSize: "300% 100%",
-                  backgroundPosition: "left",
-                }}
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
+
+            <div className="flex ">
+              <Button type="submit" disabled={isGeneratingReport} className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary hover:bg-primary/90 py-2 h-12 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 hover:opacity-90 text-white px-6">
+                {isGeneratingReport ? "Sending..." : "Send me pricing & ROI"}
               </Button>
             </div>
           </form>
         </DialogContent>
       </Dialog>
-
-            {/* Report Generation Dialog */}
-            <Dialog open={isReportDialogOpen} onOpenChange={setIsReportDialogOpen}>
-              <DialogContent className="sm:max-w-md bg-[#0c0c14]/90 backdrop-blur-sm border border-gray-800/50 text-white">
-                <DialogHeader>
-                  <DialogTitle>Generate Detailed ROI Report</DialogTitle>
-                  <DialogDescription className="text-gray-400">
-                    Please provide your information to generate a comprehensive ROI analysis report.
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleReportGeneration} className="space-y-4 pt-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <Label htmlFor="firstName" className="text-gray-400">
-                        First Name
-                      </Label>
-                      <Input
-                        id="firstName"
-                        value={reportForm.firstName}
-                        onChange={(e) => setReportForm({ ...reportForm, firstName: e.target.value })}
-                        required
-                        className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <Label htmlFor="lastName" className="text-gray-400">
-                        Last Name
-                      </Label>
-                      <Input
-                        id="lastName"
-                        value={reportForm.lastName}
-                        onChange={(e) => setReportForm({ ...reportForm, lastName: e.target.value })}
-                        required
-                        className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="reportCompany" className="text-gray-400">
-                      Company
-                    </Label>
-                    <Input
-                      id="reportCompany"
-                      value={reportForm.company}
-                      onChange={(e) => setReportForm({ ...reportForm, company: e.target.value })}
-                      required
-                      className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="role" className="text-gray-400">
-                      Role
-                    </Label>
-                    <Input
-                      id="role"
-                      value={reportForm.role}
-                      onChange={(e) => setReportForm({ ...reportForm, role: e.target.value })}
-                      required
-                      className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="reportDepartment" className="text-gray-400">
-                      Department
-                    </Label>
-                    <Input
-                      id="reportDepartment"
-                      value={reportForm.department}
-                      onChange={(e) => setReportForm({ ...reportForm, department: e.target.value })}
-                      required
-                      className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="reportEmail" className="text-gray-400">
-                      Email
-                    </Label>
-                    <Input
-                      id="reportEmail"
-                      type="email"
-                      value={reportForm.email}
-                      onChange={(e) => setReportForm({ ...reportForm, email: e.target.value })}
-                      required
-                      className="bg-gray-900/50 border border-gray-800 text-white focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
-                    />
-                  </div>
-                  <div className="flex justify-end">
-                    <Button
-                      type="submit"
-                      disabled={isGeneratingReport}
-                      className="bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 hover:opacity-90 text-white"
-                      style={{
-                        animation: "gradient 8s linear infinite",
-                        backgroundSize: "300% 100%",
-                        backgroundPosition: "left",
-                      }}
-                    >
-                      {isGeneratingReport ? "Generating Report..." : "Generate Report"}
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
     </section>
   )
 }

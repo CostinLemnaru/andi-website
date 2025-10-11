@@ -1,14 +1,15 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import GradientText from "./gradient-text"
-import RotatingWords from "./rotating-words"
-import ActionWords from "./action-words"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import GradientText from "./gradient-text"
+import RotatingWords from "./rotating-words"
+import ActionWords from "./action-words"
+import { REQUEST_ACCESS_EVENT, type RequestAccessEventDetail } from "@/lib/request-access-events"
 
 export default function HeroSection({ data }: { data: any }) {
   const [email, setEmail] = useState("")
@@ -81,6 +82,21 @@ export default function HeroSection({ data }: { data: any }) {
   const [keepUpdated, setKeepUpdated] = useState(true)
 
   const [emailErrors, setEmailErrors] = useState<Record<string, string>>({})
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const handleRequestAccess = (event: Event) => {
+      const customEvent = event as CustomEvent<RequestAccessEventDetail>
+      if (customEvent.detail?.handled) return
+      if (customEvent.detail) customEvent.detail.handled = true
+      setIsDialogOpen(true)
+      setIsSuccessDialogOpen(false)
+      setIsContactDialogOpen(false)
+      setError("")
+      setEmailErrors((prev) => ({ ...prev, bottom: "", earlyAccess: "" }))
+    }
+    window.addEventListener(REQUEST_ACCESS_EVENT, handleRequestAccess as EventListener)
+    return () => window.removeEventListener(REQUEST_ACCESS_EVENT, handleRequestAccess as EventListener)
+  }, [])
 
   const validateBusinessEmail = (email: string) => {
     const personalDomains = [

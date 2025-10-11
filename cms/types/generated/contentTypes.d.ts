@@ -536,6 +536,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.box-message-small',
         'page.boxes-learn-more',
         'page.contact-page',
+        'page.andi-login',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

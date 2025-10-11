@@ -1515,6 +1515,14 @@ export interface PageAiPolicyTabs extends Struct.ComponentSchema {
   };
 }
 
+export interface PageAndiLogin extends Struct.ComponentSchema {
+  collectionName: 'components_page_andi_logins';
+  info: {
+    displayName: 'Andi Login';
+  };
+  attributes: {};
+}
+
 export interface PageBgColoredBoxed extends Struct.ComponentSchema {
   collectionName: 'components_page_bg_colored_boxeds';
   info: {
@@ -3434,6 +3442,7 @@ declare module '@strapi/strapi' {
       'page.accordion-json': PageAccordionJson;
       'page.add-ons-section': PageAddOnsSection;
       'page.ai-policy-tabs': PageAiPolicyTabs;
+      'page.andi-login': PageAndiLogin;
       'page.bg-colored-boxed': PageBgColoredBoxed;
       'page.box-icon': PageBoxIcon;
       'page.box-icon-list-section': PageBoxIconListSection;

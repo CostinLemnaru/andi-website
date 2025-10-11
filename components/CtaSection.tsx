@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import GradientText from "./gradient-text"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { REQUEST_ACCESS_EVENT, type RequestAccessEventDetail } from "@/lib/request-access-events"
 
 type Props = {
     data: any
@@ -108,6 +109,21 @@ export default function CtaSection({ data }: Props) {
         }
     }, [])
     // ———————————————————————————————————
+
+    useEffect(() => {
+        if (typeof window === "undefined") return
+        const handleRequestAccess = (event: Event) => {
+            const customEvent = event as CustomEvent<RequestAccessEventDetail>
+            if (customEvent.detail?.handled) return
+            if (customEvent.detail) customEvent.detail.handled = true
+            setIsDialogOpen(true)
+            setIsSuccessDialogOpen(false)
+            setError("")
+            setEmailErrors({})
+        }
+        window.addEventListener(REQUEST_ACCESS_EVENT, handleRequestAccess as EventListener)
+        return () => window.removeEventListener(REQUEST_ACCESS_EVENT, handleRequestAccess as EventListener)
+    }, [])
 
     // Helpers — validare email business
     const personalDomains = [

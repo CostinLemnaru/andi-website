@@ -120,7 +120,8 @@
                 "page.box-message-wide",
                 "page.box-message-small",
                 "page.boxes-learn-more",
-                "page.contact-page"
+                "page.contact-page",
+                "page.andi-login"
             ]
         }
     }

@@ -2,9 +2,10 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import "./globals.css"
+import Script from "next/script"
 import { ThemeProvider } from "@/components/theme-provider"
 import HubspotCookieSettingsButton from "@/components/HubspotCookieSettingsButton"
-import Script from "next/script"
+import BetaBanner from "@/components/BetaBanner"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -36,7 +37,8 @@ export default function RootLayout({
           })(window, document, "clarity", "script", "sr3x23iskp");`}
         </Script>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
+          <BetaBanner />
+          <div className="pt-28">{children}</div>
           <div className="fixed bottom-4 right-4 z-50">
             <HubspotCookieSettingsButton />
           </div>
