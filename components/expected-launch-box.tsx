@@ -140,6 +140,7 @@ export default function ExpectedLaunchBox({ data }: ExpectedLaunchBoxProps) {
           { name: "company", value: formData.company },
           { name: "role_department", value: formData.role },
           { name: "use_case", value: formData.interests },
+          { name: "LEGAL_CONSENT.processing", value: "true" },
         ],
         context: {
           pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai",

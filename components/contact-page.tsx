@@ -111,23 +111,27 @@ export default function ContactPage({ data }: Props) {
     const submitToHubSpot = async () => {
         const hutk = getCookie("hubspotutk")
 
+        const fields = [
+            { name: "firstname", value: formData.firstName },
+            { name: "lastname", value: formData.lastName },
+            { name: "email", value: formData.email },
+            { name: "company", value: formData.company },
+            { name: "role_department", value: formData.role || "" },
+            { name: "country", value: formData.country || "" },
+            { name: "phone", value: formData.phone || "" },
+            { name: "message", value: formData.message || "" },
+            { name: "use_case", value: formData.message || "" }, // sau schimbă cu un câmp dedicat
+            { name: "reason_for_contact", value: hubspotReasonMap[formData.reason] || "Other" },
+            { name: "LEGAL_CONSENT.subscription_type_1062787159", value: formData.keepUpdated ? "true" : "false" },
+        ]
+
+        if (formData.keepUpdated) {
+            fields.push({ name: "LEGAL_CONSENT.processing", value: "true" })
+        }
+
         const payload = {
             formGuid: "f1cdff9a-10ae-45a5-9061-77b0761dc55d",
-            fields: [
-                { name: "firstname", value: formData.firstName },
-                { name: "lastname", value: formData.lastName },
-                { name: "email", value: formData.email },
-                { name: "company", value: formData.company },
-                { name: "role_department", value: formData.role || "" },
-                { name: "country", value: formData.country || "" },
-                { name: "phone", value: formData.phone || "" },
-                { name: "message", value: formData.message || "" },
-                { name: "use_case", value: formData.message || "" }, // sau schimbă cu un câmp dedicat
-                { name: "reason_for_contact", value: hubspotReasonMap[formData.reason] || "Other" },
-                // Dacă ai și consimțământ în formularul HS, decomentează:
-                { name: "LEGAL_CONSENT.subscription_type_1062787159", value: formData.keepUpdated ? "true" : "false" },
-                { name: "LEGAL_CONSENT.processing", value: "true" },
-            ],
+            fields,
             context: {
                 pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai/contact",
                 pageName: typeof document !== "undefined" ? document.title : "Contact",

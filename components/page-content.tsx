@@ -209,6 +209,7 @@ export default function PageContent({ data, nav }: Props) {
           { name: "firstname", value: unlockForm.firstName },
           { name: "lastname", value: unlockForm.lastName },
           { name: "email", value: unlockForm.email },
+          { name: "LEGAL_CONSENT.processing", value: "true" },
         ],
         context: {
           pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai/post",

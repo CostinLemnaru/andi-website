@@ -157,17 +157,22 @@ export default function CtaSection({ data }: Props) {
     const submitToHubSpot = async () => {
         const hutk = getCookie("hubspotutk")
 
+        const fields = [
+            { name: "email", value: email },
+            { name: "firstname", value: firstName },
+            { name: "lastname", value: lastName },
+            { name: "company", value: company },
+            { name: "use_case", value: useCase },
+            { name: "role_department", value: department },
+            { name: "LEGAL_CONSENT.subscription_type_1062787159", value: keepUpdated ? "true" : "false" },
+        ]
+
+        if (keepUpdated) {
+            fields.push({ name: "LEGAL_CONSENT.processing", value: "true" })
+        }
+
         const payload = {
-            fields: [
-                { name: "email", value: email },
-                { name: "firstname", value: firstName },
-                { name: "lastname", value: lastName },
-                { name: "company", value: company },
-                { name: "use_case", value: useCase }, // nu ai câmp în UI aici; rămâne empty (sau adaugă un textarea dacă vrei)
-                { name: "role_department", value: department },
-                { name: "LEGAL_CONSENT.subscription_type_1062787159", value: keepUpdated ? "true" : "false" },
-                { name: "LEGAL_CONSENT.processing", value: "true" },
-            ],
+            fields,
             context: {
                 pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai",
                 pageName: typeof document !== "undefined" ? document.title : "Landing",
