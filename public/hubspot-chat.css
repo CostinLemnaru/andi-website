@@ -5,4 +5,8 @@ iframe[src*="chat.hubspot.com"],
 iframe {
   background: transparent !important;
   border: none !important;
+  color-scheme: light;
+}
+#hubspot-messages-iframe-container.widget-align-right {
+  color-scheme: light;
 }

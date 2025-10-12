@@ -224,6 +224,7 @@ export default function RoiCalculatorSection({ data }: Props) {
           { name: "role_department", value: reportForm.role },
           { name: "email", value: reportForm.email },
           { name: "company", value: reportForm.company },
+          { name: "LEGAL_CONSENT.processing", value: "true" },
         ],
         context: {
           pageUri: typeof window !== "undefined" ? window.location.href : "https://www.zamora.ai/roi",
@@ -233,6 +234,40 @@ export default function RoiCalculatorSection({ data }: Props) {
       }
 
       await submitToHubSpot(payload)
+
+      if (typeof window !== "undefined") {
+        const reportData = {
+          ...reportForm,
+          employees,
+          decisionMakers,
+          avgSalary,
+          currentToolCost,
+          decisionTime,
+          decisionsPerWeek,
+          hourlyRate,
+          annualCostSaved,
+          annualTimeSaved,
+          toolConsolidationSavings,
+          opportunityCostSavings,
+          totalAnnualSavings,
+          suggestedPlan,
+          toolsConsolidated,
+          consolidationSavingsRate,
+          generatedAt: new Date().toISOString(),
+        }
+
+        try {
+          const serialized = JSON.stringify(reportData)
+          window.localStorage?.setItem("roiReportData", serialized)
+          window.sessionStorage?.setItem("roiReportData", serialized)
+
+          const reportUrl = `/roi-report?data=${encodeURIComponent(serialized)}`
+          window.open(reportUrl, "_blank", "noopener,noreferrer")
+        } catch (storageError) {
+          console.error("Error storing ROI report data:", storageError)
+          window.alert?.("Error generating report. Please try again.")
+        }
+      }
 
       setIsReportDialogOpen(false)
       setReportForm({
