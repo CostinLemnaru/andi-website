@@ -670,6 +670,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    Seo: Schema.Attribute.Component<'page.seo', false>;
     slug: Schema.Attribute.UID;
     Subtitle: Schema.Attribute.String;
     Title: Schema.Attribute.String;

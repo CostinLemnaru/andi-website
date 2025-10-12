@@ -113,6 +113,11 @@
                 "hero.hero-section",
                 "page.boxes-learn-more"
             ]
+        },
+        "Seo": {
+            "type": "component",
+            "component": "page.seo",
+            "repeatable": false
         }
     }
 }
